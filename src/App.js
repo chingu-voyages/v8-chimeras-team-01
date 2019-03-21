@@ -1,64 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
+import Results from './components/Results';
+import Questions from './components/Questions';
+import LeaderBoard from './components/LeaderBoard';
+import Landing from './components/Landing';
+import Instructions from './components/Instructions';
+import Gaming from './components/Gaming';
+import Nav from './components/Nav';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      greeting: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ name: event.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
-      .then(response => response.json())
-      .then(state => this.setState(state));
-  }
-
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
+      <Router>
 
+        <Nav />
 
-             <form onSubmit={this.handleSubmit}>
-            <label htmlFor="name">Enter your name: </label>
-            <input
-              id="name"
-              type="text"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
-          <p>{this.state.greeting}</p>
+        <Route exact path="/" component={Landing} />
+        <Route path="/results" component={Results} />
+        <Route path="/gaming" component={Gaming} />
+        <Route path="/instructions" component={Instructions} />
+        <Route path="/questions" component={Questions} />
+        <Route path="/leaderBoard" component={LeaderBoard} />
 
-
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      </Router >
+    )
   }
 }
 
