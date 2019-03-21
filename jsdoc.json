@@ -1,0 +1,36 @@
+{
+    "source": {
+        "include": [
+            "./src"
+        ],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "opts": {
+        "encoding": "utf8",
+        "readme": "./README.md",
+        "destination": "docs/",
+        "recurse": true,
+        "verbose": true,
+        "tutorials": "./tutorials",
+        "template": "node_modules/tui-jsdoc-template"
+    },
+
+    "templates": {
+        "tabNames": {
+            "api": "Docs",
+            "tutorials": "Tutorials"
+        },
+        "logo": {
+            "url": "https://image.flaticon.com/icons/svg/477/477169.svg",
+            "width": "150px",
+            "height": "150px",
+            "link": "https://github.com/nhnent/tui.jsdoc-template"
+        },
+        "footerText": "My awesome footer text",
+        "footerLogo": ""
+    }
+}
