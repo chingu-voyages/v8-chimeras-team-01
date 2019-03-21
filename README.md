@@ -8,6 +8,10 @@ In the project directory, you can run:
 
 Starts the backend end server and front end.
 
+### `npm run docs`
+Updates  the documentation template 
+Documentation is viewable at ......
+
 ### `npm start`
 
 Runs the app in the development mode only loads front end code.<br>
