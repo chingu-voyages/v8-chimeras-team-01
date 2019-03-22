@@ -15,6 +15,7 @@ export default function Landing() {
             <p className="button-words">Host A Game</p>
           </button>
         </article>
+
         <article className="how-to-host">
           <h4 className="hth-header">Want to Host a Game?</h4>
           <div className="how-to-box b1">
@@ -29,6 +30,10 @@ export default function Landing() {
             <span className="htb-num">3</span>
             <p>Invite Friends!</p>
           </div>
+        </article>
+
+        <article className="gameplay-example">
+          GAMEPLAY EXAMPLE
         </article>
     </section>
   )

@@ -51,6 +51,7 @@
   max-width: 400px;
   height: 400px;
   padding: 1em;
+  margin: 0 auto;
   background-color: var(--color-main);
 }
 
@@ -100,4 +101,10 @@
 .b3 {
   grid-column: htc1 / htc3;
   grid-row: htr5 / htr7;
+}
+
+/* GAMEPLAY EXAMPLE */
+
+.gameplay-example {
+  height: 400px;
 }
