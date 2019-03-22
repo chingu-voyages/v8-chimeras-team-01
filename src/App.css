@@ -1,9 +1,9 @@
-/* Ensure body and app root container truly cover 100% of the screen */
+/* Ensure body and app root container truly cover 100% of the screen and that the body text is our selected font unless we change it specifically */
 
 body {
   width: 100%;
   margin: 0;
-  font-family: sans-serif, arial;
+  font-family: var(--font), sans-serif, arial;
 }
 
 #root {
@@ -27,7 +27,8 @@ a:active {
 /* Add Theme Variables here (like colors and fonts we will use throughout the project) */
 
 :root {
-
+  --font: 'Roboto', sans-serif;
+  --font-header: 'Roboto Condensed', sans-serif;
 }
 
 
