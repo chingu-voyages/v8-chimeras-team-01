@@ -16,7 +16,18 @@ export default function Landing() {
           </button>
         </article>
         <article className="how-to-host">
-          Host A Game??
+          <div className="how-to-box b1">
+            <span className="htb-num">1</span>
+            <p>Choose "GameMaster" Option Above</p>
+          </div>
+          <div className="how-to-box b2">
+            <span className="htb-num">2</span>
+            <p>Choose "GameMaster" Option Above</p>
+          </div>
+          <div className="how-to-box b3">
+            <span className="htb-num">3</span>
+            <p>Choose "GameMaster" Option Above</p>
+          </div>
         </article>
     </section>
   )

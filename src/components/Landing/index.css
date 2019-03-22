@@ -44,10 +44,43 @@
 
 .how-to-host {
   display: grid;
-  grid-template-columns:[htc1] 1fr [htc2] 2fr [htc3] 4fr [htc4] 1fr [htc5];
-  grid-template-rows: [htr1] 1fr [htr2] 1fr [htr3] 1fr [htr4];
-  grid-row-gap: 1em;
+  grid-template-columns:[htc1] 1fr [htc2] 20px [htc3] 1fr [htc4] 1fr [htc5];
+  grid-template-rows: [htr1] 1fr [htr2] 20px [htr3] 1fr [htr4];
   width: 100%;
-  height: 400px;
   background-color: var(--color-main);
+}
+
+.how-to-box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0.5em;
+}
+
+.htb-num {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  padding: 0;
+  margin: 0;
+  font-size: 4em;
+  color: var(--color-main);
+}
+
+.b1 {
+  grid-column: htc1 / htc3;
+  grid-row: htr1 / htr3;
+}
+
+.b2 {
+  grid-column: htc2 / htc4;
+  grid-row: htr2 / htr4;
+}
+
+.b3 {
+  grid-column: htc4 / htc5;
+  grid-row: htr3 / htr4;
 }
