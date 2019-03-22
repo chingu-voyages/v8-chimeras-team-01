@@ -6,10 +6,14 @@ export default function Landing() {
     <section id="landing">
         <h1>Landing Component</h1>
         <article className="start-game-section">
-          <div className="start-game-button">
-            <p><strong>Are you a GameMaster??</strong></p>
-            <p>Host A Game</p>
-          </div>
+          <button className="start-game-button">
+            <p className="button-words"><strong>Are you a GameMaster??</strong></p>
+            <p className="button-words">Host A Game</p>
+          </button>
+          <button className="start-game-button">
+            <p className="button-words"><strong>Are you a GameMaster??</strong></p>
+            <p className="button-words">Host A Game</p>
+          </button>
         </article>
     </section>
   )
