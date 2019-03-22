@@ -7,12 +7,15 @@
   min-height: calc(100vh - 150px);
 }
 
+/*  BUTTONS TO START GAME */
+
 .start-game-section {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
+  max-height: 300px;
   padding: 0;
   margin: 0 auto;
 }
@@ -35,4 +38,16 @@
 .button-words {
   padding: 0;
   margin: 0;
+}
+
+/* HOW TO HOST GAME */
+
+.how-to-host {
+  display: grid;
+  grid-template-columns:[htc1] 1fr [htc2] 2fr [htc3] 4fr [htc4] 1fr [htc5];
+  grid-template-rows: [htr1] 1fr [htr2] 1fr [htr3] 1fr [htr4];
+  grid-row-gap: 1em;
+  width: 100%;
+  height: 400px;
+  background-color: var(--color-main);
 }

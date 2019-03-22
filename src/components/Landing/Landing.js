@@ -15,6 +15,9 @@ export default function Landing() {
             <p className="button-words">Host A Game</p>
           </button>
         </article>
+        <article className="how-to-host">
+          Host A Game??
+        </article>
     </section>
   )
 }
