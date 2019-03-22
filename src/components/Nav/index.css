@@ -4,6 +4,8 @@
   grid-column: c1 / c2;
   grid-row: r1 / r2;
   width: 100%;
+  padding: 1em 0.5em;
+  margin: 0;
   background-color: var(--color-main);
   background-image:radial-gradient(
     var(--color-main),
@@ -13,6 +15,19 @@
 }
 
 header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
   font-family: var(--font-header);
-  font-size: 2em;
+}
+
+.header {
+  padding: 0;
+  margin: 0;
+}
+
+.sub-header {
+  padding: 0;
+  margin: 0;
 }
