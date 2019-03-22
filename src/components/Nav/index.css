@@ -4,7 +4,7 @@
   grid-column: c1 / c2;
   grid-row: r1 / r2;
   width: 100%;
-  padding: 1em 0.5em;
+  padding: 0;
   margin: 0;
   background-color: var(--color-main);
   background-image:radial-gradient(
@@ -19,6 +19,9 @@ header {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: flex-start;
+  max-width: 100%;
+  padding: 1em 0 0 0.5em;
+  margin: 0;
   font-family: var(--font-header);
 }
 
