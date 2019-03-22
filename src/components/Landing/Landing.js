@@ -3,8 +3,14 @@ import './index.css';
 
 export default function Landing() {
   return (
-    <div id="landing">
+    <section id="landing">
         <h1>Landing Component</h1>
-    </div>
+        <article className="start-game-section">
+          <div className="start-game-button">
+            <p><strong>Are you a GameMaster??</strong></p>
+            <p>Host A Game</p>
+          </div>
+        </article>
+    </section>
   )
 }

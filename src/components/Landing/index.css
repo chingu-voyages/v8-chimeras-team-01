@@ -6,3 +6,25 @@
   width: 100%;
   min-height: calc(100vh - 150px);
 }
+
+.start-game-section {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.start-game-button {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 1em;
+  border: 1px solid #000;
+  border-radius: 1em;
+}
