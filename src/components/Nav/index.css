@@ -1,3 +1,18 @@
+@import '../../App.css';
+
 #nav {
-    background-color: darkorange;
+  grid-column: c1 / c2;
+  grid-row: r1 / r2;
+  width: 100%;
+  background-color: var(--color-main);
+  background-image:radial-gradient(
+    var(--color-main),
+    var(--color-dark)
+    );
+  color: #fff;
+}
+
+header {
+  font-family: var(--font-header);
+  font-size: 2em;
 }

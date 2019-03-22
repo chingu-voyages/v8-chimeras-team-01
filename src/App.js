@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 //Stylesheets
 import './App.css';
@@ -30,6 +30,16 @@ class App extends Component {
           <Route path="/leaderBoard" component={LeaderBoard} />
 
         </Switch >
+
+        <footer>
+          <ul>
+              <li><Link to="/">Landing Component</Link></li>
+              <li><Link to="/results">Results Component</Link></li>
+              <li><Link to="/gaming">Gaming Component</Link></li>
+              <li><Link to="/questions">Questions Component</Link></li>
+              <li><Link to="/leaderBoard">LeaderBoard Component</Link></li>
+          </ul>
+        </footer>
       </div>
     )
   }

@@ -29,6 +29,8 @@ a:active {
 :root {
   --font: 'Roboto', sans-serif;
   --font-header: 'Roboto Condensed', sans-serif;
+  --color-main: #36A061;
+  --color-dark: #018B39;
 }
 
 
@@ -42,4 +44,10 @@ a:active {
   height: auto;
   margin: 0;
   padding: 0;
+}
+
+/* FOOTER */
+footer {
+  grid-column: c1 / c2;
+  grid-row: r3 / r4;
 }
