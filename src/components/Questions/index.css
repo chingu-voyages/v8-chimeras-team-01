@@ -1,3 +1,37 @@
 #questions {
     background-color: aqua;
 }
+
+.outline {
+    border: 2px black solid;
+}
+
+.answers-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    background-color: #fff;
+    color: #444;
+    margin: 1rem;
+}
+
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+}
+
+.image-wrapper {
+    text-align: center;
+    margin: 1rem;
+}
+
+.inline{
+    display: inline-block;
+}
+
+.center {
+    text-align: center;
+}
