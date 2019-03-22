@@ -1,32 +1,44 @@
-.App {
-  text-align: center;
+/* Ensure body and app root container truly cover 100% of the screen */
+
+body {
+  width: 100%;
+  margin: 0;
+  font-family: sans-serif, arial;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+#root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+/* Remove decoration from links */
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* Add Theme Variables here (like colors and fonts we will use throughout the project) */
+
+:root {
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* Setup Grid on top level div. This sets a space for the Nav and Footer and allows the center portion (1fr = all remaining space) to be used by whichever component is being shown. */
+
+#top-level-container {
+  display: grid;
+  grid-template-columns: [c1] 100% [c2];
+  grid-template-rows: [r1] 100px [r2] 1fr [r3] 50px [r4];
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
 }

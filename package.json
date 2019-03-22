@@ -16,7 +16,6 @@
     "server": "node-env-run server --exec nodemon | pino-colada",
     "dev": "run-p server start",
     "docs": "./node_modules/.bin/jsdoc -c jsdoc.json"
-
   },
   "proxy": "http://localhost:3001",
   "eslintConfig": {

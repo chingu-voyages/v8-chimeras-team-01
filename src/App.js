@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
+
+//Stylesheets
 import './App.css';
+
+//Components
 import Results from './components/Results';
 import Questions from './components/Questions';
 import LeaderBoard from './components/LeaderBoard';
@@ -13,18 +17,20 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-
+      <div id="top-level-container">
         <Nav />
 
-        <Route exact path="/" component={Landing} />
-        <Route path="/results" component={Results} />
-        <Route path="/gaming" component={Gaming} />
-        <Route path="/instructions" component={Instructions} />
-        <Route path="/questions" component={Questions} />
-        <Route path="/leaderBoard" component={LeaderBoard} />
+        <Switch>
 
-      </Router >
+          <Route exact path="/" component={Landing} />
+          <Route path="/results" component={Results} />
+          <Route path="/gaming" component={Gaming} />
+          <Route path="/instructions" component={Instructions} />
+          <Route path="/questions" component={Questions} />
+          <Route path="/leaderBoard" component={LeaderBoard} />
+
+        </Switch >
+      </div>
     )
   }
 }
