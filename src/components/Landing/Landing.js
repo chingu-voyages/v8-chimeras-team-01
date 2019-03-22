@@ -16,17 +16,18 @@ export default function Landing() {
           </button>
         </article>
         <article className="how-to-host">
+          <h4 className="hth-header">Want to Host a Game?</h4>
           <div className="how-to-box b1">
             <span className="htb-num">1</span>
             <p>Choose "GameMaster" Option Above</p>
           </div>
           <div className="how-to-box b2">
             <span className="htb-num">2</span>
-            <p>Choose "GameMaster" Option Above</p>
+            <p>Select A Game</p>
           </div>
           <div className="how-to-box b3">
             <span className="htb-num">3</span>
-            <p>Choose "GameMaster" Option Above</p>
+            <p>Invite Friends!</p>
           </div>
         </article>
     </section>

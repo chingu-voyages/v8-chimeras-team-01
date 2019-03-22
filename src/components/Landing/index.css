@@ -45,25 +45,40 @@
 .how-to-host {
   display: grid;
   grid-template-columns:[htc1] 4fr [htc2] 1fr [htc3] 4fr [htc4];
-  grid-template-rows: [htr1] 4fr [htr2] 1fr [htr3] 3fr [htr4] 1fr [htr5] 4fr [htr6];
+  grid-template-rows: [htr1] 30px [htr2] 4fr [htr3] 1fr [htr4] 3fr [htr5] 1fr [htr6] 4fr [htr7];
   box-sizing: border-box;
   width: 100%;
-  padding: 1em 0 1em 1em;
+  max-width: 400px;
+  height: 400px;
+  padding: 1em;
   background-color: var(--color-main);
+}
+
+.hth-header {
+  grid-column: htc1 / htc4;
+  grid-row: htr1 / htr2;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .how-to-box {
   position: relative;
-  background-color: #000;
-  color: #fff;
-  border: 2px solid #fff;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
   border-radius: 0.5em;
+  box-shadow: 2px 2px 10px #000;
+  text-align: center;
 }
 
 .htb-num {
   position: absolute;
-  top: -10px;
-  left: -10px;
+  top: -12px;
+  left: -5px;
   padding: 0;
   margin: 0;
   font-size: 4em;
@@ -72,16 +87,16 @@
 
 .b1 {
   grid-column: htc1 / htc3;
-  grid-row: htr1 / htr3;
+  grid-row: htr2 / htr4;
   margin-left: 1em;
 }
 
 .b2 {
   grid-column: htc2 / htc4;
-  grid-row: htr2 / htr5;
+  grid-row: htr3 / htr6;
 }
 
 .b3 {
   grid-column: htc1 / htc3;
-  grid-row: htr4 / htr6;
+  grid-row: htr5 / htr7;
 }
