@@ -18,22 +18,27 @@ export default function Landing() {
 
         <article className="how-to-host">
           <h4 className="hth-header">Want to Host a Game?</h4>
-          <div className="how-to-box b1">
+          <div className="how-to-box htb1">
             <span className="htb-num">1</span>
             <p>Choose "GameMaster" Option Above</p>
           </div>
-          <div className="how-to-box b2">
+          <div className="how-to-box htb2">
             <span className="htb-num">2</span>
             <p>Select A Game</p>
           </div>
-          <div className="how-to-box b3">
+          <div className="how-to-box htb3">
             <span className="htb-num">3</span>
             <p>Invite Friends!</p>
           </div>
         </article>
 
         <article className="gameplay-example">
-          GAMEPLAY EXAMPLE
+          <span className="ge-description geb1">Setup</span>
+          <span className="ge-pic geb2">SCREENSHOT</span>
+          <span className="ge-pic geb3">SCREENSHOT</span>
+          <span className="ge-description geb4">Gameplay</span>
+          <span className="ge-description geb5">Results</span>
+          <span className="ge-pic geb6">SCREENSHOT</span>
         </article>
     </section>
   )
