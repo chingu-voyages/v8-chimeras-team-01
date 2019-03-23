@@ -22,13 +22,13 @@ class App extends Component {
         {
           id: "0001",
           name: "Waffles",
-          image: <i class="fas fa-stroopwafel fa-6x"></i>,
+          image: <i className="fas fa-stroopwafel fa-6x"></i>,
           desc: "What you know 'bout Waffles??"
         },
         {
           id: "0002",
           name: "Cookies",
-          image: <i class="fas fa-cookie fa-6x"></i>,
+          image: <i className="fas fa-cookie fa-6x"></i>,
           desc: "You knwo you can eat them, but what else??"
         }
       ]
