@@ -15,6 +15,24 @@ import Nav from './components/Nav';
 
 class App extends Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      gameList: [
+        {
+          name: "Waffles",
+          image: `<i class="fas fa-stroopwafel"></i>`,
+          desc: "What you know 'bout Waffles??"
+        },
+        {
+          name: "Cookies",
+          image: `<i class="fas fa-cookie"></i>`,
+          desc: "You knwo you can eat them, but what else??"
+        }
+      ]
+    }
+  }
+
   render() {
     return (
       <div id="top-level-container">
@@ -24,7 +42,11 @@ class App extends Component {
 
           <Route exact path="/" component={Landing} />
           <Route path="/results" component={Results} />
-          <Route path="/games" component={Games} />
+          <Route path="/games"
+                 render={(props) =>
+                  <Games {...props}
+                    gameList={this.gameList} />}
+          />
           <Route path="/instructions" component={Instructions} />
           <Route path="/questions" component={Questions} />
           <Route path="/leaderBoard" component={LeaderBoard} />
