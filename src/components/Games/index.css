@@ -1,0 +1,8 @@
+@import '../../App.css';
+
+#games {
+  grid-column: c1 / c2;
+  grid-row: r2 / r3;
+  width: 100%;
+  min-height: calc(100vh - 150px);
+}

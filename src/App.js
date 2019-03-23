@@ -10,7 +10,7 @@ import Questions from './components/Questions';
 import LeaderBoard from './components/LeaderBoard';
 import Landing from './components/Landing';
 import Instructions from './components/Instructions';
-import Gaming from './components/Gaming';
+import Games from './components/Games';
 import Nav from './components/Nav';
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
 
           <Route exact path="/" component={Landing} />
           <Route path="/results" component={Results} />
-          <Route path="/gaming" component={Gaming} />
+          <Route path="/games" component={Games} />
           <Route path="/instructions" component={Instructions} />
           <Route path="/questions" component={Questions} />
           <Route path="/leaderBoard" component={LeaderBoard} />
@@ -35,7 +35,7 @@ class App extends Component {
           <ul>
               <li><Link to="/">Landing Component</Link></li>
               <li><Link to="/results">Results Component</Link></li>
-              <li><Link to="/gaming">Gaming Component</Link></li>
+              <li><Link to="/games">Games</Link></li>
               <li><Link to="/questions">Questions Component</Link></li>
               <li><Link to="/leaderBoard">LeaderBoard Component</Link></li>
           </ul>
