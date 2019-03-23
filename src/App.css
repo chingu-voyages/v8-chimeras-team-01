@@ -31,6 +31,7 @@ a:active {
   --font-header: 'Roboto Condensed', sans-serif;
   --color-main: #387FCE;
   --color-dark: #094C97;
+  --color-gray: #2D353D;
 }
 
 
@@ -39,7 +40,7 @@ a:active {
 #top-level-container {
   display: grid;
   grid-template-columns: [c1] 100% [c2];
-  grid-template-rows: [r1] 100px [r2] 1fr [r3] 50px [r4];
+  grid-template-rows: [r1] 100px [r2] 1fr [r3] 200px [r4];
   width: 100%;
   height: auto;
   margin: 0;
@@ -50,4 +51,9 @@ a:active {
 footer {
   grid-column: c1 / c2;
   grid-row: r3 / r4;
+  width: 100%;
+  margin-top: 1em;
+  background-color: var(--color-gray);
+  color: var(--color-main);
+  border-top: 3px solid #000;
 }
