@@ -6,3 +6,32 @@
   width: 100%;
   min-height: calc(100vh - 150px);
 }
+
+.game-tile {
+  width: 200px;
+  height: 250px;
+  margin: 1em auto;
+  box-shadow: 2px 1px 8px var(--color-gray);
+}
+
+.gt-image {
+  width: 200px;
+  height: 130px;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-main);
+}
+
+.gt-description {
+  box-sizing: border-box;
+  width: 200px;
+  height: 120px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.gt-description>* {
+  padding: 0.5em;
+  margin: 0;
+}
