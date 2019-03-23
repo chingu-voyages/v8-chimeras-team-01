@@ -11,8 +11,8 @@ export default function Landing() {
             <p className="button-words">Host A Game</p>
           </button>
           <button className="start-game-button">
-            <p className="button-words"><strong>Are you a GameMaster??</strong></p>
-            <p className="button-words">Host A Game</p>
+            <p className="button-words"><strong>Have a Code??</strong></p>
+            <p className="button-words">Join A Game</p>
           </button>
         </article>
 

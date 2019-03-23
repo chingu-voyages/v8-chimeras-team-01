@@ -114,7 +114,9 @@
   grid-template-columns:[gec1] 2fr [gec2] 1fr [gec3] 2fr [gec4];
   grid-template-rows: [ger1] 100px [ger2] 20px [ger3] 70px [ger4] 20px [ger5] 100px [ger6];
   box-sizing: border-box;
+  max-width: 400px;
   height: 450px;
+  margin: 0 auto;
 }
 
 .geb1 {
