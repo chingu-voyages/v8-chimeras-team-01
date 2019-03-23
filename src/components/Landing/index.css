@@ -45,11 +45,11 @@
 .how-to-host {
   display: grid;
   grid-template-columns:[htc1] 4fr [htc2] 1fr [htc3] 4fr [htc4];
-  grid-template-rows: [htr1] 30px [htr2] 4fr [htr3] 1fr [htr4] 3fr [htr5] 1fr [htr6] 4fr [htr7];
+  grid-template-rows: [htr1] 50px [htr2] 4fr [htr3] 1fr [htr4] 3fr [htr5] 1fr [htr6] 4fr [htr7];
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
-  height: 400px;
+  height: 450px;
   padding: 1em;
   margin: 0 auto;
   background-color: var(--color-main);
