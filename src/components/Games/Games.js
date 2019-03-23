@@ -8,7 +8,7 @@ export default function Games({gameList}) {
       <h1>Choose your challenge</h1>
       {gameList.map(game => (
         <article className="game-tile" key={game.id}>
-          <div className="gt-image">{game.image}</div>
+          <div className="gt-image fbc">{game.image}</div>
           <div className="gt-description">
             <h4>{game.name}</h4>
             <p>{game.desc}</p>
@@ -18,11 +18,3 @@ export default function Games({gameList}) {
     </section>
   )
 }
-
-
-// {
-//   id: "0001",
-//   name: "Waffles",
-//   image: `<i class="fas fa-stroopwafel"></i>`,
-//   desc: "What you know 'bout Waffles??"
-// }

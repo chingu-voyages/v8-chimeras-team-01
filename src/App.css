@@ -34,6 +34,15 @@ a:active {
   --color-gray: #2D353D;
 }
 
+/* COMMON STYLES */
+
+.fbc {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
 
 /* Setup Grid on top level div. This sets a space for the Nav and Footer and allows the center portion (1fr = all remaining space) to be used by whichever component is being shown. */
 
