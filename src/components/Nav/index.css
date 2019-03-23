@@ -7,9 +7,10 @@
   padding: 0;
   margin: 0;
   background-color: var(--color-main);
-  background-image:radial-gradient(
-    var(--color-main),
-    var(--color-dark)
+  background-image:linear-gradient(
+    var(--color-gray),
+    var(--color-dark) 60%,
+    var(--color-main)
     );
   color: #fff;
 }
