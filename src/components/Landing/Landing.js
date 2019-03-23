@@ -33,11 +33,12 @@ export default function Landing() {
         </article>
 
         <article className="gameplay-example">
-          <span className="ge-description geb1">Setup</span>
+          <span className="ge-header">Gameplay</span>
+          <span className="ge-description geb1">Setup a game with a few clicks</span>
           <span className="ge-pic geb2">SCREENSHOT</span>
           <span className="ge-pic geb3">SCREENSHOT</span>
-          <span className="ge-description geb4">Gameplay</span>
-          <span className="ge-description geb5">Results</span>
+          <span className="ge-description geb4">Answer the questions as they come</span>
+          <span className="ge-description geb5">See who won Bragging Rights</span>
           <span className="ge-pic geb6">SCREENSHOT</span>
         </article>
     </section>

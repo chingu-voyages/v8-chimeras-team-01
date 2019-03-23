@@ -112,11 +112,32 @@
 .gameplay-example {
   display: grid;
   grid-template-columns:[gec1] 2fr [gec2] 1fr [gec3] 2fr [gec4];
-  grid-template-rows: [ger1] 100px [ger2] 20px [ger3] 70px [ger4] 20px [ger5] 100px [ger6];
+  grid-template-rows: [gerheader] 50px [ger1] 180px [ger2] 20px [ger3] 160px [ger4] 20px [ger5] 180px [ger6];
   box-sizing: border-box;
+  width: 100%;
   max-width: 400px;
-  height: 450px;
+  height: 600px;
+  padding: 0;
   margin: 0 auto;
+}
+
+.gameplay-example>span{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.ge-header {
+  grid-column: gec1 / gec4;
+  grid-row: gerheader / ger1;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  z-index: 3;
 }
 
 .geb1 {
@@ -151,10 +172,18 @@
 
 .ge-pic {
   background-color: var(--color-main);
-  box-shadow: 0 -1px 2px #000;
+  box-shadow: 0 -2px 8px #000;
 }
 
 .ge-description {
+  text-align: right;
+  padding: 1em;
+  font-size: 1.1em;
+  font-variant: small-caps;
   background-color: #fff;
-  box-shadow: 0 -1px 2px #000;
+  box-shadow: 0 -2px 8px #000;
+}
+
+.ge-description:nth-of-type(5) {
+  text-align: left;
 }
