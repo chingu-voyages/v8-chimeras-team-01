@@ -20,13 +20,15 @@ class App extends Component {
     this.state = {
       gameList: [
         {
+          id: "0001",
           name: "Waffles",
-          image: `<i class="fas fa-stroopwafel"></i>`,
+          image: <i class="fas fa-stroopwafel fa-6x"></i>,
           desc: "What you know 'bout Waffles??"
         },
         {
+          id: "0002",
           name: "Cookies",
-          image: `<i class="fas fa-cookie"></i>`,
+          image: <i class="fas fa-cookie fa-6x"></i>,
           desc: "You knwo you can eat them, but what else??"
         }
       ]
@@ -45,7 +47,7 @@ class App extends Component {
           <Route path="/games"
                  render={(props) =>
                   <Games {...props}
-                    gameList={this.gameList} />}
+                    gameList={this.state.gameList} />}
           />
           <Route path="/instructions" component={Instructions} />
           <Route path="/questions" component={Questions} />
