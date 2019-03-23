@@ -254,15 +254,7 @@
   }
 
   .ge-header {
-    grid-column: gec1 / gec4;
-    grid-row: gerheader / ger1;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    background-color: #fff;
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
-    z-index: 3;
+    font-size: 1.5em;
   }
 
   .geb1 {
