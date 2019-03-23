@@ -29,7 +29,7 @@
   padding: 1em;
   margin: 1em auto;
   background-color: #fff;
-  border: 1px solid #000;
+  border: 2px solid #000;
   border-radius: 1em;
   font-family: var(--font);
   font-size: 1em;
@@ -173,7 +173,7 @@
 }
 
 .ge-pic {
-  background-color: #387FCE;
+  background-color: var(--color-main);
   color: #fff;
   box-shadow: 0 -2px 10px #000;
 }
