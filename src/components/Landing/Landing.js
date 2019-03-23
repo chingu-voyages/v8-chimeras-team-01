@@ -1,17 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './index.css';
 
 export default function Landing() {
+
   return (
     <section id="landing">
         <article className="start-game-section">
           <button className="start-game-button">
-            <p className="button-words"><strong>Are you a GameMaster??</strong></p>
-            <p className="button-words">Host A Game</p>
+            <Link to="/games" className="link fbc">
+              <p className="button-words"><strong>Are you a GameMaster??</strong></p>
+              <p className="button-words">Host A Game</p>
+            </Link>
           </button>
           <button className="start-game-button">
-            <p className="button-words"><strong>Have a Code??</strong></p>
-            <p className="button-words">Join A Game</p>
+            <Link to="/join" className="link fbc">
+              <p className="button-words"><strong>Have a Code??</strong></p>
+              <p className="button-words">Join A Game</p>
+            </Link>
           </button>
         </article>
 
@@ -43,3 +49,8 @@ export default function Landing() {
     </section>
   )
 }
+
+// <Link to={to}
+// id={match ? "gallery-button-current" : ""}
+// ><button tabIndex="-1"
+// className="gallery-chooser-button">{label}</button></Link>

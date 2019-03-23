@@ -29,7 +29,7 @@ class App extends Component {
           id: "0002",
           name: "Cookies",
           image: <i className="fas fa-cookie fa-6x"></i>,
-          desc: "You knwo you can eat them, but what else??"
+          desc: "You know you can eat them, but what else??"
         }
       ]
     }
