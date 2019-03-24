@@ -173,9 +173,9 @@
 
 .ge-box {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
   background-color: var(--color-main);
   color: #fff;
@@ -183,22 +183,24 @@
 }
 
 .ge-description {
-  width: 100px;
-  height:100px;
+  width: 130px;
+  height:130px;
   text-align: center;
-  padding: 1em;
+  padding: 0;
+  margin-left: 1em;
   font-size: 1.1em;
   font-variant: small-caps;
   background-color: #fff;
   color: #000;
   box-shadow: 0 -1px 12px var(--color-gray);
   border-radius: 50%;
-  z-index: 3;
 }
 
-.ge-description:nth-of-type(5) {
-  text-align: left;
+.geb2>div {
+  align-self: flex-end;
+  margin: 0 1em 0 0;
 }
+
 
 /*  MEDIA QUERIES  */
 
