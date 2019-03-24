@@ -61,7 +61,7 @@
   grid-template-columns: [vcc1] 1fr [vcc2];
   grid-template-rows: [vcr1] 1fr [vcr2];
   max-width: 375px;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .shift-left {

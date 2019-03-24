@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Games from '../Games';
 import './index.css';
 
 export default function Landing() {
@@ -107,6 +108,8 @@ export default function Landing() {
             </div>
           </div>
         </section>
+
+        <Games />
 
       </section>
 

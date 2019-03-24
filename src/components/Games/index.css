@@ -1,10 +1,12 @@
 @import '../../App.css';
 
 #games {
-  grid-column: c1 / c2;
-  grid-row: r2 / r3;
+  position: absolute;
+  top: 100px;
+  opacity: 1;
   width: 100%;
-  min-height: calc(100vh - 150px);
+  background-color: #fff;
+  transition-duration: 500ms;
 }
 
 #games>h1 {
@@ -22,6 +24,7 @@
 
 .game-tile:hover .gt-image {
   background-color: #000;
+  color: #fff;
 }
 
 .game-tile {
@@ -36,8 +39,8 @@
   height: 130px;
   padding: 0;
   margin: 0;
-  background-color: var(--color-main);
-  color: #fff;
+  background-color: var(--color-yellow);
+  color: #000;
 }
 
 .gt-description {
