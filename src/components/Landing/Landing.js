@@ -47,7 +47,7 @@ export default function Landing() {
    * @method [useState(showGames)]
    * @description [Create and change state to show/hide Games component]
    */
-  const [showGames, setShowGames] = useState(true);
+  const [showGames, setShowGames] = useState(false);
 
   /**
    * @function [toggleGames]

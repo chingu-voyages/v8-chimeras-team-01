@@ -192,6 +192,7 @@
 
 .start-game-button {
   width: 300px;
+  height: 74px;
   padding: 0;
   margin: 1em auto;
   background-color: var(--color-yellow);
@@ -205,13 +206,6 @@
 .start-game-button:hover {
   background-color: #000;
   color: #fff;
-}
-
-.link {
-  width: 300px;
-  height: 74px;
-  padding: 0;
-  margin: 0;
 }
 
 .button-words {
