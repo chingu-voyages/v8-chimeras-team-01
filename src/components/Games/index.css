@@ -7,6 +7,12 @@
   min-height: calc(100vh - 150px);
 }
 
+.games-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 15px;
+}
+
 .game-tile {
   width: 200px;
   height: 250px;
