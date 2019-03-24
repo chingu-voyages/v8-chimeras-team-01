@@ -8,8 +8,9 @@
   margin: 0;
   background-color: var(--color-main);
   background-image:linear-gradient(
+    to right,
     var(--color-gray),
-    var(--color-dark) 60%,
+    var(--color-dark) 40%,
     var(--color-main)
     );
   color: #fff;
