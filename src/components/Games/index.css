@@ -20,6 +20,10 @@
   grid-gap: 15px;
 }
 
+.game-tile:hover .gt-image {
+  background-color: #000;
+}
+
 .game-tile {
   width: 200px;
   height: 250px;
