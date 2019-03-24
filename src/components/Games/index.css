@@ -6,7 +6,7 @@
   opacity: 0;
   width: 100%;
   background-color: #fff;
-  transition-duration: 500ms;
+  transition-duration: 400ms;
 }
 
 .show-games {
@@ -19,6 +19,17 @@
   margin-left: 0.3em;
   font-family: var(--font-header);
   font-size: 2em;
+}
+
+.games-close {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  background-color: #fff;
+  border: none;
+  width: 100px;
+  padding: 0;
+  margin: 0;
 }
 
 .games-container {

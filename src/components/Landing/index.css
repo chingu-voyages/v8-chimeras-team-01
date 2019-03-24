@@ -79,7 +79,7 @@
   grid-row: vcr1 / vcr2;
   width: 100%;
   background-color: #fff;
-  transition-duration: 500ms;
+  transition-duration: 400ms;
 }
 
 .gameplay-example {
@@ -166,7 +166,7 @@
   grid-column: vcc1 / vcc2;
   grid-row: vcr1 / vcr2;
   width: 100%;
-  transition-duration: 500ms;
+  transition-duration: 400ms;
 }
 
 .start-game-section {

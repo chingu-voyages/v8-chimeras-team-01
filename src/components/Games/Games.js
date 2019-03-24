@@ -36,6 +36,8 @@ export default function Games({ showGames, handleToggleGames }) {
 
   return (
     <section className={!!showGames ? 'games show-games' : "games"} >
+      <button className="games-close"
+              onClick={() => {handleToggleGames(false)}}> X close </button>
       <h1>Choose your challenge</h1>
       <div className="games-container">
         {gameList.map(game => (
