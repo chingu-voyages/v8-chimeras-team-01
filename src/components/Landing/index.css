@@ -29,6 +29,12 @@
   padding: 0;
   margin: 1em auto;
   background-color: var(--color-main);
+  background-image:linear-gradient(
+    to top right,
+    var(--color-gray),
+    var(--color-dark) 20%,
+    var(--color-main)
+    );
   color: #fff;
   border: 2px solid #000;
   border-radius: 1em;
