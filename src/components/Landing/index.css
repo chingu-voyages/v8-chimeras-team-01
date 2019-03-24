@@ -80,12 +80,21 @@
 .hth-header {
   grid-column: htc1 / htc4;
   grid-row: htr1 / htr2;
+  align-items: flex-start;
   width: 100%;
-  padding: 0;
+  height: 30px;
+  padding-left: 0.2em;
   margin: 0;
   font-family: var(--font-header);
   font-size: 1.1em;
-  color: #fff;
+  background-color: var(--color-main);
+  background-image:linear-gradient(
+    to right,
+    #fff,
+    var(--color-main)
+    );
+  color: #000;
+  border-left: 2px solid #000;
 }
 
 .how-to-box {
