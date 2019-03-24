@@ -6,11 +6,11 @@ export default function Landing() {
 
   return (
     <section id="landing">
-      <section className="view-button-container">
-        <div className="button-box">
+      <section id="view-button-container">
+        <div className="button-box fbc">
           <i className="fas fa-question fa-3x"></i>
         </div>
-        <div className="button-box">
+        <div className="button-box fbc">
           <i className="fas fa-gamepad fa-3x"></i>
         </div>
       </section>

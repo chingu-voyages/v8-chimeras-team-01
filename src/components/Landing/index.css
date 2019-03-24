@@ -3,8 +3,30 @@
 #landing {
   grid-column: c1 / c2;
   grid-row: r2 / r3;
+  display: grid;
+  grid-template-columns: [lc1] 1fr [lc2];
+  grid-template-rows: [lcr1] 80px [lcr2] 1fr [lcr3];
   width: 100%;
   min-height: calc(100vh - 150px);
+}
+
+/* VIEW BUTTON BOXES */
+
+#view-button-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button-box {
+  width: 100%;
+  height: 100%;
+  border-bottom: 3px solid var(--color-gray);
+}
+
+.button-box:nth-of-type(even) {
+  border-left: 3px solid var(--color-gray);
 }
 
 /*  BUTTONS TO START GAME */
