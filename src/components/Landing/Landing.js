@@ -18,7 +18,7 @@ export default function Landing() {
       <div className="ge-container">
         <div className="gameplay-example">
           <div className="fbc">
-            <span className="ge-header fbc">How do I earn Bragging Rights?</span>
+            <h4 className="ge-header fbc">How do I earn Bragging Rights?</h4>
           </div>
           <div className="ge-box geb1">
             <div className="ge-description fbc">Setup a game with a few clicks</div>
@@ -33,6 +33,7 @@ export default function Landing() {
       </div>
 
       <div className="start-game-section">
+        <h4 className="fbc">Quick Launch</h4>
         <button className="start-game-button">
           <Link to="/games" className="link fbc">
             <p className="button-words"><strong>Are you a GameMaster??</strong></p>

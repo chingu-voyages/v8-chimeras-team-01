@@ -148,8 +148,18 @@
   align-items: center;
   width: 100%;
   max-height: 300px;
-  padding: 0;
+  padding: 0 0 2em 0;
   margin: 1em auto;
+  background-color: var(--color-gray);
+  border-bottom: 2px solid var(--color-gray);
+}
+
+.start-game-section>h4 {
+  padding: 1em;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-header);
+  font-size: 1.2em;
 }
 
 .start-game-button {
@@ -160,15 +170,15 @@
   width: 300px;
   padding: 0;
   margin: 1em auto;
-  background-color: var(--color-main);
-  background-image:linear-gradient(
-    to top right,
-    var(--color-gray),
-    var(--color-dark) 20%,
-    var(--color-main)
+  background-color: var(--color-gray);
+  background-image:radial-gradient(
+    circle at 50%,
+    var(--color-yellow),
+    var(--color-orange) 80%,
+    var(--color-gray) 99%
     );
-  color: #fff;
-  border: 2px solid #000;
+  color: #000;
+  border: 2px solid var(--color-gray);
   border-radius: 1em;
   font-family: var(--font);
   font-size: 1em;
