@@ -4,6 +4,10 @@ import './index.css';
 
 export default function Landing() {
 
+  /**
+   * @method [useState(view)]
+   * @description [Creates and sets state for which view is being displayed. This dictates which view is shown and which button is 'chosen']
+   */
   const [view, setView] = useState("info");
 
   /**
@@ -22,7 +26,7 @@ export default function Landing() {
 
   /**
    * @function [toggleView]
-   * @description [Add/Remove class to slide correct view into screen]
+   * @description [Add/Remove shift class to slide correct view into screen]
    */
   const toggleView = (selection) => {
     let gameContainer = document.getElementsByClassName("start-game-container");
