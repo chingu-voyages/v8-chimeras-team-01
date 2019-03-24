@@ -10,7 +10,7 @@ export default function Landing() {
         <div className="button-box fbc">
           <i className="fas fa-question fa-3x"></i>
         </div>
-        <div className="button-box fbc">
+        <div className="button-box fbc sel">
           <i className="fas fa-gamepad fa-3x"></i>
         </div>
       </section>

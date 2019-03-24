@@ -5,7 +5,7 @@
   grid-row: r2 / r3;
   display: grid;
   grid-template-columns: [lc1] 1fr [lc2];
-  grid-template-rows: [lcr1] 80px [lcr2] 1fr [lcr3];
+  grid-template-rows: [lcr1] 100px [lcr2] 1fr [lcr3];
   width: 100%;
   min-height: calc(100vh - 150px);
 }
@@ -22,11 +22,33 @@
 .button-box {
   width: 100%;
   height: 100%;
+  background-color: #fff;
   border-bottom: 3px solid var(--color-gray);
 }
 
 .button-box:nth-of-type(even) {
   border-left: 3px solid var(--color-gray);
+}
+
+.button-box>i {
+  padding: 0.4em;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.sel {
+  background-color: #000;
+}
+
+.sel>i {
+  background-color: var(--color-gray);
+  background-image:radial-gradient(
+    var(--color-yellow),
+    var(--color-orange),
+    var(--color-red) 80%,
+    var(--color-gray)
+    );
+  border: 2px solid #fff;
 }
 
 /*  BUTTONS TO START GAME */
