@@ -39,14 +39,22 @@ export default function Landing() {
           </div>
         </div>
 
-        <div className="gameplay-example">
-          <span className="ge-header">Gameplay</span>
-          <span className="ge-description geb1">Setup a game with a few clicks</span>
-          <span className="ge-pic geb2">SCREENSHOT</span>
-          <span className="ge-pic geb3">SCREENSHOT</span>
-          <span className="ge-description geb4">Answer the questions as they come</span>
-          <span className="ge-description geb5">See who won Bragging Rights</span>
-          <span className="ge-pic geb6">SCREENSHOT</span>
+        <div className="ge-container">
+          <div className="gameplay-example">
+            <span className="ge-header">Gameplay</span>
+            <div>
+              <span className="ge-description geb1">Setup a game with a few clicks</span>
+              <span className="ge-pic geb2">SCREENSHOT</span>
+            </div>
+            <div>
+              <span className="ge-pic geb3">SCREENSHOT</span>
+              <span className="ge-description geb4">Answer the questions as they come</span>
+            </div>
+            <div>
+              <span className="ge-description geb5">See who won Bragging Rights</span>
+              <span className="ge-pic geb6">SCREENSHOT</span>
+            </div>
+          </div>
         </div>
     </section>
   )
