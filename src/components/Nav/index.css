@@ -15,7 +15,7 @@
     var(--color-yellow)
     );
   color: #fff;
-  border-bottom: 2px solid var(--color-gray);
+  border-bottom: 3px solid var(--color-gray);
 }
 
 header {
