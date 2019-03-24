@@ -51,8 +51,3 @@ export default function Landing() {
     </section>
   )
 }
-
-// <Link to={to}
-// id={match ? "gallery-button-current" : ""}
-// ><button tabIndex="-1"
-// className="gallery-chooser-button">{label}</button></Link>
