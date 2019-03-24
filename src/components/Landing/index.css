@@ -22,7 +22,7 @@
 .button-box {
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: var(--color-gray);
   border-bottom: 3px solid var(--color-gray);
 }
 
@@ -32,7 +32,9 @@
 
 .button-box>i {
   padding: 0.4em;
-  background-color: #fff;
+  color: #fff;
+  background-color: var(--color-gray);
+  border: 2px solid #fff;
   border-radius: 50%;
 }
 
@@ -41,6 +43,7 @@
 }
 
 .sel>i {
+  color: #000;
   background-color: var(--color-gray);
   background-image:radial-gradient(
     var(--color-yellow),
@@ -50,6 +53,91 @@
     );
   border: 2px solid #fff;
 }
+
+/* GAMEPLAY EXAMPLE */
+
+.ge-container {
+  width: 100%;
+  background-color: #fff;
+}
+
+.gameplay-example {
+  display: grid;
+  grid-template-columns:[gec1] 1fr [gec4];
+  grid-template-rows: [gerheader] 50px [ger1] 180px [ger2] 20px [ger3] 160px [ger4] 20px [ger5] 180px [ger6];
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+  height: 600px;
+  padding: 0;
+  margin: 2em auto;
+}
+
+.ge-header {
+  grid-column: gec1 / gec4;
+  grid-row: gerheader / ger1;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 1em 0;
+  font-family: var(--font-header);
+  font-size: 1.2em;
+  background-color: #fff;
+}
+
+.geb1 {
+  grid-column: gec1 / gec2;
+  grid-row: ger1 / ger3;
+}
+
+.geb2 {
+  grid-column: gec1 / gec2;
+  grid-row: ger2 / ger5;
+}
+
+.geb3 {
+  grid-column: gec1 / gec2;
+  grid-row: ger4 / ger6;
+}
+
+.ge-box {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-main);
+  color: #fff;
+  box-shadow: 0 -2px 10px var(--color-gray);
+}
+
+.ge-description {
+  width: 120px;
+  height:120px;
+  text-align: center;
+  padding: 0.5em;
+  margin-left: 1em;
+  font-size: 1.1em;
+  font-variant: small-caps;
+  background-color: var(--color-gray);
+  background-image:radial-gradient(
+    var(--color-yellow),
+    var(--color-orange),
+    var(--color-red) 80%,
+    var(--color-gray)
+    );
+  border: 2px solid #fff;
+  color: #000;
+  box-shadow: 0 -1px 12px var(--color-gray);
+  border-radius: 50%;
+}
+
+.geb2>div {
+  align-self: flex-end;
+  margin: 0 1em 0 0;
+}
+
 
 /*  BUTTONS TO START GAME */
 
@@ -176,81 +264,6 @@
 .htb3 {
   grid-column: htc1 / htc3;
   grid-row: htr5 / htr7;
-}
-
-/* GAMEPLAY EXAMPLE */
-
-.ge-container {
-  width: 100%;
-  background-color: #fff;
-}
-
-.gameplay-example {
-  display: grid;
-  grid-template-columns:[gec1] 1fr [gec4];
-  grid-template-rows: [gerheader] 50px [ger1] 180px [ger2] 20px [ger3] 160px [ger4] 20px [ger5] 180px [ger6];
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 600px;
-  height: 600px;
-  padding: 0;
-  margin: 0 auto;
-}
-
-.ge-header {
-  grid-column: gec1 / gec4;
-  grid-row: gerheader / ger1;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  background-color: #fff;
-}
-
-.geb1 {
-  grid-column: gec1 / gec2;
-  grid-row: ger1 / ger3;
-}
-
-.geb2 {
-  grid-column: gec1 / gec2;
-  grid-row: ger2 / ger5;
-}
-
-.geb3 {
-  grid-column: gec1 / gec2;
-  grid-row: ger4 / ger6;
-}
-
-.ge-box {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  background-color: var(--color-main);
-  color: #fff;
-  box-shadow: 0 -2px 10px var(--color-gray);
-}
-
-.ge-description {
-  width: 130px;
-  height:130px;
-  text-align: center;
-  padding: 0;
-  margin-left: 1em;
-  font-size: 1.1em;
-  font-variant: small-caps;
-  background-color: #fff;
-  color: #000;
-  box-shadow: 0 -1px 12px var(--color-gray);
-  border-radius: 50%;
-}
-
-.geb2>div {
-  align-self: flex-end;
-  margin: 0 1em 0 0;
 }
 
 
