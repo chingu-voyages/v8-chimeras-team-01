@@ -6,6 +6,14 @@ export default function Landing() {
 
   return (
     <section id="landing">
+      <section className="view-button-container">
+        <div className="button-box">
+          <i className="fas fa-question fa-3x"></i>
+        </div>
+        <div className="button-box">
+          <i className="fas fa-gamepad fa-3x"></i>
+        </div>
+      </section>
         <div className="start-game-section">
           <button className="start-game-button">
             <Link to="/games" className="link fbc">
