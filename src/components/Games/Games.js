@@ -3,7 +3,11 @@ import './index.css';
 
 export default function Games(props) {
 
-  const [gameList, setGameList] = useState([
+  /**
+   * @method [useState(gameList)]
+   * @description [Array of games available to map over and dispay in tiles]
+   */
+  const [gameList] = useState([
     {
       id: "0001",
       name: "Waffles",
