@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
 
 export default function Landing() {
 
+  const [view, setView] = useState("info");
+
+  /**
+   * @function [buttonSwitch]
+   * @description [Changes which view button has sel based on view in state. Used in on click]
+   */
+  const buttonSwitch = (selection) => {
+    if (selection !== view) {
+      let buttons = document.getElementsByClassName("button-box");
+      buttons[0].classList.toggle("sel");
+      buttons[1].classList.toggle("sel");
+      setView(selection);
+    }
+  }
+
   return (
     <section id="landing">
       <section id="view-button-container">
-        <div className="button-box fbc">
-          <i className="fas fa-question fa-3x"></i>
-        </div>
         <div className="button-box fbc sel">
-          <i className="fas fa-gamepad fa-3x"></i>
+          <i className="fas fa-question fa-3x"
+             onClick={() => {buttonSwitch("info")}}></i>
+        </div>
+        <div className="button-box fbc">
+          <i className="fas fa-gamepad fa-3x"
+             onClick={() => {buttonSwitch("game")}}></i>
         </div>
       </section>
 
