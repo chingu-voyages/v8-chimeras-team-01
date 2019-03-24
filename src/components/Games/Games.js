@@ -35,7 +35,7 @@ export default function Games({ showGames, handleToggleGames }) {
   ]);
 
   return (
-    <section className='games'>
+    <section className={!!showGames ? 'games show-games' : "games"} >
       <h1>Choose your challenge</h1>
       <div className="games-container">
         {gameList.map(game => (

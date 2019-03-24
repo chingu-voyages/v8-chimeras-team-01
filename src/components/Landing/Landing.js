@@ -96,7 +96,7 @@ export default function Landing() {
           <div className="start-game-section">
             <h4 className="fbc">Quick Launch</h4>
             <button className="start-game-button fbc"
-                    onClick={toggleGames(true)}>
+                    onClick={() => {toggleGames(true)}}>
               <p className="button-words"><strong>Are you a GameMaster??</strong></p>
               <p className="button-words">Host A Game</p>
             </button>
