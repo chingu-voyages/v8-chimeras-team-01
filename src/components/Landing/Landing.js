@@ -34,13 +34,13 @@ export default function Landing() {
 
       <div className="start-game-section">
         <h4 className="fbc">Quick Launch</h4>
-        <button className="start-game-button">
+        <button className="start-game-button fbc">
           <Link to="/games" className="link fbc">
             <p className="button-words"><strong>Are you a GameMaster??</strong></p>
             <p className="button-words">Host A Game</p>
           </Link>
         </button>
-        <button className="start-game-button">
+        <button className="start-game-button fbc">
           <Link to="/join" className="link fbc">
             <p className="button-words"><strong>Have a Code??</strong></p>
             <p className="button-words">Join A Game</p>

@@ -163,30 +163,20 @@
 }
 
 .start-game-button {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
   width: 300px;
   padding: 0;
   margin: 1em auto;
-  background-color: var(--color-gray);
-  background-image:radial-gradient(
-    circle at 50%,
-    var(--color-yellow),
-    var(--color-orange) 80%,
-    var(--color-gray) 99%
-    );
+  background-color: var(--color-yellow);
   color: #000;
-  border: 2px solid var(--color-gray);
+  border: 2px solid #fff;
   border-radius: 1em;
   font-family: var(--font);
   font-size: 1em;
 }
 
 .start-game-button:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: #000;
+  color: #fff;
 }
 
 .link {
