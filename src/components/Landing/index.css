@@ -54,11 +54,32 @@
   border: 2px solid #fff;
 }
 
+/* VIEW CONTAINER */
+
+.view-container {
+  display: grid;
+  grid-template-columns: [vcc1] 1fr [vcc2];
+  grid-template-rows: [vcr1] 1fr [vcr2];
+  max-width: 375px;
+  overflow-x: hidden;
+}
+
+.shift-left {
+  transform: translate3d( -500px, 0, 0);
+}
+
+.shift-right {
+  transform: translate3d( 500px, 0, 0);
+}
+
 /* GAMEPLAY EXAMPLE */
 
 .ge-container {
+  grid-column: vcc1 / vcc2;
+  grid-row: vcr1 / vcr2;
   width: 100%;
   background-color: #fff;
+  transition-duration: 500ms;
 }
 
 .gameplay-example {
@@ -140,6 +161,13 @@
 
 
 /*  BUTTONS TO START GAME */
+
+.start-game-container {
+  grid-column: vcc1 / vcc2;
+  grid-row: vcr1 / vcr2;
+  width: 100%;
+  transition-duration: 500ms;
+}
 
 .start-game-section {
   display: flex;
