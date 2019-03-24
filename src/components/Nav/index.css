@@ -6,14 +6,16 @@
   width: 100%;
   padding: 0;
   margin: 0;
-  background-color: var(--color-main);
+  background-color: var(--color-gray);
   background-image:linear-gradient(
-    to right,
+    to bottom right,
     var(--color-gray),
-    var(--color-dark) 40%,
-    var(--color-main)
+    var(--color-red) 70%,
+    var(--color-orange),
+    var(--color-yellow)
     );
   color: #fff;
+  border-bottom: 2px solid var(--color-gray);
 }
 
 header {

@@ -29,8 +29,11 @@ a:active {
 :root {
   --font: 'Roboto', sans-serif;
   --font-header: 'Roboto Condensed', sans-serif;
-  --color-main: #387FCE;
-  --color-dark: #094C97;
+  --color-yellow: #FFED5C;
+  --color-orange: #FFA324;
+  --color-red: #FF4A24;
+  /* --color-main: #387FCE;
+  --color-dark: #094C97; */
   --color-gray: #2D353D;
 }
 
