@@ -28,11 +28,17 @@
   width: 300px;
   padding: 0;
   margin: 1em auto;
-  background-color: #fff;
+  background-color: var(--color-main);
+  color: #fff;
   border: 2px solid #000;
   border-radius: 1em;
   font-family: var(--font);
   font-size: 1em;
+}
+
+.start-game-button:hover {
+  background-color: #fff;
+  color: #000;
 }
 
 .link {
@@ -101,6 +107,7 @@
   font-size: 3.5em;
   color: #fff;
   background-color: var(--color-main);
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
 }
 
 .htb1 {
