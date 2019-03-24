@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './index.css';
 
-export default function Games(props) {
+export default function Games({ showGames }) {
 
   /**
    * @method [useState(gameList)]
@@ -35,7 +35,7 @@ export default function Games(props) {
   ]);
 
   return (
-    <section id='games'>
+    <section className='games'>
       <h1>Choose your challenge</h1>
       <div className="games-container">
         {gameList.map(game => (

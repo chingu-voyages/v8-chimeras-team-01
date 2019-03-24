@@ -13,6 +13,7 @@ export default function Landing() {
 
   /**
    * @function [buttonSwitch]
+   * @param {string} selection
    * @description [Changes which view button has sel based on view in state. Used in on click]
    */
   const buttonSwitch = (selection) => {
@@ -27,6 +28,7 @@ export default function Landing() {
 
   /**
    * @function [toggleView]
+   * @param {string} selection
    * @description [Add/Remove shift class to slide correct view into screen]
    */
   const toggleView = (selection) => {
@@ -39,6 +41,21 @@ export default function Landing() {
       gameContainer[0].classList.remove("shift-right");
       geContainer[0].classList.add("shift-left");
     }
+  }
+
+  /**
+   * @method [useState(showGames)]
+   * @description [Create and change state to show/hide Games component]
+   */
+  const [showGames, setShowGames] = useState(false);
+
+  /**
+   * @function [toggleGames]
+   * @param {boolean} boolean
+   * @description [Trigger show/hide of Games component]
+   */
+  const toggleGames = (boolean) => {
+    
   }
 
   return (
