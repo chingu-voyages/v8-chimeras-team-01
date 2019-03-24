@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './index.css';
 
-export default function Games({ showGames }) {
+export default function Games({ showGames, handleToggleGames }) {
 
   /**
    * @method [useState(gameList)]

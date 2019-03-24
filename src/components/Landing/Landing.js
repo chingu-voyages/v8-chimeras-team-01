@@ -55,7 +55,9 @@ export default function Landing() {
    * @description [Trigger show/hide of Games component]
    */
   const toggleGames = (boolean) => {
-    
+    if (boolean !== showGames) {
+      setShowGames(boolean);
+    }
   }
 
   return (
@@ -93,11 +95,10 @@ export default function Landing() {
         <section className="start-game-container shift-right">
           <div className="start-game-section">
             <h4 className="fbc">Quick Launch</h4>
-            <button className="start-game-button fbc">
-              <Link to="/games" className="link fbc">
-                <p className="button-words"><strong>Are you a GameMaster??</strong></p>
-                <p className="button-words">Host A Game</p>
-              </Link>
+            <button className="start-game-button fbc"
+                    onClick={toggleGames(true)}>
+              <p className="button-words"><strong>Are you a GameMaster??</strong></p>
+              <p className="button-words">Host A Game</p>
             </button>
             <button className="start-game-button fbc">
               <Link to="/join" className="link fbc">
@@ -126,7 +127,8 @@ export default function Landing() {
           </div>
         </section>
 
-        <Games />
+        <Games showGames={showGames}
+               handleToggleGames={toggleGames}/>
 
       </section>
 
