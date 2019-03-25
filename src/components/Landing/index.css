@@ -324,6 +324,7 @@
     justify-content: center;
     align-items: center;
     max-width: none;
+    min-height: none;
   }
 
   .shift-left {
@@ -390,6 +391,12 @@
   .ge-box {
     width: 600px;
     margin: 1em auto;
+  }
+
+  /*  BUTTONS TO START GAME */
+
+  .start-game-section {
+    margin: 0;
   }
 
   /* HOW TO HOST GAME */
