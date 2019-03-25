@@ -78,6 +78,7 @@ export default function Landing() {
         <div className="ge-container">
           <div className="gameplay-example">
             <div className="fbc">
+              <i className="fas fa-question lrg-scrn-icon"></i>
               <h4 className="ge-header fbc">How do I earn Bragging Rights?</h4>
             </div>
             <div className="ge-box geb1">
