@@ -345,6 +345,7 @@
     box-shadow: 1px 1px 5px var(--color-gray);
     text-align: center;
     transition-duration: 200ms;
+    z-index: 3;
   }
 
   .lrg-scrn-icon:hover {
@@ -355,12 +356,16 @@
   /* DROP DOWN HOW-TO */
 
   .shift-up {
-    transform: translate3d( 0, -900px, 0);
+    transform: translate3d( 0, -700px, 0);
   }
 
   .ge-container {
+    position: absolute;
+    top: 100px;
+    left: 0;
     width: 100%;
     max-width: 800px;
+    z-index: 2;
   }
 
   .gameplay-example {

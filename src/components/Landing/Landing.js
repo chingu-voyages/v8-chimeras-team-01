@@ -44,6 +44,15 @@ export default function Landing() {
   }
 
   /**
+   * @function [toggleInfo]
+   * @description [show/hide info drop down on when screen is larger than 600px]
+   */
+  const toggleInfo = (boolean) => {
+    let geContainer = document.getElementsByClassName("ge-container");
+    geContainer[0].classList.toggle("shift-up");
+  }
+
+  /**
    * @method [useState(showGames)]
    * @description [Create and change state to show/hide Games component]
    */
@@ -62,7 +71,8 @@ export default function Landing() {
 
   return (
     <section id="landing">
-      <i className="fas fa-question lrg-scrn-icon"></i>
+      <i className="fas fa-question lrg-scrn-icon"
+         onClick={toggleInfo}></i>
       <section id="view-button-container">
         <div className="button-box fbc sel">
           <i className="fas fa-question fa-3x"
@@ -76,7 +86,7 @@ export default function Landing() {
 
       <section className="view-container">
 
-        <div className="ge-container">
+        <div className="ge-container shift-up">
           <div className="gameplay-example">
             <div className="fbc">
               <h4 className="ge-header fbc">How do I earn Bragging Rights?</h4>
