@@ -17,8 +17,8 @@
 }
 
 .games>h1 {
-  width: 100%;
-  margin-left: 0.3em;
+  max-width: 100%;
+  padding-left: 0.3em;
   font-family: var(--font-header);
   font-size: 2em;
 }
