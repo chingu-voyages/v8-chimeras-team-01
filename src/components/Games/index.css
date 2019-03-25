@@ -2,9 +2,11 @@
 
 .games {
   position: absolute;
-  top: 1000px;
+  top: 400px;
   opacity: 0;
   width: 100%;
+  max-height: 860px;
+  overflow: scroll;
   background-color: #fff;
   transition-duration: 400ms;
 }
