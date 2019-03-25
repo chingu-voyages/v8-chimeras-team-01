@@ -314,6 +314,15 @@
     grid-template-rows: [lcr2] 1fr [lcr3];
   }
 
+  #view-button-container {
+    display: none;
+  }
+
+  .view-container {
+    display: block;
+    max-width: none;
+  }
+
   /* .shift-left {
     transform: translate3d( 0, 0, 0);
   }
@@ -321,19 +330,6 @@
   .shift-right {
     transform: translate3d( 0, 0, 0);
   } */
-
-  #view-button-container {
-    display: none;
-  }
-
-  .start-game-container {
-    grid-column: vcc1 / vcc2;
-    grid-row: vcr1 / vcr2;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    transition-duration: 400ms;
-  }
 
   .lrg-scrn-icon {
     display: block;
@@ -354,6 +350,77 @@
   .lrg-scrn-icon:hover {
     color: #fff;
     box-shadow: 1px 1px 10px var(--color-gray);
+  }
+
+  /* DROP DOWN HOW-TO */
+
+  .shift-up {
+    transform: translate3d( 0, -900px, 0);
+  }
+
+  .ge-container {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .gameplay-example {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    height: 700px;
+    padding: 0;
+    margin: 2em auto;
+  }
+
+  .ge-header {
+    width: 100%;
+    padding: 0;
+    margin: 0 0 1em 0;
+    font-family: var(--font-header);
+    font-size: 1.2em;
+    background-color: #fff;
+  }
+
+  .ge-box {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 600px;
+    padding: 0;
+    margin: 1em auto;
+    background-color: var(--color-yellow);
+    color: #fff;
+    box-shadow: 0 -2px 10px var(--color-gray);
+  }
+
+  .ge-description {
+    width: 120px;
+    height:120px;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0 0 0 1em;
+    font-size: 1.1em;
+    font-variant: small-caps;
+    background-color: var(--color-gray);
+    background-image:radial-gradient(
+      var(--color-yellow),
+      var(--color-orange),
+      var(--color-red) 80%,
+      var(--color-gray)
+      );
+    border: 2px solid #fff;
+    color: #000;
+    box-shadow: 0 -1px 12px var(--color-gray);
+    border-radius: 50%;
+  }
+
+  .geb2>div {
+    align-self: flex-end;
+    margin: 0 1em 0 0;
   }
 
 }

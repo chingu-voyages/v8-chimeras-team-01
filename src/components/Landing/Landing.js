@@ -62,6 +62,7 @@ export default function Landing() {
 
   return (
     <section id="landing">
+      <i className="fas fa-question lrg-scrn-icon"></i>
       <section id="view-button-container">
         <div className="button-box fbc sel">
           <i className="fas fa-question fa-3x"
@@ -78,7 +79,6 @@ export default function Landing() {
         <div className="ge-container">
           <div className="gameplay-example">
             <div className="fbc">
-              <i className="fas fa-question lrg-scrn-icon"></i>
               <h4 className="ge-header fbc">How do I earn Bragging Rights?</h4>
             </div>
             <div className="ge-box geb1">
