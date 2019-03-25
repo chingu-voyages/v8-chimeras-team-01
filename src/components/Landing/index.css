@@ -319,17 +319,20 @@
   }
 
   .view-container {
-    display: block;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
     max-width: none;
   }
 
-  /* .shift-left {
+  .shift-left {
     transform: translate3d( 0, 0, 0);
   }
 
   .shift-right {
     transform: translate3d( 0, 0, 0);
-  } */
+  }
 
   .lrg-scrn-icon {
     display: block;
@@ -356,15 +359,15 @@
   /* DROP DOWN HOW-TO */
 
   .shift-up {
-    transform: translate3d( 0, -700px, 0);
+    transform: translate3d( 0, -800px, 0);
   }
 
   .ge-container {
     position: absolute;
     top: 100px;
-    left: 0;
     width: 100%;
-    max-width: 800px;
+    margin: 0 auto;
+    background-color: #000000d5;
     z-index: 2;
   }
 
@@ -375,6 +378,13 @@
     align-items: center;
     max-width: 700px;
     height: 700px;
+    margin: 0 auto;
+  }
+
+  .ge-header {
+    font-size: 2.2em;
+    background-color: transparent;
+    color: #fff;
   }
 
   .ge-box {
@@ -382,5 +392,11 @@
     margin: 1em auto;
   }
 
+  /* HOW TO HOST GAME */
+
+  .how-to-host {
+    max-width: 700px;
+    height: 700px;
+  }
 
 }
