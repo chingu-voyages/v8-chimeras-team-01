@@ -1,3 +1,47 @@
+@import '../../App.css';
+
 #nav {
-    background-color: darkorange;
+  grid-column: c1 / c2;
+  grid-row: r1 / r2;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-gray);
+  background-image:linear-gradient(
+    to bottom right,
+    var(--color-gray),
+    var(--color-red) 70%,
+    var(--color-orange),
+    var(--color-yellow)
+    );
+  color: #fff;
+  border-bottom: 3px solid var(--color-gray);
+  z-index: 3;
+}
+
+header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 100%;
+  padding: 1em 0 0 0.5em;
+  margin: 0;
+  font-family: var(--font-header);
+}
+
+.header {
+  padding: 0;
+  margin: 0;
+}
+
+.sub-header {
+  padding: 0;
+  margin: 0;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (min-width:650px) {
+
 }
