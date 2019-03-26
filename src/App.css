@@ -6,6 +6,8 @@ body {
   font-family: var(--font), sans-serif, arial;
 }
 
+/* Make sure React base element takes full width and height */
+
 #root {
   position: absolute;
   width: 100%;
