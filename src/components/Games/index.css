@@ -12,11 +12,13 @@
   overflow: scroll;
   background-color: #fff;
   transition-duration: 400ms;
+  z-index: -1;
 }
 
 .show-games {
   top: 100px;
-  opacity: 1
+  opacity: 1;
+  z-index: 3;
 }
 
 .games>h1 {

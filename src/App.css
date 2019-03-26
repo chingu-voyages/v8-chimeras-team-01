@@ -32,13 +32,12 @@ a:active {
   --color-yellow: #FFED5C;
   --color-orange: #FFA324;
   --color-red: #FF4A24;
-  /* --color-main: #387FCE;
-  --color-dark: #094C97; */
   --color-gray: #2D353D;
 }
 
 /* COMMON STYLES */
 
+/* Flex-Box - Centered Column */
 .fbc {
   display: flex;
   flex-flow: column nowrap;
@@ -66,6 +65,6 @@ footer {
   width: 100%;
   margin-top: 1em;
   background-color: var(--color-gray);
-  color: var(--color-main);
+  color: var(--color-orange);
   border-top: 3px solid #000;
 }
