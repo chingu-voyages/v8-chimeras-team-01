@@ -36,14 +36,14 @@ export default function Games({ showGames, handleToggleGames }) {
 
   return (
     <section className={!!showGames ? 'games show-games' : "games"} >
-      <button className="games-close"
+      <button className="games-close pm0"
               onClick={() => {handleToggleGames(false)}}> X close </button>
       <h1>Choose your challenge</h1>
       <div className="games-container">
         {gameList.map(game => (
           <article className="game-tile" key={game.id}>
-            <div className="gt-image fbc">{game.image}</div>
-            <div className="gt-description">
+            <div className="gt-image fbc pm0">{game.image}</div>
+            <div className="gt-description pm0">
               <h4>{game.name}</h4>
               <p>{game.desc}</p>
             </div>

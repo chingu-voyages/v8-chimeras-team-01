@@ -2,11 +2,6 @@
 
 /* Common Styling */
 
-.pm0 {
-  padding: 0;
-  margin: 0;
-}
-
 .b-s {
   box-shadow: 0 -1px 12px var(--color-gray);
 }

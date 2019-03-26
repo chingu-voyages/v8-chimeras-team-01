@@ -35,8 +35,6 @@
   background-color: #fff;
   border: none;
   width: 100px;
-  padding: 0;
-  margin: 0;
 }
 
 .games-container {
@@ -60,8 +58,6 @@
 .gt-image {
   width: 200px;
   height: 130px;
-  padding: 0;
-  margin: 0;
   background-color: var(--color-yellow);
   color: #000;
 }
@@ -70,8 +66,6 @@
   box-sizing: border-box;
   width: 200px;
   height: 120px;
-  padding: 0;
-  margin: 0;
   text-align: center;
 }
 
@@ -86,7 +80,5 @@
   .games {
     min-height: none;
     max-height: none;
-    padding: 0;
-    margin: 0;
   }
 }
