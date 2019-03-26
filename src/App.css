@@ -1,32 +1,71 @@
-.App {
-  text-align: center;
+/* Ensure body and app root container truly cover 100% of the screen and that the body text is our selected font unless we change it specifically */
+
+body {
+  width: 100%;
+  margin: 0;
+  font-family: var(--font), sans-serif, arial;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+#root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+/* Remove decoration from links */
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* Add Theme Variables here (like colors and fonts we will use throughout the project) */
+
+:root {
+  --font: 'Roboto', sans-serif;
+  --font-header: 'Roboto Condensed', sans-serif;
+  --color-yellow: #FFED5C;
+  --color-orange: #FFA324;
+  --color-red: #FF4A24;
+  /* --color-main: #387FCE;
+  --color-dark: #094C97; */
+  --color-gray: #2D353D;
+}
+
+/* COMMON STYLES */
+
+.fbc {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow: column nowrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* Setup Grid on top level div. This sets a space for the Nav and Footer and allows the center portion (1fr = all remaining space) to be used by whichever component is being shown. */
+
+#top-level-container {
+  display: grid;
+  grid-template-columns: [c1] 100% [c2];
+  grid-template-rows: [r1] 100px [r2] 1fr [r3] 200px [r4];
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* FOOTER */
+footer {
+  grid-column: c1 / c2;
+  grid-row: r3 / r4;
+  width: 100%;
+  margin-top: 1em;
+  background-color: var(--color-gray);
+  color: var(--color-main);
+  border-top: 3px solid #000;
 }
