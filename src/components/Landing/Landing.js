@@ -70,10 +70,10 @@ export default function Landing() {
   }
 
   return (
-    <section id="landing">
+    <section id="landing pm0">
       <i className="fas fa-question lrg-scrn-icon"
          onClick={toggleInfo}></i>
-      <section id="view-button-container">
+       <section id="view-button-container" className="pm0">
         <div className="button-box fbc sel">
           <i className="fas fa-question fa-3x"
              onClick={() => {buttonSwitch("info")}}></i>
@@ -84,53 +84,53 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="view-container">
+      <section className="view-container pm0">
 
-        <div className="ge-container shift-up">
+        <div className="ge-container pm0 shift-up">
           <div className="gameplay-example">
             <div className="fbc">
               <h4 className="ge-header fbc">How do I earn Bragging Rights?</h4>
             </div>
-            <div className="ge-box geb1">
-              <div className="ge-description fbc">Setup a game with a few clicks</div>
+            <div className="ge-box b-s pm0 geb1">
+              <div className="ge-description b-s fbc">Setup a game with a few clicks</div>
             </div>
-            <div className="ge-box geb2">
-              <div className="ge-description fbc">Answer the questions as they come</div>
+            <div className="ge-box b-s pm0 geb2">
+              <div className="ge-description b-s fbc">Answer the questions as they come</div>
             </div>
-            <div className="ge-box geb3">
-              <div className="ge-description fbc">See who won Bragging Rights</div>
+            <div className="ge-box b-s pm0 geb3">
+              <div className="ge-description b-s fbc">See who won Bragging Rights</div>
             </div>
           </div>
         </div>
 
-        <section className="start-game-container shift-right">
-          <div className="start-game-section">
+        <section className="start-game-container pm0 shift-right">
+          <div className="start-game-section fbc">
             <h4 className="fbc">Quick Launch</h4>
             <button className="start-game-button fbc"
                     onClick={() => {toggleGames(true)}}>
-              <p className="button-words"><strong>Are you a GameMaster??</strong></p>
-              <p className="button-words">Host A Game</p>
+              <p className="button-words pm0"><strong>Are you a GameMaster??</strong></p>
+              <p className="button-words pm0">Host A Game</p>
             </button>
             <button className="start-game-button fbc">
               <Link to="/join" className="link fbc">
-                <p className="button-words"><strong>Have a Code??</strong></p>
-                <p className="button-words">Join A Game</p>
+                <p className="button-words pm0"><strong>Have a Code??</strong></p>
+                <p className="button-words pm0">Join A Game</p>
               </Link>
             </button>
           </div>
 
-          <div className="hth-container">
+          <div className="hth-container pm0">
             <div className="how-to-host">
-              <h4 className="hth-header fbc">Want to Host a Game?</h4>
-              <div className="how-to-box htb1">
+              <h4 className="hth-header pm0 fbc">Want to Host a Game?</h4>
+              <div className="how-to-box htb1 b-s">
                 <span className="htb-num">1</span>
                 <p>Choose "GameMaster" Option Above</p>
               </div>
-              <div className="how-to-box htb2">
+              <div className="how-to-box htb2 b-s">
                 <span className="htb-num">2</span>
                 <p>Select A Game</p>
               </div>
-              <div className="how-to-box htb3">
+              <div className="how-to-box htb3 b-s">
                 <span className="htb-num">3</span>
                 <p>Invite Friends!</p>
               </div>

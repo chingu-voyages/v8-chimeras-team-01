@@ -6,6 +6,8 @@ body {
   font-family: var(--font), sans-serif, arial;
 }
 
+/* Make sure React base element takes full width and height */
+
 #root {
   position: absolute;
   width: 100%;
@@ -32,18 +34,23 @@ a:active {
   --color-yellow: #FFED5C;
   --color-orange: #FFA324;
   --color-red: #FF4A24;
-  /* --color-main: #387FCE;
-  --color-dark: #094C97; */
   --color-gray: #2D353D;
 }
 
 /* COMMON STYLES */
 
+/* Flex-Box - Centered Column */
 .fbc {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+}
+
+/* pad:0 mar:0 */
+.pm0 {
+  padding: 0;
+  margin: 0;
 }
 
 
@@ -66,6 +73,6 @@ footer {
   width: 100%;
   margin-top: 1em;
   background-color: var(--color-gray);
-  color: var(--color-main);
+  color: var(--color-orange);
   border-top: 3px solid #000;
 }

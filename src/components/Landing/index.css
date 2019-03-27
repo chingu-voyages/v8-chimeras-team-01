@@ -1,5 +1,11 @@
 @import '../../App.css';
 
+/* Common Styling */
+
+.b-s {
+  box-shadow: 0 -1px 12px var(--color-gray);
+}
+
 #landing {
   grid-column: c1 / c2;
   grid-row: r2 / r3;
@@ -7,8 +13,6 @@
   grid-template-columns: [lc1] 1fr [lc2];
   grid-template-rows: [lcr1] 100px [lcr2] 1fr [lcr3];
   width: 100%;
-  padding: 0;
-  margin: 0;
   min-height: calc(100vh - 150px);
 }
 
@@ -19,8 +23,6 @@
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: center;
-  padding: 0;
-  margin: 0;
 }
 
 .button-box {
@@ -66,8 +68,6 @@
   grid-template-rows: [vcr1] 1fr [vcr2];
   width: 100%;
   max-width: 600px;
-  padding: 0;
-  margin: 0;
   overflow: hidden;
 }
 
@@ -85,8 +85,6 @@
   grid-column: vcc1 / vcc2;
   grid-row: vcr1 / vcr2;
   width: 100%;
-  padding: 0;
-  margin: 0;
   background-color: #fff;
   transition-duration: 400ms;
 }
@@ -135,11 +133,8 @@
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  padding: 0;
-  margin: 0;
   background-color: var(--color-yellow);
   color: #fff;
-  box-shadow: 0 -2px 10px var(--color-gray);
 }
 
 .ge-description {
@@ -159,7 +154,6 @@
     );
   border: 2px solid #fff;
   color: #000;
-  box-shadow: 0 -1px 12px var(--color-gray);
   border-radius: 50%;
 }
 
@@ -175,16 +169,10 @@
   grid-column: vcc1 / vcc2;
   grid-row: vcr1 / vcr2;
   width: 100%;
-  padding: 0;
-  margin: 0;
   transition-duration: 400ms;
 }
 
 .start-game-section {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-evenly;
-  align-items: center;
   width: 100%;
   max-height: 300px;
   padding: 0 0 2em 0;
@@ -219,17 +207,10 @@
   color: #fff;
 }
 
-.button-words {
-  padding: 0;
-  margin: 0;
-}
-
 /* HOW TO HOST GAME */
 
 .hth-container {
   width: 100%;
-  padding: 0;
-  margin: 0;
 }
 
 .how-to-host {
@@ -248,8 +229,6 @@
   grid-row: htr1 / htr2;
   width: 100%;
   height: 30px;
-  padding: 0;
-  margin: 0;
   font-family: var(--font-header);
   font-size: 1.1em;
   background-color: #fff;
@@ -265,7 +244,6 @@
   background-color: var(--color-yellow);
   background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");;
   color: #000;
-  box-shadow: 2px 2px 10px #000;
   text-align: center;
 }
 
