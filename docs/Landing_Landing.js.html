@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: Landing/Landing.js | Source: Landing/Landing.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 150px; height: 150px">
+        
+            <a href="https://github.com/nhnent/tui.jsdoc-template" rel="noopener noreferrer" target="_blank">
+                <img src="https://image.flaticon.com/icons/svg/477/477169.svg" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Source: Landing/Landing.js</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+        <ol class="lnb-tab">
+            <li id="api-tab">
+                <a href="#"><h4>Docs</h4></a>
+            </li>
+            <li id="examples-tab">
+                <a href="#"><h4>Tutorials</h4></a>
+            </li>
+        </ol>
+    
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="Questions.html">Questions</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Questions_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Questions.html#state">state</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Questions.html#.sendAnswer-FunctionusedtosendcomputedanswertotheHost.">sendAnswer - Function used to send computed answer to the Host.</a></li><li><a href="Questions.html#.timer-Atimertocountdown.">timer - A timer to countdown.</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#%255BbuttonSwitch%255D">[buttonSwitch]</a></li><li><a href="global.html#%255BtoggleGames%255D">[toggleGames]</a></li><li><a href="global.html#%255BtoggleInfo%255D">[toggleInfo]</a></li><li><a href="global.html#%255BtoggleView%255D">[toggleView]</a></li><li><a href="global.html#%255BuseState(gameList)%255D">[useState(gameList)]</a></li><li><a href="global.html#%255BuseState(showGames)%255D">[useState(showGames)]</a></li><li><a href="global.html#%255BuseState(view)%255D">[useState(view)]</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Games from '../Games';
+import './index.css';
+
+export default function Landing() {
+
+  /**
+   * @method [useState(view)]
+   * @description [Creates and sets state for which view is being displayed. This dictates which view is shown and which button is 'chosen']
+   */
+  const [view, setView] = useState("info");
+
+  /**
+   * @function [buttonSwitch]
+   * @param {string} selection
+   * @description [Changes which view button has sel based on view in state. Used in on click]
+   */
+  const buttonSwitch = (selection) => {
+    if (selection !== view) {
+      let buttons = document.getElementsByClassName("button-box");
+      buttons[0].classList.toggle("sel");
+      buttons[1].classList.toggle("sel");
+      setView(selection);
+      toggleView(selection);
+    };
+  }
+
+  /**
+   * @function [toggleView]
+   * @param {string} selection
+   * @description [Add/Remove shift class to slide correct view into screen]
+   */
+  const toggleView = (selection) => {
+    let gameContainer = document.getElementsByClassName("start-game-container");
+    let geContainer = document.getElementsByClassName("ge-container");
+    if (selection === "info") {
+      gameContainer[0].classList.add("shift-right");
+      geContainer[0].classList.remove("shift-left");
+    } else if (selection === "game") {
+      gameContainer[0].classList.remove("shift-right");
+      geContainer[0].classList.add("shift-left");
+    }
+  }
+
+  /**
+   * @function [toggleInfo]
+   * @description [show/hide info drop down on when screen is larger than 600px]
+   */
+  const toggleInfo = (boolean) => {
+    let geContainer = document.getElementsByClassName("ge-container");
+    geContainer[0].classList.toggle("shift-up");
+  }
+
+  /**
+   * @method [useState(showGames)]
+   * @description [Create and change state to show/hide Games component]
+   */
+  const [showGames, setShowGames] = useState(false);
+
+  /**
+   * @function [toggleGames]
+   * @param {boolean} boolean
+   * @description [Trigger show/hide of Games component]
+   */
+  const toggleGames = (boolean) => {
+    if (boolean !== showGames) {
+      setShowGames(boolean);
+    }
+  }
+
+  return (
+    &lt;section id="landing pm0">
+      &lt;i className="fas fa-question lrg-scrn-icon"
+         onClick={toggleInfo}>&lt;/i>
+       &lt;section id="view-button-container" className="pm0">
+        &lt;div className="button-box fbc sel">
+          &lt;i className="fas fa-question fa-3x"
+             onClick={() => {buttonSwitch("info")}}>&lt;/i>
+        &lt;/div>
+        &lt;div className="button-box fbc">
+          &lt;i className="fas fa-gamepad fa-3x"
+             onClick={() => {buttonSwitch("game")}}>&lt;/i>
+        &lt;/div>
+      &lt;/section>
+
+      &lt;section className="view-container pm0">
+
+        &lt;div className="ge-container pm0 shift-up">
+          &lt;div className="gameplay-example">
+            &lt;div className="fbc">
+              &lt;h4 className="ge-header fbc">How do I earn Bragging Rights?&lt;/h4>
+            &lt;/div>
+            &lt;div className="ge-box b-s pm0 geb1">
+              &lt;div className="ge-description b-s fbc">Setup a game with a few clicks&lt;/div>
+            &lt;/div>
+            &lt;div className="ge-box b-s pm0 geb2">
+              &lt;div className="ge-description b-s fbc">Answer the questions as they come&lt;/div>
+            &lt;/div>
+            &lt;div className="ge-box b-s pm0 geb3">
+              &lt;div className="ge-description b-s fbc">See who won Bragging Rights&lt;/div>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+
+        &lt;section className="start-game-container pm0 shift-right">
+          &lt;div className="start-game-section fbc">
+            &lt;h4 className="fbc">Quick Launch&lt;/h4>
+            &lt;button className="start-game-button fbc"
+                    onClick={() => {toggleGames(true)}}>
+              &lt;p className="button-words pm0">&lt;strong>Are you a GameMaster??&lt;/strong>&lt;/p>
+              &lt;p className="button-words pm0">Host A Game&lt;/p>
+            &lt;/button>
+            &lt;button className="start-game-button fbc">
+              &lt;Link to="/join" className="link fbc">
+                &lt;p className="button-words pm0">&lt;strong>Have a Code??&lt;/strong>&lt;/p>
+                &lt;p className="button-words pm0">Join A Game&lt;/p>
+              &lt;/Link>
+            &lt;/button>
+          &lt;/div>
+
+          &lt;div className="hth-container pm0">
+            &lt;div className="how-to-host">
+              &lt;h4 className="hth-header pm0 fbc">Want to Host a Game?&lt;/h4>
+              &lt;div className="how-to-box htb1 b-s">
+                &lt;span className="htb-num">1&lt;/span>
+                &lt;p>Choose "GameMaster" Option Above&lt;/p>
+              &lt;/div>
+              &lt;div className="how-to-box htb2 b-s">
+                &lt;span className="htb-num">2&lt;/span>
+                &lt;p>Select A Game&lt;/p>
+              &lt;/div>
+              &lt;div className="how-to-box htb3 b-s">
+                &lt;span className="htb-num">3&lt;/span>
+                &lt;p>Invite Friends!&lt;/p>
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+        &lt;/section>
+
+        &lt;Games showGames={showGames}
+               handleToggleGames={toggleGames}/>
+
+      &lt;/section>
+
+    &lt;/section>
+  )
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="https://image.flaticon.com/icons/svg/477/477169.svg" style="width: 150px; height: 150px">
+    <div class="footer-text">My awesome footer text</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>
