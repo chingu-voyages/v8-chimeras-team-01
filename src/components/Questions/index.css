@@ -1,16 +1,7 @@
-#questions {
-    background-color: aqua;
-}
-
-.outline {
-    border: 2px black solid;
-}
-
 .answers-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
-    background-color: #fff;
     color: #444;
     margin: 1rem;
 }
@@ -28,10 +19,23 @@
     margin: 1rem;
 }
 
-.inline{
+.inline {
     display: inline-block;
 }
 
 .center {
     text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.highlight {
+    background-color: yellow;
+    color: black;
 }

@@ -1,23 +1,98 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Answer from './Answer';
 import './index.css';
 
-export default (props) => {
-  return (
-    <div id="questions">
-      <h1>Questions Component</h1>
-      <h1 className='outline'>Question 1 of 10 </h1>
-      <div class='image-wrapper'>
-        <img className='outline ' src='https://picsum.photos/400'></img>
+class Questions extends Component {
+
+  state = {
+    time: 10,
+    question: 'The Question ?',
+    answers: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'],
+    correctAnswer: 'Answer 2',
+    chosenAnswer: '',
+    username: 'Player1',
+    totalQuestions: 10,
+    counter: 1
+  }
+
+  sendAnswer = (correct) => {
+
+    console.log({
+      correct,
+      username: this.state.username
+    })
+
+    clearInterval(this.timer)
+    console.log('Waiting for signal from host');
+    let imageQuestion = document.querySelector('.image-question')
+    imageQuestion.classList.add('hide');
+    let loader = document.querySelector('.loader');
+    loader.classList.remove('hide')
+
+    setTimeout(() => {
+      let correct = document.querySelector('.correct')
+      correct.classList.add('highlight')
+
+    }, 3000)
+
+  }
+
+  timer = () => {
+    this.timer = setInterval(() => {
+      this.setState({ time: this.state.time - 1 },
+        () => {
+          if (this.state.time === 0) {
+
+            this.sendAnswer()
+
+          }
+        }
+      )
+
+    }, 1000)
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+
+    return true;
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+  }
+
+  componentDidMount() {
+    this.timer();
+  }
+
+  render() {
+    return (
+      <div id="questions">
+
+        <h1>Question {this.state.counter} of {this.state.totalQuestions} </h1>
+        <div className='image-wrapper'>
+          <img className='outline image-question' alt='of question' src='https://picsum.photos/200'></img>
+          <img className='loader hide' src='./images/loader.gif' />
+          <div>Timer {this.state.time}</div>
+        </div>
+        <div className='center'>
+          <h1 className='inline'>{this.state.question}</h1>
+        </div>
+        <div className='answers-wrapper'>
+          {
+            this.state.answers.map((answer, i) => {
+              if (answer !== this.state.correctAnswer) {
+                return <Answer correct={'wrong'} sendAnswer={this.sendAnswer} answer={answer} key={i} />;
+              } else {
+                return <Answer correct={'correct'} sendAnswer={this.sendAnswer} answer={answer} key={i} />;
+              }
+            })
+          }
+        </div>
       </div>
-      <div class='center'>
-        <h1 class='inline'>Question Goes here ?</h1>
-      </div>
-      <div class='answers-wrapper'>
-        <div className='outline box'>Answer 1</div>
-        <div className='outline box'>Answer 2</div>
-        <div className='outline box'>Answer 3</div>
-        <div className='outline box'>Answer 4</div>
-      </div>
-    </div>
-  )
+    )
+  }
 }
+
+
+export default Questions;
