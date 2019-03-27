@@ -83,6 +83,8 @@ ol li::before {
 .players-that-joined {
   text-align: center;
   padding: 0 3%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .start-game-btn {
@@ -96,6 +98,34 @@ ol li::before {
 /************************
 * Media Queries
 ************************/
+/***medium screens****/
 @media screen and (min-width: 650px) {
+  .steps-title {
+    text-align: left;
+    padding-left: 7%;
+  }
+  .steps-list li p {
+    padding: 0 5% 0 13%;
+  }
+  .start-game-btn {
+    width: 40%;
+    margin-right: 7%;
+    justify-self: end;
+  }
+}
 
+/***large screens****/
+@media screen and (min-width: 650px) {
+  .steps-title {
+    text-align: left;
+    padding-left: 9%;
+  }
+  .steps-list li p {
+    padding: 0 5% 0 10%;
+  }
+  .start-game-btn {
+    width: 25%;
+    margin-right: 8%;
+    justify-self: end;
+  }
 }
