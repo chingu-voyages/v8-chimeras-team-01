@@ -29,6 +29,8 @@
   ],
   "devDependencies": {
     "body-parser": "^1.18.3",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "enzyme-to-json": "^3.3.5",
     "express": "^4.16.4",
     "express-pino-logger": "^4.0.0",
     "jsdoc": "^3.5.5",
