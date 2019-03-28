@@ -73,7 +73,8 @@ export default function Landing() {
     <section id="landing pm0">
       <i className="fas fa-question pointy lrg-scrn-icon"
          onClick={toggleInfo}></i>
-       <section id="view-button-container" className="pm0">
+
+      <section id="view-button-container" className="pm0">
         <div className="button-box fbc sel">
           <i className="fas fa-question fa-3x"
              onClick={() => {buttonSwitch("info")}}></i>
@@ -87,6 +88,8 @@ export default function Landing() {
       <section className="view-container pm0">
 
         <div className="ge-container pm0 shift-up">
+          <button className="info-close pm0 pointy"
+                  onClick={toggleInfo}> X close </button>
           <div className="gameplay-example">
             <div className="fbc">
               <h4 className="ge-header fbc">How do I earn Bragging Rights?</h4>
