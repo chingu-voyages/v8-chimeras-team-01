@@ -29,19 +29,3 @@ header {
   margin: 0;
   font-family: var(--font-header);
 }
-
-.header {
-  padding: 0;
-  margin: 0;
-}
-
-.sub-header {
-  padding: 0;
-  margin: 0;
-}
-
-/* MEDIA QUERIES */
-
-@media only screen and (min-width:650px) {
-
-}

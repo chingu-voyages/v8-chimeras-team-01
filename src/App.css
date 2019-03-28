@@ -53,6 +53,11 @@ a:active {
   margin: 0;
 }
 
+/* Pointer hand for links */
+.pointy {
+  cursor: pointer;
+}
+
 
 /* Setup Grid on top level div. This sets a space for the Nav and Footer and allows the center portion (1fr = all remaining space) to be used by whichever component is being shown. */
 
