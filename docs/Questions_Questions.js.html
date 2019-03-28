@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home | Home</title>
+    <title>Source: Questions/Questions.js | Source: Questions/Questions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -26,7 +28,7 @@
         
     </div>
     <div class="title">
-        <h1><a href="index.html" class="link">Home</a></h1>
+        <h1><a href="index.html" class="link">Source: Questions/Questions.js</a></h1>
         
     </div>
     <div class="search-container" id="search-container">
@@ -53,44 +55,131 @@
 
 
     
-
-
-
-
-
-
-
-
-
-    
-
-
     <section>
-        <article class="readme"><p>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
-<h2>Available Scripts</h2><p>In the project directory, you can run:</p>
-<h2><code>npm run dev</code></h2><p>Starts the backend end server and front end.</p>
-<h3><code>npm run docs</code></h3><p>Updates  the documentation template 
-Documentation is viewable at ......</p>
-<h3><code>npm start</code></h3><p>Runs the app in the development mode only loads front end code.<br>
-Open <a href="http://localhost:3000">http://localhost:3000</a> to view it in the browser.</p>
-<p>The page will reload if you make edits.<br>
-You will also see any lint errors in the console.</p>
-<h3><code>npm test</code></h3><p>Launches the test runner in the interactive watch mode.<br>
-See the section about <a href="https://facebook.github.io/create-react-app/docs/running-tests">running tests</a> for more information.</p>
-<h3><code>npm run build</code></h3><p>Builds the app for production to the <code>build</code> folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.</p>
-<p>The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!</p>
-<p>See the section about <a href="https://facebook.github.io/create-react-app/docs/deployment">deployment</a> for more information.</p>
-<h3><code>npm run eject</code></h3><p><strong>Note: this is a one-way operation. Once you <code>eject</code>, you can’t go back!</strong></p>
-<p>If you aren’t satisfied with the build tool and configuration choices, you can <code>eject</code> at any time. This command will remove the single build dependency from your project.</p>
-<p>Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except <code>eject</code> will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.</p>
-<p>You don’t have to ever use <code>eject</code>. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.</p>
-<h2>Learn More</h2><p>You can learn more in the <a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</p>
-<p>To learn React, check out the <a href="https://reactjs.org/">React documentation</a>.</p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import Answer from './Answer';
+import './index.css';
+
+/**
+ *
+ *
+ * @class Questions
+ * @extends {Component}
+ */
+class Questions extends Component {
+
+  /**
+  *
+  *
+  * @property { Number } time - A number to countdown from.
+  * @property { String } question  - Hold the current question.
+  * @property { Array }  answers  - An array of possible answers.
+  * @property { String } correctAnswer  - The correct answer to the question.
+  * @property { String } chosenAnswer - Answer chosen by the player.
+  * @property { String } username - Username of the player.
+  * @property { Number } totalQuestions - Indicates how many questions there are in total.
+  * @property { Number } counter - Indicates which question we are currently at.
+  *
+  */
+  state = {
+    time: 10,
+    question: 'The Question ?',
+    answers: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'],
+    correctAnswer: 'Answer 2',
+    chosenAnswer: '',
+    username: 'Player1',
+    totalQuestions: 10,
+    counter: 1
+  }
+
+
+  /**
+   * @method sendAnswer - Function used to send computed answer to the Host.
+   *
+   * @memberof Questions
+   */
+  sendAnswer = (correct) => {
+
+    console.log({
+      correct,
+      username: this.state.username
+    })
+
+    clearInterval(this.timer)
+    console.log('Waiting for signal from host');
+    let imageQuestion = document.querySelector('.image-question')
+    imageQuestion.classList.add('hide');
+    let loader = document.querySelector('.loader');
+    loader.classList.remove('hide')
+
+    setTimeout(() => {
+      let correct = document.querySelector('.correct')
+      correct.classList.add('highlight')
+
+    }, 3000)
+
+  }
+
+  /**
+   * @method timer - A timer to countdown.
+   *
+   * @memberof Questions
+   */
+  timer = () => {
+    this.timer = setInterval(() => {
+      this.setState({ time: this.state.time - 1 },
+        () => {
+          if (this.state.time === 0) {
+
+            this.sendAnswer()
+
+          }
+        }
+      )
+
+    }, 1000)
+  }
+
+
+  componentDidMount() {
+    this.timer();
+  }
+
+  render() {
+    return (
+      &lt;div id="questions">
+
+        &lt;h1>Question {this.state.counter} of {this.state.totalQuestions} &lt;/h1>
+        &lt;div className='image-wrapper'>
+          &lt;img className='outline image-question' alt='of question' src='https://picsum.photos/200'>&lt;/img>
+          &lt;img className='loader hide' src='./images/loader.gif' />
+          &lt;div>Timer {this.state.time}&lt;/div>
+        &lt;/div>
+        &lt;div className='center'>
+          &lt;h1 className='inline'>{this.state.question}&lt;/h1>
+        &lt;/div>
+        &lt;div className='answers-wrapper'>
+          {
+            this.state.answers.map((answer, i) => {
+              if (answer !== this.state.correctAnswer) {
+                return &lt;Answer correct={'wrong'} sendAnswer={this.sendAnswer} answer={answer} key={i} />;
+              } else {
+                return &lt;Answer correct={'correct'} sendAnswer={this.sendAnswer} answer={answer} key={i} />;
+              }
+            })
+          }
+        &lt;/div>
+      &lt;/div>
+    )
+  }
+}
+
+
+export default Questions;
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
@@ -107,7 +196,7 @@ Your app is ready to be deployed!</p>
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'package:undefined_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 
