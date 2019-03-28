@@ -71,7 +71,7 @@ export default function Landing() {
 
   return (
     <section id="landing pm0">
-      <i className="fas fa-question lrg-scrn-icon"
+      <i className="fas fa-question pointy lrg-scrn-icon"
          onClick={toggleInfo}></i>
        <section id="view-button-container" className="pm0">
         <div className="button-box fbc sel">
@@ -106,16 +106,20 @@ export default function Landing() {
         <section className="start-game-container pm0 shift-right">
           <div className="start-game-section fbc">
             <h4 className="fbc">Quick Launch</h4>
-            <button className="start-game-button fbc"
+            <button className="start-game-button fbc pointy"
                     onClick={() => {toggleGames(true)}}>
-              <p className="button-words pm0"><strong>Are you a GameMaster??</strong></p>
-              <p className="button-words pm0">Host A Game</p>
+              <p className="pm0"><strong>Are you a GameMaster??</strong></p>
+              <p className="pm0">Host A Game</p>
             </button>
-            <button className="start-game-button fbc">
+            <button className="start-game-button fbc pointy">
               <Link to="/join" className="link fbc">
-                <p className="button-words pm0"><strong>Have a Code??</strong></p>
-                <p className="button-words pm0">Join A Game</p>
+                <p className="pm0"><strong>Have a Code??</strong></p>
+                <p className=" pm0">Join A Game</p>
               </Link>
+            </button>
+            <button className="browse-button fbc pointy"
+                    onClick={() => {toggleGames(true)}}>
+              <p className="pm0">Browse Games</p>
             </button>
           </div>
 
