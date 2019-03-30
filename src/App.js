@@ -12,6 +12,8 @@ import Landing from './components/Landing';
 import Instructions from './components/Instructions';
 import Games from './components/Games';
 import Nav from './components/Nav';
+import Host from './components/Host';
+import Player from './components/Player';
 
 class App extends Component {
 
@@ -28,16 +30,20 @@ class App extends Component {
           <Route path="/instructions" component={Instructions} />
           <Route path="/questions" component={Questions} />
           <Route path="/leaderBoard" component={LeaderBoard} />
+          <Route path="/host" component={Host} />
+          <Route path="/player" component={Player} />
 
         </Switch >
 
         <footer>
           <ul>
-              <li><Link to="/">Landing Component</Link></li>
-              <li><Link to="/results">Results Component</Link></li>
-              <li><Link to="/games">Games</Link></li>
-              <li><Link to="/questions">Questions Component</Link></li>
-              <li><Link to="/leaderBoard">LeaderBoard Component</Link></li>
+            <li><Link to="/">Landing Component</Link></li>
+            <li><Link to="/results">Results Component</Link></li>
+            <li><Link to="/games">Games</Link></li>
+            <li><Link to="/questions">Questions Component</Link></li>
+            <li><Link to="/leaderBoard">LeaderBoard Component</Link></li>
+            <li><Link to="/host">Host</Link></li>
+            <li><Link to="/player">Player</Link></li>
           </ul>
         </footer>
       </div>
