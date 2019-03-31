@@ -14,31 +14,13 @@ export default function Landing() {
   /**
    * @function [buttonSwitch]
    * @param {string} selection
-   * @description [Changes which view button has sel based on view in state. Used in on click]
+   * @description [Changes which view button has sel based on view in state. Used in onClick on icons. VIEW CHANGED ADD/REMOVING CLASSES THROUGH TERNARIES AT CLASSNAMES IN JSX BELOW]
    */
   const buttonSwitch = (selection) => {
     if (selection !== view) {
       setView(selection);
-      // toggleView(selection);
     };
   }
-
-  // /**
-  //  * @function [toggleView]
-  //  * @param {string} selection
-  //  * @description [Add/Remove shift class to slide correct view into screen]
-  //  */
-  // const toggleView = (selection) => {
-  //   let gameContainer = document.getElementsByClassName("start-game-container");
-  //   let geContainer = document.getElementsByClassName("ge-container");
-  //   if (selection === "info") {
-  //     gameContainer[0].classList.add("shift-right");
-  //     geContainer[0].classList.remove("shift-left");
-  //   } else if (selection === "game") {
-  //     gameContainer[0].classList.remove("shift-right");
-  //     geContainer[0].classList.add("shift-left");
-  //   }
-  // }
 
   /**
    * @function [toggleInfo]
@@ -84,6 +66,7 @@ export default function Landing() {
 
       <section className="view-container pm0">
 
+        {/* TERNARY to show/hide in mobile view */}
         <div className={(view === "info") ? "ge-container pm0 shift-up" : "ge-container pm0 shift-left shift-up"}>
           <button className="info-close pm0 pointy"
                   onClick={toggleInfo}> X close </button>
@@ -103,6 +86,7 @@ export default function Landing() {
           </div>
         </div>
 
+        {/* TERNARY to show/hide in mobile view */}
         <section className={(view === "game") ? "start-game-container pm0" : "start-game-container pm0 shift-right"}>
           <div className="start-game-section fbc">
             <h4 className="fbc">Quick Launch</h4>
