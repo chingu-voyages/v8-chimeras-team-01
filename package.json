@@ -41,11 +41,6 @@
     "tui-jsdoc-template": "^1.2.2"
   },
   "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "setupFiles": [
-      "./src/setupTests.js"
-    ]
-  }
+  "snapshotSerializers": ["enzyme-to-json/serializer"]
+}
 }
