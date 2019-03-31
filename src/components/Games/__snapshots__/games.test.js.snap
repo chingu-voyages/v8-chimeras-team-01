@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Games should render correctly 1`] = `
+<section
+  className="games"
+>
+  <button
+    className="games-close pm0 pointy"
+    onClick={[Function]}
+  >
+     X close 
+  </button>
+  <h1>
+    Choose your challenge
+  </h1>
+  <div
+    className="games-container"
+  >
+    <article
+      className="game-tile"
+      key="0001"
+    >
+      <div
+        className="gt-image fbc pm0"
+      >
+        <i
+          className="fas fa-stroopwafel fa-6x"
+        />
+      </div>
+      <div
+        className="gt-description pm0"
+      >
+        <h4>
+          Waffles
+        </h4>
+        <p>
+          What you know 'bout Waffles??
+        </p>
+      </div>
+    </article>
+    <article
+      className="game-tile"
+      key="0002"
+    >
+      <div
+        className="gt-image fbc pm0"
+      >
+        <i
+          className="fas fa-cookie fa-6x"
+        />
+      </div>
+      <div
+        className="gt-description pm0"
+      >
+        <h4>
+          Cookies
+        </h4>
+        <p>
+          You know you can eat them, but what else??
+        </p>
+      </div>
+    </article>
+    <article
+      className="game-tile"
+      key="0003"
+    >
+      <div
+        className="gt-image fbc pm0"
+      >
+        <i
+          className="fas fa-stroopwafel fa-6x"
+        />
+      </div>
+      <div
+        className="gt-description pm0"
+      >
+        <h4>
+          Waffles
+        </h4>
+        <p>
+          What you know 'bout Waffles??
+        </p>
+      </div>
+    </article>
+    <article
+      className="game-tile"
+      key="0004"
+    >
+      <div
+        className="gt-image fbc pm0"
+      >
+        <i
+          className="fas fa-cookie fa-6x"
+        />
+      </div>
+      <div
+        className="gt-description pm0"
+      >
+        <h4>
+          Cookies
+        </h4>
+        <p>
+          You know you can eat them, but what else??
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+`;

@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Results should render correctly 1`] = `
+<div
+  id="results"
+>
+  <div
+    className="res__header"
+  >
+    <h1
+      className="res__title"
+    >
+      Nice work $
+      {winnerName}
+      ! Time to BRAG
+    </h1>
+  </div>
+  <div
+    className="res__container"
+  >
+    <div
+      className="res__wrapper"
+    >
+      <div
+        className="res__bar"
+      >
+        <span>
+          $
+          {secondPlace}
+        </span>
+        <div
+          className="res__bar-inner"
+        />
+      </div>
+      <div
+        className="res__bar"
+      >
+        <span>
+          $
+          {winner}
+        </span>
+        <div
+          className="res__bar-inner"
+        />
+      </div>
+      <div
+        className="res__bar"
+      >
+        <span>
+          $
+          {thirdPlace}
+        </span>
+        <div
+          className="res__bar-inner"
+        />
+      </div>
+    </div>
+  </div>
+  <button
+    className="res__btn"
+  >
+    <Link
+      className="res__btn-anchor"
+      to="/start-game"
+    >
+      <p
+        className=""
+      >
+        Time for a REMATCH??
+      </p>
+    </Link>
+  </button>
+</div>
+`;
