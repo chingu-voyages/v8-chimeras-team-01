@@ -2,7 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './index.css';
 
-export default function LeaderBoard() {
+export default function LeaderBoard({ users }) {
+
+  const comparison = (a, b) => {
+    const scoreA = a.score;
+    const scoreB = b.score;
+    let result = 0;
+    if (scoreA > scoreB) {
+      result = 1;
+    } else if (scoreB > scoreA) {
+      result = -1;
+    }
+    return result
+  };
+
+  const sortedUsers = users.sort(comparison);
+  console.log(sortedUsers);
+
   return (
     <div id="leaderBoard">
       {/* TODO Component work flow */}
@@ -11,26 +27,12 @@ export default function LeaderBoard() {
           Leader Board
         </h1>
         <ol className="lb__ol">
-          <li className="lb__li">
-            <mark>Luckia Lake</mark>
-            <small>100</small>
-          </li>
-          <li className="lb__li">
-            <mark>Los mierder</mark>
-            <small>301</small>
-          </li>
-          <li className="lb__li">
-            <mark>Paquito trae pan</mark>
-            <small>292</small>
-          </li>
-          <li className="lb__li">
-            <mark>Madrileños</mark>
-            <small>245</small>
-          </li>
-          <li className="lb__li">
-            <mark>Chotillos</mark>
-            <small>203</small>
-          </li>
+          {sortedUsers.map( (user, index) => (
+            <li className="lb__li" key={index}>
+              <mark>{user.userName}</mark>
+              <small>{user.score}</small>
+            </li>
+          ))}
         </ol>
       </div>
       <div className="lb__banner">
@@ -38,7 +40,7 @@ export default function LeaderBoard() {
       </div>
 
       <button className="lb__btn">
-        <Link 
+        <Link
           to="/next-question" className="lb__btn-anchor"
         >
           <p className="">Next Question</p>

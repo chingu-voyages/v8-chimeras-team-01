@@ -13,10 +13,24 @@ class HostShell extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {
-        userName: "",
-        score: 0
-      },
+      users: [
+        {
+          userName: "Inky",
+          score: 1
+        },
+        {
+          userName: "Blinky",
+          score: 5
+        },
+        {
+          userName: "Pinky",
+          score: 10
+        },
+        {
+          userName: "Clyde",
+          score: 5
+        }
+      ],
       question: "First Question",
       answers: ['First', 'Answer 2', 'Answer 3', 'Answer 4'],
       correctAnswer: 'Answer 2',
@@ -49,7 +63,11 @@ class HostShell extends Component {
                     pushLocation={this.pushLocation} />
           }/>
 
-        <Route path="/host/leaderboard" component={LeaderBoard} />
+          <Route path="/host/leaderboard"
+            render={(props) =>
+             <LeaderBoard {...props}
+               users={this.state.users}/>
+          }/>
 
           <Route path="/host/results" component={Results} />
 
