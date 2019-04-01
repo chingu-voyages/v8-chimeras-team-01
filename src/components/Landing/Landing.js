@@ -14,33 +14,12 @@ export default function Landing() {
   /**
    * @function [buttonSwitch]
    * @param {string} selection
-   * @description [Changes which view button has sel based on view in state. Used in on click]
+   * @description [Changes which view button has sel based on view in state. Used in onClick on icons. VIEW CHANGED ADD/REMOVING CLASSES THROUGH TERNARIES AT CLASSNAMES IN JSX BELOW]
    */
   const buttonSwitch = (selection) => {
     if (selection !== view) {
-      let buttons = document.getElementsByClassName("button-box");
-      buttons[0].classList.toggle("sel");
-      buttons[1].classList.toggle("sel");
       setView(selection);
-      toggleView(selection);
     };
-  }
-
-  /**
-   * @function [toggleView]
-   * @param {string} selection
-   * @description [Add/Remove shift class to slide correct view into screen]
-   */
-  const toggleView = (selection) => {
-    let gameContainer = document.getElementsByClassName("start-game-container");
-    let geContainer = document.getElementsByClassName("ge-container");
-    if (selection === "info") {
-      gameContainer[0].classList.add("shift-right");
-      geContainer[0].classList.remove("shift-left");
-    } else if (selection === "game") {
-      gameContainer[0].classList.remove("shift-right");
-      geContainer[0].classList.add("shift-left");
-    }
   }
 
   /**
@@ -71,15 +50,15 @@ export default function Landing() {
 
   return (
     <section id="landing pm0">
-      <i className="fas fa-question pointy lrg-scrn-icon"
+      <i className="fas fa-info-circle fa-2x pointy lrg-scrn-icon"
          onClick={toggleInfo}></i>
 
       <section id="view-button-container" className="pm0">
-        <div className="button-box fbc sel">
-          <i className="fas fa-question fa-3x"
+        <div className={(view === "info") ? "button-box fbc sel" : "button-box fbc"}>
+          <i className="fas fa-info-circle fa-3x"
              onClick={() => {buttonSwitch("info")}}></i>
         </div>
-        <div className="button-box fbc">
+        <div className={(view === "game") ? "button-box fbc sel" : "button-box fbc"}>
           <i className="fas fa-gamepad fa-3x"
              onClick={() => {buttonSwitch("game")}}></i>
         </div>
@@ -87,7 +66,8 @@ export default function Landing() {
 
       <section className="view-container pm0">
 
-        <div className="ge-container pm0 shift-up">
+        {/* TERNARY to show/hide in mobile view */}
+        <div className={(view === "info") ? "ge-container pm0 shift-up" : "ge-container pm0 shift-left shift-up"}>
           <button className="info-close pm0 pointy"
                   onClick={toggleInfo}> X close </button>
           <div className="gameplay-example">
@@ -106,7 +86,8 @@ export default function Landing() {
           </div>
         </div>
 
-        <section className="start-game-container pm0 shift-right">
+        {/* TERNARY to show/hide in mobile view */}
+        <section className={(view === "game") ? "start-game-container pm0" : "start-game-container pm0 shift-right"}>
           <div className="start-game-section fbc">
             <h4 className="fbc">Quick Launch</h4>
             <button className="start-game-button fbc pointy"
