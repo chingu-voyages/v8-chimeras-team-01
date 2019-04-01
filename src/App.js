@@ -12,6 +12,7 @@ import Landing from './components/Landing';
 import Instructions from './components/Instructions';
 import Games from './components/Games';
 import Nav from './components/Nav';
+import HostShell from './components/HostShell';
 
 class App extends Component {
 
@@ -28,6 +29,7 @@ class App extends Component {
           <Route path="/instructions" component={Instructions} />
           <Route path="/questions" component={Questions} />
           <Route path="/leaderBoard" component={LeaderBoard} />
+          <Route path="/host" component={HostShell} />
 
         </Switch >
 

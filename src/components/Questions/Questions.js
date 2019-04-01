@@ -25,9 +25,9 @@ class Questions extends Component {
   */
   state = {
     time: 10,
-    question: 'The Question ?',
-    answers: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'],
-    correctAnswer: 'Answer 2',
+    question: this.props.question,
+    answers: this.props.answers,
+    correctAnswer: this.props.correctAnswer,
     chosenAnswer: '',
     username: 'Player1',
     totalQuestions: 10,
@@ -87,7 +87,7 @@ class Questions extends Component {
 
           if (this.state.time === 0) {
 
-            this.sendAnswer()
+            this.props.pushLocation("leaderboard");
 
           }
         }
@@ -110,7 +110,7 @@ class Questions extends Component {
 
         <div className='image-wrapper'>
           <img className='outline image-question' alt='of question' src='https://picsum.photos/200'></img>
-          <img className='loader hide' src='./images/loader.gif' />
+          <img className='loader hide' src='./images/loader.gif' alt="Loading" />
           <div>Timer {time}</div>
         </div>
 
