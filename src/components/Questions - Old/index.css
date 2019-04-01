@@ -1,0 +1,41 @@
+.answers-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    color: #444;
+    margin: 1rem;
+}
+
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+}
+
+.image-wrapper {
+    text-align: center;
+    margin: 1rem;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.center {
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.highlight {
+    background-color: yellow;
+    color: black;
+}
