@@ -16,7 +16,7 @@ class HostShell extends Component {
       users: [
         {
           userName: "Inky",
-          score: 200
+          score: 0
         },
         {
           userName: "Blinky",
@@ -31,17 +31,37 @@ class HostShell extends Component {
           score: 120
         }
       ],
-      question: "First Question",
-      answers: ['First', 'Answer 2', 'Answer 3', 'Answer 4'],
-      correctAnswer: 'Answer 2',
-      rankings: []
+      questions: [
+        {
+          q: "First Question",
+          a: ['First', 'Second', 'Third', 'Fourth'],
+          c: 'Second'
+        },
+        {
+          q: "Second Question",
+          a: ['Lemon', 'Squirrel', 'Cabinet', 'Lambo'],
+          c: 'Lambo'
+        },
+        {
+          q: "Third Question",
+          a: ['Ham', 'Turkey', 'Grass', 'Connecticut'],
+          c: 'Ham'
+        },
+      ],
+      currentQ: 0
     }
   };
 
 /* PUSH URL */
   pushLocation = (path) => {
-    history.push(`/host/${path}`);
+    history.push(`${path}`);
   };
+
+  /* Increment Current Q */
+  incrementQ = () => {
+    let cQ = this.state.currentQ;
+    this.setState({ currentQ: (cQ+1) })
+  }
 
   render() {
     return (
@@ -58,9 +78,8 @@ class HostShell extends Component {
           <Route path="/host/questions"
                  render={(props) =>
                   <Questions {...props}
-                    question={this.state.question}
-                    answers={this.state.answers}
-                    correctAnswer={this.state.correctAnswer}
+                    question={this.state.questions[this.state.currentQ]}
+                    handleIncrementQ={this.incrementQ}
                     pushLocation={this.pushLocation} />
           }/>
 

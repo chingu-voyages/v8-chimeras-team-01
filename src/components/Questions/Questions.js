@@ -25,9 +25,9 @@ class Questions extends Component {
   */
   state = {
     time: 10,
-    question: this.props.question,
-    answers: this.props.answers,
-    correctAnswer: this.props.correctAnswer,
+    question: this.props.question.q,
+    answers: this.props.question.a,
+    correctAnswer: this.props.question.c,
     chosenAnswer: '',
     username: 'Player1',
     totalQuestions: 10,
@@ -87,7 +87,7 @@ class Questions extends Component {
 
           if (this.state.time === 0) {
 
-            this.props.pushLocation("leaderboard");
+            this.props.pushLocation("/host/leaderboard");
 
           }
         }
@@ -98,6 +98,11 @@ class Questions extends Component {
 
   componentDidMount() {
     this.timer();
+  }
+
+  componentWillUnmount() {
+    this.props.handleIncrementQ();
+    clearInterval(this.timer);
   }
 
   render() {

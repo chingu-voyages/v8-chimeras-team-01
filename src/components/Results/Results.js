@@ -18,7 +18,6 @@ export default function Results({ users }) {
   };
 
   const sortedUsers = users.sort(comparison);
-  console.log(sortedUsers);
 
   return (
     <div id="results">

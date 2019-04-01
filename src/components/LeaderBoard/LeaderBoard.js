@@ -18,7 +18,6 @@ export default function LeaderBoard({ users }) {
   };
 
   const sortedUsers = users.sort(comparison);
-  console.log(sortedUsers);
 
   return (
     <div id="leaderBoard">
@@ -42,7 +41,7 @@ export default function LeaderBoard({ users }) {
 
       <button className="lb__btn">
         <Link
-          to="/next-question" className="lb__btn-anchor"
+          to="/host/questions" className="lb__btn-anchor"
         >
           <p className="">Next Question</p>
         </Link>
