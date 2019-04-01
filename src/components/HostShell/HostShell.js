@@ -16,7 +16,7 @@ class HostShell extends Component {
       users: [
         {
           userName: "Inky",
-          score: 1
+          score: 200
         },
         {
           userName: "Blinky",
@@ -28,7 +28,7 @@ class HostShell extends Component {
         },
         {
           userName: "Clyde",
-          score: 5
+          score: 120
         }
       ],
       question: "First Question",
@@ -38,6 +38,7 @@ class HostShell extends Component {
     }
   };
 
+/* PUSH URL */
   pushLocation = (path) => {
     history.push(`/host/${path}`);
   };
@@ -69,7 +70,11 @@ class HostShell extends Component {
                users={this.state.users}/>
           }/>
 
-          <Route path="/host/results" component={Results} />
+        <Route path="/host/results"
+            render={(props) =>
+             <Results {...props}
+               users={this.state.users}/>
+          }/>
 
         </Switch >
 

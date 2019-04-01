@@ -4,13 +4,14 @@ import './index.css';
 
 export default function LeaderBoard({ users }) {
 
+  /* SORT LEADERS */
   const comparison = (a, b) => {
     const scoreA = a.score;
     const scoreB = b.score;
     let result = 0;
-    if (scoreA > scoreB) {
+    if (scoreA < scoreB) {
       result = 1;
-    } else if (scoreB > scoreA) {
+    } else if (scoreB < scoreA) {
       result = -1;
     }
     return result
