@@ -50,12 +50,12 @@ export default function Landing() {
 
   return (
     <section id="landing pm0">
-      <i className="fas fa-question pointy lrg-scrn-icon"
+      <i className="fas fa-info-circle fa-2x pointy lrg-scrn-icon"
          onClick={toggleInfo}></i>
 
       <section id="view-button-container" className="pm0">
         <div className={(view === "info") ? "button-box fbc sel" : "button-box fbc"}>
-          <i className="fas fa-question fa-3x"
+          <i className="fas fa-info-circle fa-3x"
              onClick={() => {buttonSwitch("info")}}></i>
         </div>
         <div className={(view === "game") ? "button-box fbc sel" : "button-box fbc"}>
