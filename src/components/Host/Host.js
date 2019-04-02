@@ -178,55 +178,55 @@ class Host extends Component {
 
     render() {
 
-        return (
-            <div>
-                <h1>
-                    Host
-                </h1>
-                <h3>connection ID: {this.props.data.id}</h3>
+      return (
+        <div id="host-container">
+          <h1>
+              Host
+          </h1>
+          <h3>connection ID: {this.props.data.id}</h3>
 
-                <br />
-                <input name='message' value={this.state.message} onChange={this.handleInputChange} />
-                <button onClick={this.handleMessage} >Send Message</button>
-                <br />
+          <br />
+          <input name='message' value={this.state.message} onChange={this.handleInputChange} />
+          <button onClick={this.handleMessage} >Send Message</button>
+          <br />
 
-                  <Switch>
+          <Switch>
 
-                    <Route path="/host/games"
-                      render={(props) =>
-                       <Games {...props}
-                         showGames={true}
-                         handleSetGame={this.setGame}
-                         pushLocation={this.pushLocation} />
-                    }/>
+            <Route path="/host/games"
+              render={(props) =>
+               <Games {...props}
+                 showGames={true}
+                 handleSetGame={this.setGame}
+                 pushLocation={this.pushLocation} />
+            }/>
 
-                    <Route path="/host/instructions" component={Instructions} />
+            <Route path="/host/instructions" component={Instructions} />
 
-                    <Route path="/host/questions"
-                           render={(props) =>
-                            <Questions {...props}
-                              question={this.state.questions[this.state.currentQ]}
-                              handleIncrementQ={this.incrementQ}
-                              pushLocation={this.pushLocation} />
-                    }/>
+            <Route path="/host/questions"
+                   render={(props) =>
+                    <Questions {...props}
+                      question={this.state.questions[this.state.currentQ]}
+                      handleIncrementQ={this.incrementQ}
+                      pushLocation={this.pushLocation} />
+            }/>
 
-                    <Route path="/host/leaderboard"
-                      render={(props) =>
-                       <LeaderBoard {...props}
-                         users={this.state.users}/>
-                    }/>
+            <Route path="/host/leaderboard"
+              render={(props) =>
+               <LeaderBoard {...props}
+                 users={this.state.users}/>
+            }/>
 
-                    <Route path="/host/results"
-                        render={(props) =>
-                         <Results {...props}
-                           users={this.state.users}/>
-                      }/>
+            <Route path="/host/results"
+                render={(props) =>
+                 <Results {...props}
+                   users={this.state.users}/>
+              }/>
 
-                  </Switch>
+          </Switch>
 
-            </div >
+        </div >
 
-        )
+      )
     }
 }
 
