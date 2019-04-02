@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
+import history from '../../History.js';
 import withPeerJs from '../HOCs/withPeerJs';
 import Questions from '../Questions';
-import history from '../../History.js';
+import Games from '../Games';
+import Instructions from '../Instructions';
+import LeaderBoard from '../LeaderBoard';
+import Results from '../Results';
+
 
 import './index.css';
 
@@ -169,13 +175,8 @@ class Host extends Component {
         });
 
     }
-    componentDidMount() {
-        this.timer();
-    }
 
     render() {
-
-        const { counter, totalQuestions, time, question, answers, correctAnswer } = this.state;
 
         return (
             <div>
@@ -188,14 +189,41 @@ class Host extends Component {
                 <input name='message' value={this.state.message} onChange={this.handleInputChange} />
                 <button onClick={this.handleMessage} >Send Message</button>
                 <br />
-                <Questions counter={counter}
-                    totalQuestions={totalQuestions}
-                    time={time}
-                    question={question}
-                    answers={answers}
-                    correctAnswer={correctAnswer}
-                    sendAnswer={this.sendAnswer}
-                />
+
+                  <Switch>
+
+                    <Route path="/host/games"
+                      render={(props) =>
+                       <Games {...props}
+                         showGames={true}
+                         handleSetGame={this.setGame}
+                         pushLocation={this.pushLocation} />
+                    }/>
+
+                    <Route path="/host/instructions" component={Instructions} />
+
+                    <Route path="/host/questions"
+                           render={(props) =>
+                            <Questions {...props}
+                              question={this.state.questions[this.state.currentQ]}
+                              handleIncrementQ={this.incrementQ}
+                              pushLocation={this.pushLocation} />
+                    }/>
+
+                    <Route path="/host/leaderboard"
+                      render={(props) =>
+                       <LeaderBoard {...props}
+                         users={this.state.users}/>
+                    }/>
+
+                    <Route path="/host/results"
+                        render={(props) =>
+                         <Results {...props}
+                           users={this.state.users}/>
+                      }/>
+
+                  </Switch>
+
             </div >
 
         )

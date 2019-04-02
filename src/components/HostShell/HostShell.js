@@ -101,7 +101,7 @@ class HostShell extends Component {
                  users={this.state.users}/>
             }/>
 
-        </Switch >
+        </Switch>
 
       </div>
     )
