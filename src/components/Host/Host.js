@@ -25,18 +25,43 @@ class Host extends Component {
     * @property { Number } counter - Indicates which question we are currently at.
     *
     */
-    state = {
+    constructor(props) {
+      super(props);
+      this.state = {
+        me: {
+          userName: "Clyde",
+          id: '124v34b6',
+          score: 120
+        },
+        users: [
+          {
+            userName: "Inky",
+            id: '34vtt1fc',
+            score: 50
+          },
+          {
+            userName: "Blinky",
+            id: '34vyv34',
+            score: 5
+          },
+          {
+            userName: "Pinky",
+            id: '124v34vvq',
+            score: 10
+          },
+          {
+            userName: "Clyde",
+            id: 'f431fvf4v',
+            score: 120
+          }
+        ],
+        questions: [],
+        currentQ: 0,
         time: 10,
-        question: 'The Question ?',
-        answers: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'],
-        correctAnswer: 'Answer 2',
         chosenAnswer: '',
-        username: 'Player1',
-        totalQuestions: 10,
-        counter: 1,
         message: '',
-
-    }
+      }
+    };
 
 
     /**
