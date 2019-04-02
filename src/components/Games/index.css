@@ -1,5 +1,9 @@
 @import '../../App.css';
 
+.hide {
+  display: none;
+}
+
 .games {
   position: absolute;
   top: 400px;

@@ -1,5 +1,5 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './index.css';
 
 export default function Instructions() {
@@ -23,7 +23,11 @@ export default function Instructions() {
             <p className="players-that-joined">This is where player names will show as they join ... maybe</p>
           </div>
         </div>
-        <button className="start-game-btn">Let's Get Started !!</button>
+        <button className="start-game-btn">
+          <Link to="/host/questions" className="link fbc">
+            Let's Get Started !!
+          </Link>
+        </button>
     </div>
   )
 }

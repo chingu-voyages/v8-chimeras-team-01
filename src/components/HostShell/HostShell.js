@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 //Components
+import Games from '../Games';
 import Results from '../Results';
 import Questions from '../Questions';
 import LeaderBoard from '../LeaderBoard';
@@ -13,10 +14,14 @@ class HostShell extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      me: {
+        userName: "Clyde",
+        score: 120
+      },
       users: [
         {
           userName: "Inky",
-          score: 0
+          score: 50
         },
         {
           userName: "Blinky",
@@ -31,28 +36,12 @@ class HostShell extends Component {
           score: 120
         }
       ],
-      questions: [
-        {
-          q: "First Question",
-          a: ['First', 'Second', 'Third', 'Fourth'],
-          c: 'Second'
-        },
-        {
-          q: "Second Question",
-          a: ['Lemon', 'Squirrel', 'Cabinet', 'Lambo'],
-          c: 'Lambo'
-        },
-        {
-          q: "Third Question",
-          a: ['Ham', 'Turkey', 'Grass', 'Connecticut'],
-          c: 'Ham'
-        },
-      ],
+      questions: [],
       currentQ: 0
     }
   };
 
-/* PUSH URL */
+  /* PUSH URL */
   pushLocation = (path) => {
     history.push(`${path}`);
   };
@@ -61,6 +50,10 @@ class HostShell extends Component {
   incrementQ = () => {
     let cQ = this.state.currentQ;
     this.setState({ currentQ: (cQ+1) })
+  }
+  /* Set Game */
+  setGame = (game) => {
+    this.setState({ questions: game.questions });
   }
 
   render() {
@@ -72,6 +65,14 @@ class HostShell extends Component {
         </div>
 
         <Switch>
+
+          <Route path="/host/games"
+            render={(props) =>
+             <Games {...props}
+               showGames={true}
+               handleSetGame={this.setGame}
+               pushLocation={this.pushLocation} />
+          }/>
 
           <Route path="/host/instructions" component={Instructions} />
 
@@ -89,11 +90,11 @@ class HostShell extends Component {
                users={this.state.users}/>
           }/>
 
-        <Route path="/host/results"
-            render={(props) =>
-             <Results {...props}
-               users={this.state.users}/>
-          }/>
+          <Route path="/host/results"
+              render={(props) =>
+               <Results {...props}
+                 users={this.state.users}/>
+            }/>
 
         </Switch >
 

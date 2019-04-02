@@ -8,13 +8,7 @@ export default function LeaderBoard({ users }) {
   const comparison = (a, b) => {
     const scoreA = a.score;
     const scoreB = b.score;
-    let result = 0;
-    if (scoreA < scoreB) {
-      result = 1;
-    } else if (scoreB < scoreA) {
-      result = -1;
-    }
-    return result
+    return (scoreB-scoreA)
   };
 
   const sortedUsers = users.sort(comparison);
