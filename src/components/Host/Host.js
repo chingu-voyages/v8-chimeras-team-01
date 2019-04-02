@@ -62,16 +62,30 @@ class Host extends Component {
     };
 
     /* PUSH URL */
+    /**
+     * @function pushLocation
+     * @arg {String}
+     * @description [Takes in a string that will be pushed as a URL path in the history stack, making the app 'navigate' to that URL and mount any corrosponding components.]
+     */
     pushLocation = (path) => {
       history.push(`${path}`);
     };
 
     /* Increment Current Q */
+    /**
+     * @function incrementQ
+     * @description [Takes in number representing index of current question in questions array and adds one, in order to get next question in array.]
+     */
     incrementQ = () => {
       let cQ = this.state.currentQ;
       this.setState({ currentQ: (cQ+1) })
     }
+
     /* Set Game */
+    /**
+     * @function setGame
+     * @description [Takes in questions and answers from game selected in Games component and places them in the questions array in state.]
+     */
     setGame = (game) => {
       this.setState({ questions: game.questions });
     }
