@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
+
 import withPeerJs from '../HOCs/withPeerJs';
 import Questions from '../Questions';
+import history from '../../History.js';
 
 import './index.css';
 
 /**
- *
- *
  * @class Host
  * @extends {Component}
  */
 class Host extends Component {
 
     /**
-    *
-    *
-    * @property { Number } time - A number to countdown from.
-    * @property { String } question  - Hold the current question.
-    * @property { Array }  answers  - An array of possible answers.
-    * @property { String } correctAnswer  - The correct answer to the question.
-    * @property { String } chosenAnswer - Answer chosen by the player.
-    * @property { String } username - Username of the player.
-    * @property { Number } totalQuestions - Indicates how many questions there are in total.
-    * @property { Number } counter - Indicates which question we are currently at.
+    * @property { Object } me - User in this instance of game.
+    * @property { Array } users - Array of user objects.
+    * @property { Array } questions - Array of questions and answers.
+    * @property { Array }  answers - An array of possible answers.
+    * @property { Number } currentQ - Index of current question.
+    * @property { Number } time - How many seconds to set timer.
+    * @property { String } chosenAnswer - String holding chosen answer.
+    * @property { String } message - content of message to be sent.
     *
     */
     constructor(props) {
@@ -62,6 +60,21 @@ class Host extends Component {
         message: '',
       }
     };
+
+    /* PUSH URL */
+    pushLocation = (path) => {
+      history.push(`${path}`);
+    };
+
+    /* Increment Current Q */
+    incrementQ = () => {
+      let cQ = this.state.currentQ;
+      this.setState({ currentQ: (cQ+1) })
+    }
+    /* Set Game */
+    setGame = (game) => {
+      this.setState({ questions: game.questions });
+    }
 
 
     /**
