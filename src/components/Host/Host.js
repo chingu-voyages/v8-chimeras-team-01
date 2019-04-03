@@ -127,8 +127,11 @@ class Host extends Component {
         setTimeout(() => {
 
             // Highlighting the correct answer
-            let correct = document.querySelector('.correct')
-            correct.classList.add('highlight')
+            let correct = document.querySelector('.correct');
+            correct.classList.add('highlight');
+
+            //Calling push to Leaderboard
+
 
         }, 3000)
 
@@ -202,13 +205,15 @@ class Host extends Component {
 
             <Route path="/host/instructions" component={Instructions} />
 
-            <Route path="/host/questions"
-                   render={(props) =>
-                    <Questions {...props}
-                      question={this.state.questions[this.state.currentQ]}
-                      handleIncrementQ={this.incrementQ}
-                      pushLocation={this.pushLocation} />
-            }/>
+              <Route path="/host/questions"
+                     render={(props) =>
+                      <Questions {...props}
+                        question={this.state.questions[this.state.currentQ]}
+                        onQ={this.state.currentQ + 1}
+                        totalQ={this.state.questions.length}
+                        handleIncrementQ={this.incrementQ}
+                        pushLocation={this.pushLocation} />
+              }/>
 
             <Route path="/host/leaderboard"
               render={(props) =>

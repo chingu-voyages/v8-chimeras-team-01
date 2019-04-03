@@ -85,6 +85,8 @@ class HostShell extends Component {
                  render={(props) =>
                   <Questions {...props}
                     question={this.state.questions[this.state.currentQ]}
+                    onQ={this.state.currentQ + 1}
+                    totalQ={this.state.questions.length()}
                     handleIncrementQ={this.incrementQ}
                     pushLocation={this.pushLocation} />
           }/>

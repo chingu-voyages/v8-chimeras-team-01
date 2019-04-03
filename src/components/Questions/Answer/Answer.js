@@ -2,9 +2,9 @@ import React from 'react';
 import './index.css';
 
 export default function Answer(props) {
-    const { sendAnswer, correct, answer } = props;
+    const { correct, answer } = props;
     return (
-        <div onClick={() => sendAnswer(correct)} className={`outline box ${correct}`}>
+        <div className={`outline box ${correct}`}>
             {answer}
         </div>
     )
