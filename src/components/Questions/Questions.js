@@ -22,26 +22,10 @@ export default function Question({ question, onQ, totalQ, handleIncrementQ, push
   const [time, setTime] = useState(20);
 
   /**
-  *
-  *
-  * @property { Number } time - A number to countdown from.
-  * @property { String } question  - Hold the current question.
-  * @property { Array }  answers  - An array of possible answers.
-  * @property { String } correctAnswer  - The correct answer to the question.
-  * @property { String } chosenAnswer - Answer chosen by the player.
-  * @property { String } username - Username of the player.
-  * @property { Number } totalQuestions - Indicates how many questions there are in total.
-  * @property { Number } counter - Indicates which question we are currently at.
-  *
-  */
-
-
-  /**
-   * @method timer - A timer to countdown.
+   * @method timer - Decrements the time in state.
    */
   const timer = () => {
-    // Timer will run until time is 0 and then the
-    // user is pushed to Leaderboard
+    // Will decrement time in state until 0, then push to Leaderboard
           if (time === 0) {
             handleIncrementQ();
             pushLocation("/host/leaderboard");
