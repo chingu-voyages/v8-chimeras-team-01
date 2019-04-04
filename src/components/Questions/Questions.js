@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Answer from './Answer';
 import './index.css';
 
-/**
- *
- *
- * @class Questions
- * @extends {Component}
- */
 export default function Question({ question, onQ, totalQ, handleIncrementQ, pushLocation }) {
 
-  //Hook to start/stop timer on mount/unmount
+
+  /**
+   * [useEffect Hook]
+   * @method  timeInterval
+   * @description  [Hook to start/stop timer on mount/unmount]
+   * @return {function} [Cleans up on un-mount by clearing interval]
+   */
   useEffect(() => {
     const timeInterval = setInterval(() => timer(), 1000)
     return () => {
@@ -18,16 +18,27 @@ export default function Question({ question, onQ, totalQ, handleIncrementQ, push
     }
   })
 
-  //Hook to hold time for timer
-  const [time, setTime] = useState(20);
-
-  const isLastQ = (onQ === totalQ) ? true : false;
 
   /**
-   * @method timer - Decrements the time in state.
+   * [time Hook]
+   * @method time
+   * @description [Hook to set initial time in timer and method to update that count]
+   */
+  const [time, setTime] = useState(20);
+
+
+  /**
+   * [isLastQ]
+   * @param  [Holds boolean, true if this is the last quesiton in the array, false otherwise]
+   * @return {Boolean}
+   */
+  const isLastQ = (onQ === totalQ) ? true : false;
+
+
+  /**
+   * @function timer [Decrements the time in state and pushes to Leaderboard URL except last question, then pushes to Results URL]
    */
   const timer = () => {
-    // Will decrement time in state until 0, then push to Leaderboard
           if (time === 0) {
             if (!isLastQ) {
               handleIncrementQ();
