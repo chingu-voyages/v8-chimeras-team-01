@@ -21,14 +21,22 @@ export default function Question({ question, onQ, totalQ, handleIncrementQ, push
   //Hook to hold time for timer
   const [time, setTime] = useState(20);
 
+  const isLastQ = (onQ === totalQ) ? true : false;
+
   /**
    * @method timer - Decrements the time in state.
    */
   const timer = () => {
     // Will decrement time in state until 0, then push to Leaderboard
           if (time === 0) {
+            if (!isLastQ) {
+              handleIncrementQ();
+              pushLocation("/host/leaderboard");
+            } else {
+              pushLocation("/host/results");
+            }
             handleIncrementQ();
-            pushLocation("/host/leaderboard");
+            pushLocation(isLastQ ? "/host/results" :"/host/leaderboard");
           } else {
             let newTime = (time - 1);
             setTime(newTime);

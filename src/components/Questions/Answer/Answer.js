@@ -1,8 +1,7 @@
 import React from 'react';
 import './index.css';
 
-export default function Answer(props) {
-    const { correct, answer } = props;
+export default function Answer({ correct, answer }) {
     return (
         <div className={`outline box ${correct}`}>
             {answer}
