@@ -29,9 +29,7 @@ class Host extends Component {
     * @property { String } message - content of message to be sent.
     *
     */
-    constructor(props) {
-      super(props);
-      this.state = {
+      state: {
         me: {
           userName: "Clyde",
           id: '124v34b6',
@@ -64,8 +62,7 @@ class Host extends Component {
         time: 10,
         chosenAnswer: '',
         message: '',
-      }
-    };
+      };
 
     /* PUSH URL */
     /**
@@ -205,15 +202,16 @@ class Host extends Component {
 
             <Route path="/host/instructions" component={Instructions} />
 
-              <Route path="/host/questions"
-                     render={(props) =>
-                      <Questions {...props}
-                        question={this.state.questions[this.state.currentQ]}
-                        onQ={this.state.currentQ + 1}
-                        totalQ={this.state.questions.length}
-                        handleIncrementQ={this.incrementQ}
-                        pushLocation={this.pushLocation} />
-              }/>
+            <Route path="/host/questions"
+                   render={(props) =>
+                    <Questions {...props}
+                      question={this.state.questions[this.state.currentQ]}
+                      onQ={this.state.currentQ + 1}
+                      totalQ={this.state.questions.length}
+                      handleIncrementQ={this.incrementQ}
+                      pushLocation={this.pushLocation}
+                      sendAnswer={this.sendAnswer} />
+            }/>
 
             <Route path="/host/leaderboard"
               render={(props) =>
