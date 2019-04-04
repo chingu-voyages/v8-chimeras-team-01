@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Answer from './Answer';
 import './index.css';
 
-export default function Question({ question, onQ, totalQ, handleIncrementQ, pushLocation }) {
+export default function Question({ sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation }) {
 
 
   /**
@@ -74,9 +74,15 @@ export default function Question({ question, onQ, totalQ, handleIncrementQ, push
         {
           question.a.map((answer, i) => {
             if (answer !== question.c) {
-              return <Answer correct={'wrong'} answer={answer} key={i} />;
+              return <Answer correct={'wrong'}
+                             answer={answer}
+                             sendAnswer={sendAnswer}
+                             key={i} />;
             } else {
-              return <Answer correct={'correct'} answer={answer} key={i} />;
+              return <Answer correct={'correct'}
+                             answer={answer}
+                             sendAnswer={sendAnswer}
+                             key={i} />;
             }
           })
         }

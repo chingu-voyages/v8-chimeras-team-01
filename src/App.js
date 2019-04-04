@@ -13,6 +13,7 @@ import Instructions from './components/Instructions';
 import Games from './components/Games';
 import Nav from './components/Nav';
 import Host from './components/Host';
+import Player from './components/Player';
 
 class App extends Component {
 
@@ -30,6 +31,7 @@ class App extends Component {
           <Route path="/questions" component={Questions} />
           <Route path="/leaderBoard" component={LeaderBoard} />
           <Route path="/host" component={Host} />
+          <Route path="/player" component={Player} />
 
         </Switch >
 

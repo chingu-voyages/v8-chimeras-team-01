@@ -29,7 +29,7 @@ class Host extends Component {
     * @property { String } message - content of message to be sent.
     *
     */
-      state: {
+      state = {
         me: {
           userName: "Clyde",
           id: '124v34b6',
@@ -59,10 +59,10 @@ class Host extends Component {
         ],
         questions: [],
         currentQ: 0,
-        time: 10,
         chosenAnswer: '',
         message: '',
-      };
+        resultsObject: {playerResults: null}
+      }
 
     /* PUSH URL */
     /**
@@ -99,26 +99,21 @@ class Host extends Component {
      *
      * @memberof Questions
      */
-    sendAnswer = (correct) => {
+    sendAnswer = (correct, answer) => {
+
+      this.setState({ chosenAnswer: answer });
+      // TODO: Handle setting own state before moving on
 
         // Display data being sent to the host
         console.log({
             correct,
+            answer,
             username: this.state.username
         })
 
-        // Stoping the timer
-        clearInterval(this.timer)
-
         // At this point we should be waiting for a response from the host.
+        // TODO: Add function to gather info from players and send players object beck to players with updated results
         console.log('Waiting for signal from host');
-
-        // A loader is put in place while we wait from the Host
-        let imageQuestion = document.querySelector('.image-question')
-        imageQuestion.classList.add('hide');
-
-        let loader = document.querySelector('.loader');
-        loader.classList.remove('hide')
 
         // Mimicking response from Host
         setTimeout(() => {
@@ -127,37 +122,22 @@ class Host extends Component {
             let correct = document.querySelector('.correct');
             correct.classList.add('highlight');
 
-            //Calling push to Leaderboard
-
-
         }, 3000)
 
     }
 
-    /**
-     * @method timer - A timer to countdown.
-     *
-     * @memberof Questions
-     */
-    timer = () => {
-        // Timer will run until time is 0 and then the
-        // answer will be sent to the Host
-        this.timer = setInterval(() => {
-            this.setState({ time: this.state.time - 1 },
+    handleLeaderBoardTransition = () => {
 
-                () => {
+      this.props.data.players.forEach(conn => {
+        conn.send("go Leaderboard");
+        console.log("pushing to leaderboard");
+      });
 
-                    if (this.state.time === 0) {
-
-                        this.sendAnswer()
-
-                    }
-                }
-            )
-
-        }, 1000)
     }
 
+    // TODO: Handle data from players (SWITCH)
+
+    // TODO: Remove after game is working
     handleInputChange = ({ target }) => {
 
         const value = target.value;
@@ -202,16 +182,16 @@ class Host extends Component {
 
             <Route path="/host/instructions" component={Instructions} />
 
-            <Route path="/host/questions"
-                   render={(props) =>
-                    <Questions {...props}
-                      question={this.state.questions[this.state.currentQ]}
-                      onQ={this.state.currentQ + 1}
-                      totalQ={this.state.questions.length}
-                      handleIncrementQ={this.incrementQ}
-                      pushLocation={this.pushLocation}
-                      sendAnswer={this.sendAnswer} />
-            }/>
+              <Route path="/host/questions"
+                     render={(props) =>
+                      <Questions {...props}
+                        question={this.state.questions[this.state.currentQ]}
+                        onQ={this.state.currentQ + 1}
+                        totalQ={this.state.questions.length}
+                        handleIncrementQ={this.incrementQ}
+                        pushLocation={this.pushLocation}
+                        sendAnswer={this.sendAnswer} />
+              }/>
 
             <Route path="/host/leaderboard"
               render={(props) =>

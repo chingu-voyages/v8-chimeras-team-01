@@ -1,9 +1,10 @@
 import React from 'react';
 import './index.css';
 
-export default function Answer({ correct, answer }) {
+export default function Answer({ sendAnswer, correct, answer }) {
     return (
-        <div className={`outline box ${correct}`}>
+        <div className={`outline box ${correct}`}
+             onClick={sendAnswer(correct, answer)}>
             {answer}
         </div>
     )
