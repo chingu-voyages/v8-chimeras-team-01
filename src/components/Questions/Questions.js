@@ -44,7 +44,6 @@ export default function Question({ sendAnswer, question, onQ, totalQ, handleIncr
               handleIncrementQ();
               pushLocation("/host/leaderboard");
             } else {
-              handleIncrementQ();
               pushLocation("/host/results");
             }
           } else {
