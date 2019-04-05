@@ -44,10 +44,9 @@ export default function Question({ sendAnswer, question, onQ, totalQ, handleIncr
               handleIncrementQ();
               pushLocation("/host/leaderboard");
             } else {
+              handleIncrementQ();
               pushLocation("/host/results");
             }
-            handleIncrementQ();
-            pushLocation(isLastQ ? "/host/results" :"/host/leaderboard");
           } else {
             let newTime = (time - 1);
             setTime(newTime);
