@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Games from '../Games';
+import BrowseGames from '../Games/BrowseGames.js';
 import './index.css';
 
 export default function Landing() {
@@ -90,17 +90,18 @@ export default function Landing() {
         <section className={(view === "game") ? "start-game-container pm0" : "start-game-container pm0 shift-right"}>
           <div className="start-game-section fbc">
             <h4 className="fbc">Quick Launch</h4>
-            <button className="start-game-button fbc pointy"
-                    onClick={() => {toggleGames(true)}}>
-              <p className="pm0"><strong>Are you a GameMaster??</strong></p>
-              <p className="pm0">Host A Game</p>
-            </button>
-            <button className="start-game-button fbc pointy">
-              <Link to="/join" className="link fbc">
+            <Link to="/host/games" className="link fbc">
+              <button className="start-game-button fbc pointy">
+                <p className="pm0"><strong>Are you a GameMaster??</strong></p>
+                <p className="pm0">Host A Game</p>
+              </button>
+            </Link>
+            <Link to="/join" className="link fbc">
+              <button className="start-game-button fbc pointy">
                 <p className="pm0"><strong>Have a Code??</strong></p>
                 <p className=" pm0">Join A Game</p>
-              </Link>
-            </button>
+              </button>
+            </Link>
             <button className="browse-button fbc pointy"
                     onClick={() => {toggleGames(true)}}>
               <p className="pm0">Browse Games</p>
@@ -126,7 +127,7 @@ export default function Landing() {
           </div>
         </section>
 
-        <Games showGames={showGames}
+        <BrowseGames showGames={showGames}
                handleToggleGames={toggleGames}/>
 
       </section>

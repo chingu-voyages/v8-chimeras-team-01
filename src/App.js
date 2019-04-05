@@ -37,13 +37,11 @@ class App extends Component {
 
         <footer>
           <ul>
-            <li><Link to="/">Landing Component</Link></li>
-            <li><Link to="/results">Results Component</Link></li>
-            <li><Link to="/games">Games</Link></li>
-            <li><Link to="/questions">Questions Component</Link></li>
-            <li><Link to="/leaderBoard">LeaderBoard Component</Link></li>
-            <li><Link to="/host">Host</Link></li>
-            <li><Link to="/player">Player</Link></li>
+              <li><Link to="/">Landing Component</Link></li>
+              <li><Link to="/results">Results Component</Link></li>
+              <li><Link to="/games">Games</Link></li>
+              <li><Link to="/questions">Questions Component</Link></li>
+              <li><Link to="/leaderBoard">LeaderBoard Component</Link></li>
           </ul>
         </footer>
       </div>

@@ -5,11 +5,11 @@ import './index.css';
 
 export default () => (
     <div id='nav'>
-      <Link to="/" className="pointy">
         <header>
-          <h1 className="header pm0">Bragging Rights</h1>
+          <Link to="/" className="pointy">
+            <h1 className="header pm0">Bragging Rights</h1>
+          </Link>
           <h4 className="sub-header pm0">Outwit your friends and earn <em>Bragging Rights</em></h4>
         </header>
-      </Link>
     </div>
 )
