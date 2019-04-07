@@ -1,14 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './index.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./index.css";
 
 export default function Results({ users }) {
-
   /* SORT LEADERS */
-  const comparison = (a, b) => {
-    const scoreA = a.score;
-    const scoreB = b.score;
-    return (scoreB-scoreA)
+
+  /**
+   * @function [topThree]
+   * @param {Objects} list Objects containing only key and value as a number
+   * @description [Takes in users and returns the top 3 players by descending order]
+   * @returns {Object[]} Top three players with userName and score as key.
+   */
+  const topThree = function(list) {
+    const sortable = [],
+      topThree = [];
+
+    // Put keys and value into an array of arrays
+    for (let key in list) {
+      sortable.push([key, list[key]]);
+    }
+
+    // Sort array by value, highest to low
+    sortable.sort(function(a, b) {
+      return a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : 0;
+    });
+
+    // return just the first 3 items in the array of objects
+    let i;
+    for (i = 0; i < 3; i += 1) {
+      topThree.push({
+        userName: sortable[i][0],
+        score: sortable[i][1]
+      });
+    }
+
+    return topThree;
   };
 
   const sortedUsers = users.sort(comparison);
@@ -19,14 +45,11 @@ export default function Results({ users }) {
         <h1 className="res__title">
           Nice work {sortedUsers[0].userName}! Time to BRAG
         </h1>
-      </div>
-      <div className="res__container">
         <div className="res__wrapper">
           <div className="res__bar">
             <span>{sortedUsers[1].userName}</span>
             <div className="res__bar-inner">
             </div>
-          </div>
           <div className="res__bar">
             <span>{sortedUsers[0].userName}</span>
             <div className="res__bar-inner">
