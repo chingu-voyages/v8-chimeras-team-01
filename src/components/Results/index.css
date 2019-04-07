@@ -94,3 +94,14 @@
   font-size: 39px;
   font-weight: bold;
 }
+
+@media (max-width: 600px) {
+  #results {
+    width: 100%;
+  }
+
+  .res__bar,
+  .res__bar-inner {
+      width: 100%;
+  }
+}
