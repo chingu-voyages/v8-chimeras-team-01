@@ -41,13 +41,10 @@ export default function LeaderBoard({ users }) {
 
   return (
     <div id="leaderBoard">
-      {/* TODO Component work flow */}
       <div className="lb__container">
-        <h1 className="lb__title">
-          Leader Board
-        </h1>
+        <h1 className="lb__title">Leader Board</h1>
         <ol className="lb__ol">
-          {sortedUsers.map( (user, index) => (
+          {sortedUsers.map((user, index) => (
             <li className="lb__li" key={index}>
               <mark>{user.userName}</mark>
               <small>{user.score}</small>
@@ -56,16 +53,16 @@ export default function LeaderBoard({ users }) {
         </ol>
       </div>
       <div className="lb__banner">
-        <p className="lb__title">Not being in first place just means you have a clear target</p>
+        <p className="lb__inspire_txt">
+          Not being in first place just means you have a clear target
+        </p>
       </div>
 
       <button className="lb__btn">
-        <Link
-          to="/host/questions" className="lb__btn-anchor"
-        >
-          <p className="">Next Question</p>
+        <Link to="/host/questions" className="lb__btn-anchor">
+          <p className="lb__anchor_txt">Next Question</p>
         </Link>
       </button>
     </div>
-  )
+  );
 }
