@@ -84,16 +84,16 @@
   background: none;
   color: #fff;
 }
-.lb__li mark::before, 
+.lb__li mark::before,
 .lb__li mark::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 1;
   bottom: -11px;
   left: -9px;
   border-top: 10px solid #c24448;
   border-left: 10px solid transparent;
-  transition: all .1s ease-in-out;
+  transition: all 0.1s ease-in-out;
   opacity: 0;
 }
 .lb__li mark::after {
@@ -109,62 +109,36 @@
   text-align: right;
   color: white;
 }
-.lb__li:nth-child(1) {
-  background: #fa6855;
+.lb__li:first-child {
+  background: #11862a;
   border-radius: 10px 10px 0px 0px;
 }
-.lb__li:nth-child(1)::after {
-  background: #fa6855;
+.lb__li:first-child::after {
+  background: #11862a;
 }
-.lb__li:nth-child(2) {
-  background: #e0574f;
+.lb__li {
+  background: #1a659a;
 }
-.lb__li:nth-child(2)::after {
-  background: #e0574f;
+.lb__li::after {
+  background: #1a659a;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
 }
-.lb__li:nth-child(2) mark::before, 
-.lb__li:nth-child(2) mark::after {
+.lb__li mark::before,
+.lb__li mark::after {
   border-top: 6px solid #ba4741;
   bottom: -7px;
 }
-.lb__li:nth-child(3) {
-  background: #d7514d;
-}
-.lb__li:nth-child(3)::after {
-  background: #d7514d;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.11);
-}
-.lb__li:nth-child(3) mark::before, 
-.lb__li:nth-child(3) mark::after {
-  border-top: 2px solid #b0433f;
-  bottom: -3px;
-}
-.lb__li:nth-child(4) {
-  background: #cd4b4b;
-}
-.lb__li:nth-child(4)::after {
-  background: #cd4b4b;
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
-}
-.lb__li:nth-child(4) mark::before, 
-.lb__li:nth-child(4) mark::after {
-  top: -7px;
-  bottom: auto;
-  border-top: none;
-  border-bottom: 6px solid #a63d3d;
-}
-.lb__li:nth-child(5) {
+.lb__li:last-child {
   background: #c24448;
   border-radius: 0 0 10px 10px;
 }
-.lb__li:nth-child(5)::after {
+.lb__li:last-child::after {
   background: #c24448;
   box-shadow: 0 -2.5px 0 rgba(0, 0, 0, 0.12);
   border-radius: 0 0 10px 10px;
 }
-.lb__li:nth-child(5) mark::before, 
-.lb__li:nth-child(5) mark::after {
+.lb__li:last-child mark::before,
+.lb__li:last-child mark::after {
   top: -9px;
   bottom: auto;
   border-top: none;
@@ -177,7 +151,7 @@
 .lb__li:hover::after {
   opacity: 1;
   -webkit-transform: scaleX(1.06) scaleY(1.03);
-          transform: scaleX(1.06) scaleY(1.03);
+  transform: scaleX(1.06) scaleY(1.03);
 }
 .lb__banner {
   margin-top: 20px;
@@ -188,9 +162,13 @@
 .lb__btn {
   margin-top: 20px;
   font-size: 30px;
-  border: none;  
+  border: none;
 }
 .lb__btn-anchor {
   color: white;
   text-decoration: none;
+}
+.lb__anchor_txt {
+  font-size: 39px;
+  font-weight: bold;
 }
