@@ -1,17 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './index.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./index.css";
 
 export default function LeaderBoard({ users }) {
-
   /* SORT LEADERS */
-  const comparison = (a, b) => {
-    const scoreA = a.score;
-    const scoreB = b.score;
-    return (scoreB-scoreA)
+
+  /**
+   * @function [sortUsers]
+   * @param {Objects} list Objects containing only keys and value as a number
+   * @description [Takes in users and returns players by descending order]
+   * @returns {Object[]} All players with userName and score as keys and values to names and scores.
+   */
+  const sortUsers = function(list) {
+    const sortable = [],
+      orderedList = [];
+
+    // Put keys and value into an array of arrays
+    for (let key in list) {
+      sortable.push([key, list[key]]);
+    }
+
+    // Sort array by value,
+    sortable.sort(function(a, b) {
+      return a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : 0;
+    });
+
+    // Return array of objects
+    let i;
+    for (i = 0; i < sortable.length; i+=1) {
+      orderedList.push({
+        userName: sortable[i][0],
+        score: sortable[i][1]
+      });
+    }
+
+    return orderedList;
   };
 
-  const sortedUsers = users.sort(comparison);
+  const sortedUsers = sortUsers(users)
 
   return (
     <div id="leaderBoard">
