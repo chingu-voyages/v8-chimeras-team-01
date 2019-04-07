@@ -35,28 +35,12 @@ class Host extends Component {
           id: '124v34b6',
           score: 120
         },
-        users: [
-          {
-            userName: "Inky",
-            id: '34vtt1fc',
-            score: 50
-          },
-          {
-            userName: "Blinky",
-            id: '34vyv34',
-            score: 5
-          },
-          {
-            userName: "Pinky",
-            id: '124v34vvq',
-            score: 10
-          },
-          {
-            userName: "Clyde",
-            id: 'f431fvf4v',
-            score: 120
-          }
-        ],
+        users: {
+            Inky: 50,
+            Blinky: 5,
+            Pinky: 10,
+            Clyde: 120,
+        },
         questions: [],
         currentQ: 0,
         chosenAnswer: '',
