@@ -37,38 +37,37 @@ export default function Results({ users }) {
     return topThree;
   };
 
-  const sortedUsers = users.sort(comparison);
+  const sortedUsers = topThree(users);
 
   return (
     <div id="results">
-      <div className="res__header">
+      <div className="res__header" />
+      <div className="res__container">
         <h1 className="res__title">
-          Nice work {sortedUsers[0].userName}! Time to BRAG
+          Nice work {sortedUsers[0].userName}!
+          <br />
+          Time to BRAG
         </h1>
         <div className="res__wrapper">
           <div className="res__bar">
-            <span>{sortedUsers[1].userName}</span>
-            <div className="res__bar-inner">
-            </div>
-          <div className="res__bar">
-            <span>{sortedUsers[0].userName}</span>
-            <div className="res__bar-inner">
-            </div>
+            <span className="res__bar_names">{sortedUsers[1].userName}</span>
+            <div className="res__bar-inner" />
           </div>
           <div className="res__bar">
-            <span>{sortedUsers[2].userName}</span>
-            <div className="res__bar-inner">
-            </div>
+            <span className="res__bar_names">{sortedUsers[0].userName}</span>
+            <div className="res__bar-inner" />
+          </div>
+          <div className="res__bar">
+            <span className="res__bar_names">{sortedUsers[2].userName}</span>
+            <div className="res__bar-inner" />
           </div>
         </div>
       </div>
       <button className="res__btn">
-        <Link
-          to="/start-game" className="res__btn-anchor"
-        >
-          <p className="">Time for a REMATCH??</p>
+        <Link to="/start-game" className="res__btn-anchor">
+          <p className="res__anchor_txt">Time for a REMATCH??</p>
         </Link>
       </button>
     </div>
-  )
+  );
 }
