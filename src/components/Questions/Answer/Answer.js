@@ -1,11 +1,11 @@
 import React from 'react';
 import './index.css';
 
-export default function Answer({ sendAnswer, correct, answer, handlePreventClicks }) {
+export default function Answer({ handleChoice, correct, answer }) {
     return (
         <div className={`box ${correct}`}
-             onClick={() => sendAnswer(correct, answer)}
-             onMouseUp={(event) => handlePreventClicks(event)}>
+            onClick={(event) => handleChoice(event, correct, answer)}
+        >
             {answer}
         </div>
     )
