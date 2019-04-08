@@ -51,16 +51,16 @@ export default function Landing() {
   return (
     <section id="landing pm0">
       <i className="fas fa-info-circle fa-2x pointy lrg-scrn-icon"
-         onClick={toggleInfo}></i>
+        onClick={toggleInfo}></i>
 
       <section id="view-button-container" className="pm0">
         <div className={(view === "info") ? "button-box fbc sel" : "button-box fbc"}>
           <i className="fas fa-info-circle fa-3x"
-             onClick={() => {buttonSwitch("info")}}></i>
+            onClick={() => { buttonSwitch("info") }}></i>
         </div>
         <div className={(view === "game") ? "button-box fbc sel" : "button-box fbc"}>
           <i className="fas fa-gamepad fa-3x"
-             onClick={() => {buttonSwitch("game")}}></i>
+            onClick={() => { buttonSwitch("game") }}></i>
         </div>
       </section>
 
@@ -69,7 +69,7 @@ export default function Landing() {
         {/* TERNARY to show/hide in mobile view */}
         <div className={(view === "info") ? "ge-container pm0 shift-up" : "ge-container pm0 shift-left shift-up"}>
           <button className="info-close pm0 pointy"
-                  onClick={toggleInfo}> X close </button>
+            onClick={toggleInfo}> X close </button>
           <div className="gameplay-example">
             <div className="fbc">
               <h4 className="ge-header fbc">How do I earn Bragging Rights?</h4>
@@ -96,14 +96,14 @@ export default function Landing() {
                 <p className="pm0">Host A Game</p>
               </button>
             </Link>
-            <Link to="/join" className="link fbc">
+            <Link to="/player/join" className="link fbc">
               <button className="start-game-button fbc pointy">
                 <p className="pm0"><strong>Have a Code??</strong></p>
                 <p className=" pm0">Join A Game</p>
               </button>
             </Link>
             <button className="browse-button fbc pointy"
-                    onClick={() => {toggleGames(true)}}>
+              onClick={() => { toggleGames(true) }}>
               <p className="pm0">Browse Games</p>
             </button>
           </div>
@@ -128,7 +128,7 @@ export default function Landing() {
         </section>
 
         <BrowseGames showGames={showGames}
-               handleToggleGames={toggleGames}/>
+          handleToggleGames={toggleGames} />
 
       </section>
 

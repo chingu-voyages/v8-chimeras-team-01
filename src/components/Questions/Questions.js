@@ -3,7 +3,7 @@ import Answer from './Answer';
 import './index.css';
 import Loader from '../Loader';
 
-export default function Questions({ sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation }) {
+export default function Questions({ updateMyScore, myScore, sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation }) {
 
 
   /**
@@ -19,7 +19,7 @@ export default function Questions({ sendAnswer, question, onQ, totalQ, handleInc
     }
   })
 
-  const [localScore, setLocalScore] = useState(0);
+  const [localScore, setLocalScore] = useState(myScore);
   const [correct, setCorrect] = useState('wrong');
   const [answer, setAnswer] = useState('');
 
@@ -27,8 +27,14 @@ export default function Questions({ sendAnswer, question, onQ, totalQ, handleInc
     preventClicks(event);
     setCorrect(correct);
     setAnswer(answer);
-    let updatedScore = localScore + (5 * time);
+    let updatedScore = 0
+    if (correct === "correct") {
+      updatedScore = localScore + (5 * time);
+    } else {
+      updatedScore = localScore;
+    }
     setLocalScore(updatedScore);
+    updateMyScore(updatedScore)
   }
 
   /**
