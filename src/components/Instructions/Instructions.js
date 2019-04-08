@@ -4,6 +4,7 @@ import './index.css';
 
 export default function Instructions() {
   return (
+
     <div className="instructions" id="instructions">
       <h1 className="instructions-header">A quick "How-To" while we get your game ready</h1>
       <div className="steps-wrapper">
@@ -23,6 +24,7 @@ export default function Instructions() {
           <p className="players-that-joined">This is where player names will show as they join ... maybe</p>
         </div>
       </div>
+
       <Link to="/host/questions" className="link fbc">
         <button className="start-game-btn">
           Let's Get Started !!
