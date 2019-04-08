@@ -33,11 +33,7 @@ class Host extends Component {
   *
   */
   state = {
-    me: {
-      userName: "Clyde",
-      id: '124v34b6',
-      score: 120
-    },
+    me: null,
     users: {
       Inky: 50,
       Blinky: 5,
@@ -159,14 +155,37 @@ class Host extends Component {
 
   }
 
+  handleUsername = (e) => {
+    e.preventDefault();
+    let myName = e.target.userName.value;
+    let obj = { myScore: 0, userName: myName }
+    this.setState({ me: obj })
+  }
+
+  updateMyScore = (score) => {
+    var obj = { myScore: score, userName: this.state.me.userName }
+    this.setState({ me: obj })
+  }
+
   render() {
 
     return (
       <div id="host-container">
-        <h1>
-          Host
-          </h1>
-        <h3>connection ID: {this.props.data.id}</h3>
+
+        {
+          this.state.me ?
+            <h3> UserName: {this.state.me.userName}</h3> :
+            <div>
+              <form onSubmit={this.handleUsername}>
+                <input type="text" name="userName" placeholder='Insert UserName' />
+                <button type='submit'>Submit</button>
+              </form>
+            </div>
+        }
+
+
+        <h3>Game ID: {this.props.data.id}</h3>
+        <h3>Your players will need this to join your game</h3>
 
         <br />
         <input name='message' value={this.state.message} onChange={this.handleInputChange} />
@@ -194,7 +213,10 @@ class Host extends Component {
                 onQ={this.state.currentQ + 1}
                 totalQ={this.state.questions.length}
                 pushLocation={this.pushLocation}
-                sendAnswer={this.sendAnswer} />
+                sendAnswer={this.sendAnswer}
+                myScore={this.state.me.myScore}
+                updateMyScore={this.updateMyScore}
+              />
             } />
 
           <Route path="/host/leaderboard"
