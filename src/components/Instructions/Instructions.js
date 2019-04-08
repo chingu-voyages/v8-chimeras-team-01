@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './index.css';
 
-export default function Instructions() {
+export default function Instructions(props) {
+
   return (
 
     <div className="instructions" id="instructions">
@@ -24,12 +24,8 @@ export default function Instructions() {
           <p className="players-that-joined">This is where player names will show as they join ... maybe</p>
         </div>
       </div>
+      {props.getStarted}
 
-      <Link to="/host/questions" className="link fbc">
-        <button className="start-game-btn">
-          Let's Get Started !!
-        </button>
-      </Link>
     </div>
   )
 }

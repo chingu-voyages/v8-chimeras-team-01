@@ -1,9 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import "./index.css";
 
-export default function LeaderBoard({ users }) {
+export default function LeaderBoard(props) {
   /* SORT LEADERS */
+
+  /**
+ * [useEffect Hook]
+ * @method  handleIncrementQ
+ * @description  [Hook to move to next question when Questions re-mounts]
+ */
+  useEffect(() => {
+    props.handleIncrementQ();
+    console.log('why !!!');
+  }, []);
 
   /**
    * @function [sortUsers]
@@ -11,7 +20,7 @@ export default function LeaderBoard({ users }) {
    * @description [Takes in users and returns players by descending order]
    * @returns {Object[]} All players with userName and score as keys and values to names and scores.
    */
-  const sortUsers = function(list) {
+  const sortUsers = function (list) {
     const sortable = [],
       orderedList = [];
 
@@ -21,22 +30,24 @@ export default function LeaderBoard({ users }) {
     }
 
     // Sort array by value,
-    sortable.sort(function(a, b) {
+    sortable.sort(function (a, b) {
       return a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : 0;
     });
 
     // Return array of objects
     let i;
-    for (i = 0; i < sortable.length; i+=1) {
+    for (i = 0; i < sortable.length; i += 1) {
       orderedList.push({
         userName: sortable[i][0],
         score: sortable[i][1]
       });
     }
 
+
     return orderedList;
   };
 
+  const { users } = props;
   const sortedUsers = sortUsers(users)
 
   return (
@@ -58,11 +69,8 @@ export default function LeaderBoard({ users }) {
         </p>
       </div>
 
-      <button className="lb__btn">
-        <Link to="/host/questions" className="lb__btn-anchor">
-          <p className="lb__anchor_txt">Next Question</p>
-        </Link>
-      </button>
-    </div>
+      {!!props.hostReady && props.nextQuestion}
+
+    </div >
   );
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Answer from './Answer';
 import './index.css';
+import Loader from '../Loader';
 
-export default function Question({ sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation }) {
+export default function Questions({ sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation }) {
 
 
   /**
@@ -18,13 +19,24 @@ export default function Question({ sendAnswer, question, onQ, totalQ, handleIncr
     }
   })
 
+  const [localScore, setLocalScore] = useState(0);
+  const [correct, setCorrect] = useState('wrong');
+  const [answer, setAnswer] = useState('');
+
+  const handleChoice = (event, correct, answer) => {
+    preventClicks(event);
+    setCorrect(correct);
+    setAnswer(answer);
+    let updatedScore = localScore + (5 * time);
+    setLocalScore(updatedScore);
+  }
 
   /**
    * [time Hook]
    * @method time
    * @description [Hook to set initial time in timer and method to update that count]
    */
-  const [time, setTime] = useState(20);
+  const [time, setTime] = useState(10);
 
 
   /**
@@ -39,17 +51,29 @@ export default function Question({ sendAnswer, question, onQ, totalQ, handleIncr
    * @function timer [Decrements the time in state and pushes to Leaderboard URL except last question, then pushes to Results URL]
    */
   const timer = () => {
-          if (time === 0) {
-            if (!isLastQ) {
-              handleIncrementQ();
-              pushLocation("/host/leaderboard");
-            } else {
-              pushLocation("/host/results");
-            }
-          } else {
-            let newTime = (time - 1);
-            setTime(newTime);
-          }
+    if (time === 0) {
+      let newTime = (time - 1);
+      setTime(newTime);
+      // send answers to host regardless
+      sendAnswer(correct, answer, localScore)
+      if (!isLastQ) {
+        // pushLocation("/host/leaderboard");
+        setTimeout(() => {
+
+          pushLocation("/host/leaderboard");
+        }, 5000)
+      } else {
+        // pushLocation("/host/results");
+        setTimeout(() => {
+
+          pushLocation("/host/results");
+        }, 5000)
+      }
+
+    } else {
+      let newTime = (time - 1);
+      setTime(newTime);
+    }
   }
 
   /* Once user clicks answer, prevent more answers from being chosen */
@@ -60,19 +84,24 @@ export default function Question({ sendAnswer, question, onQ, totalQ, handleIncr
     e.target.classList.add('selected');
 
     let allAnswers = document.getElementsByClassName('box');
-    [...allAnswers].forEach(element => element.classList.add('no-clicks') );
+    [...allAnswers].forEach(element => element.classList.add('no-clicks'));
   }
 
   return (
 
     <div id="questions">
+      {console.log(onQ)}
 
       <h1>Question {onQ} of {totalQ} </h1>
 
       <div className='image-wrapper'>
-        <img className='outline image-question' alt='of question' src='https://picsum.photos/200'></img>
-        <img className='loader hide' src='./images/loader.gif' alt="Loading" />
-        <div>Timer {time}</div>
+        {time <= 0 ? <Loader /> :
+          <>
+            <img className='outline image-question' alt='of question' src='https://picsum.photos/200'></img>
+            <div>Timer {time}</div>
+          </>
+
+        }
       </div>
 
       <div className='center'>
@@ -84,21 +113,19 @@ export default function Question({ sendAnswer, question, onQ, totalQ, handleIncr
           question.a.map((answer, i) => {
             if (answer !== question.c) {
               return <Answer correct={'wrong'}
-                             answer={answer}
-                             sendAnswer={sendAnswer}
-                             handlePreventClicks={preventClicks}
-                             key={i} />;
+                answer={answer}
+                handleChoice={handleChoice}
+                key={i} />;
             } else {
               return <Answer correct={'correct'}
-                             answer={answer}
-                             sendAnswer={sendAnswer}
-                             handlePreventClicks={preventClicks}
-                             key={i} />;
+                answer={answer}
+                handleChoice={handleChoice}
+                key={i} />;
             }
           })
         }
       </div>
 
-    </div>
+    </div >
   )
 }

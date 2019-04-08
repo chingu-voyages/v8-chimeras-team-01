@@ -9,6 +9,9 @@ import Instructions from '../Instructions';
 import LeaderBoard from '../LeaderBoard';
 import Results from '../Results';
 
+import GetStarted from './GetStarted';
+import NextQuestion from './NextQuestion';
+
 
 import './index.css';
 
@@ -16,185 +19,207 @@ import './index.css';
  * @class Host
  * @extends {Component}
  */
- class Host extends Component {
+class Host extends Component {
 
-     /**
-     * @property { Object } me - User in this instance of game.
-     * @property { Array } users - Array of user objects.
-     * @property { Array } questions - Array of questions and answers.
-     * @property { Array }  answers - An array of possible answers.
-     * @property { Number } currentQ - Index of current question.
-     * @property { Number } time - How many seconds to set timer.
-     * @property { String } chosenAnswer - String holding chosen answer.
-     * @property { String } message - content of message to be sent.
-     *
-     */
-       state = {
-         me: {
-           userName: "Clyde",
-           id: '124v34b6',
-           score: 120
-         },
-         users: {
-             Inky: 50,
-             Blinky: 5,
-             Pinky: 10,
-             Clyde: 120,
-         },
-         questions: [],
-         currentQ: 0,
-         chosenAnswer: '',
-         message: '',
-         resultsObject: {playerResults: null}
-       }
+  /**
+  * @property { Object } me - User in this instance of game.
+  * @property { Array } users - Array of user objects.
+  * @property { Array } questions - Array of questions and answers.
+  * @property { Array }  answers - An array of possible answers.
+  * @property { Number } currentQ - Index of current question.
+  * @property { Number } time - How many seconds to set timer.
+  * @property { String } chosenAnswer - String holding chosen answer.
+  * @property { String } message - content of message to be sent.
+  *
+  */
+  state = {
+    me: {
+      userName: "Clyde",
+      id: '124v34b6',
+      score: 120
+    },
+    users: {
+      Inky: 50,
+      Blinky: 5,
+      Pinky: 10,
+      Clyde: 120,
+    },
+    questions: [
+      {
+        q: "What shape does a waffle have on top?",
+        a: ['Square', 'Circle', 'Triangle', 'Rhombus'],
+        c: 'Square'
+      },
+      {
+        q: "The word 'Waffle' first appeared in English around what year?",
+        a: ['1', '1573', '1725', '2011'],
+        c: '1725'
+      },
+      {
+        q: "How many waffles-per-minute does the Waffle House sell on average??",
+        a: ['100', '145', '1000', 'All The Waffles'],
+        c: '145'
+      },
+    ],
+    currentQ: 0,
+    chosenAnswer: '',
+    message: '',
+    resultsObject: { playerResults: null }
+  }
 
-    /* PUSH URL */
-    /**
-     * @function pushLocation
-     * @arg {String}
-     * @description [Takes in a string that will be pushed as a URL path in the history stack, making the app 'navigate' to that URL and mount any corrosponding components.]
-     */
-    pushLocation = (path) => {
-      history.push(`${path}`);
-    };
+  /* PUSH URL */
+  /**
+   * @function pushLocation
+   * @arg {String}
+   * @description [Takes in a string that will be pushed as a URL path in the history stack, making the app 'navigate' to that URL and mount any corrosponding components.]
+   */
+  pushLocation = (path) => {
+    history.push(`${path}`);
+  };
 
-    /* Increment Current Q */
-    /**
-     * @function incrementQ
-     * @description [Takes in number representing index of current question in questions array and adds one, in order to get next question in array.]
-     */
-    incrementQ = () => {
-      let cQ = this.state.currentQ;
-      this.setState({ currentQ: (cQ+1) })
-    }
+  /* Increment Current Q */
+  /**
+   * @function incrementQ
+   * @description [Takes in number representing index of current question in questions array and adds one, in order to get next question in array.]
+   */
+  incrementQ = () => {
+    let cQ = this.state.currentQ;
+    this.setState({ currentQ: (cQ + 1) })
+  }
 
-    /* Set Game */
-    /**
-     * @function setGame
-     * @description [Takes in questions and answers from game selected in Games component and places them in the questions array in state.]
-     */
-    setGame = (game) => {
-      this.setState({ questions: game.questions });
-    }
+  /* Set Game */
+  /**
+   * @function setGame
+   * @description [Takes in questions and answers from game selected in Games component and places them in the questions array in state.]
+   */
+  setGame = (game) => {
+    this.setState({ questions: game.questions });
+  }
 
 
-    /**
-     * @method sendAnswer - Function used to send computed answer to the Host.
-     *
-     * @memberof Questions
-     */
-    sendAnswer = (correct, answer) => {
+  /**
+   * @method sendAnswer - Function used to send computed answer to the Host.
+   *
+   * @memberof Questions
+   */
+  sendAnswer = (correct, answer) => {
 
-      this.setState({ chosenAnswer: answer });
-      // TODO: Handle setting own state before moving on
+    this.setState({ chosenAnswer: answer });
+    // TODO: Handle setting own state before moving on
 
-        // Display data being sent to the host
-        console.log({
-            correct,
-            answer,
-            username: this.state.username
-        })
+    // Display data being sent to the host
+    console.log({
+      correct,
+      answer,
+      username: this.state.username
+    })
 
-        // At this point we should be waiting for a response from the host.
-        // TODO: Add function to gather info from players and send players object beck to players with updated results
-        console.log('Waiting for signal from host');
+    // At this point we should be waiting for a response from the host.
+    // TODO: Add function to gather info from players and send players object beck to players with updated results
+    console.log('Waiting for signal from host');
 
-        // Mimicking response from Host
-        setTimeout(() => {
+    // Mimicking response from Host
+    // setTimeout(() => {
 
-            // Highlighting the correct answer
-            let correct = document.querySelector('.correct');
-            correct.classList.add('highlight');
+    //   // Highlighting the correct answer
+    //   let correct = document.querySelector('.correct');
+    //   correct.classList.add('highlight');
 
-        }, 3000)
+    // }, 3000)
 
-    }
+  }
 
-    handleLeaderBoardTransition = () => {
+  handleLeaderBoardTransition = () => {
 
-      this.props.data.players.forEach(conn => {
-        conn.send("go Leaderboard");
-        console.log("pushing to leaderboard");
-      });
+    this.props.data.players.forEach(conn => {
+      conn.send("go Leaderboard");
+      console.log("pushing to leaderboard");
+    });
 
-    }
+  }
 
-    // TODO: Handle data from players (SWITCH)
+  // TODO: Handle data from players (SWITCH)
 
-    // TODO: Remove after game is working
-    handleInputChange = ({ target }) => {
+  // TODO: Remove after game is working
+  handleInputChange = ({ target }) => {
 
-        const value = target.value;
-        const name = target.name;
+    const value = target.value;
+    const name = target.name;
 
-        this.setState({
-            [name]: value
-        });
-    }
+    this.setState({
+      [name]: value
+    });
+  }
 
-    handleMessage = () => {
+  handleMessage = () => {
 
-        this.props.data.players.forEach(conn => {
-            conn.send(this.state.message);
-        });
+    this.props.data.players.forEach(conn => {
+      conn.send(this.state.message);
+    });
 
-    }
+  }
 
-    render() {
+  render() {
 
-      return (
-        <div id="host-container">
-          <h1>
-              Host
+    return (
+      <div id="host-container">
+        <h1>
+          Host
           </h1>
-          <h3>connection ID: {this.props.data.id}</h3>
+        <h3>connection ID: {this.props.data.id}</h3>
 
-          <br />
-          <input name='message' value={this.state.message} onChange={this.handleInputChange} />
-          <button onClick={this.handleMessage} >Send Message</button>
-          <br />
+        <br />
+        <input name='message' value={this.state.message} onChange={this.handleInputChange} />
+        <button onClick={this.handleMessage} >Send Message</button>
+        <br />
 
-          <Switch>
+        <Switch>
 
-            <Route path="/host/games"
-              render={(props) =>
-               <Games {...props}
-                 showGames={true}
-                 handleSetGame={this.setGame}
-                 pushLocation={this.pushLocation} />
-            }/>
+          <Route path="/host/games"
+            render={(props) =>
+              <Games {...props}
+                showGames={true}
+                handleSetGame={this.setGame}
+                pushLocation={this.pushLocation} />
+            } />
 
-            <Route path="/host/instructions" component={Instructions} />
+          <Route path="/host/instructions"
+            render={() => <Instructions getStarted={<GetStarted />} />}
+          />
 
-            <Route path="/host/questions"
-                   render={(props) =>
-                    <Questions {...props}
-                      question={this.state.questions[this.state.currentQ]}
-                      onQ={this.state.currentQ + 1}
-                      totalQ={this.state.questions.length}
-                      handleIncrementQ={this.incrementQ}
-                      pushLocation={this.pushLocation}
-                      sendAnswer={this.sendAnswer} />
-            }/>
+          <Route path="/host/questions"
+            render={(props) =>
+              <Questions {...props}
+                question={this.state.questions[this.state.currentQ]}
+                onQ={this.state.currentQ + 1}
+                totalQ={this.state.questions.length}
+                pushLocation={this.pushLocation}
+                sendAnswer={this.sendAnswer} />
+            } />
 
-            <Route path="/host/leaderboard"
-              render={(props) =>
-               <LeaderBoard {...props}
-                 users={this.state.users}/>
-            }/>
+          <Route path="/host/leaderboard"
+            render={(props) =>
+              <LeaderBoard {...props}
+                users={this.state.users}
+                hostReady={true}
+                handleIncrementQ={this.incrementQ}
+                nextQuestion={<NextQuestion />}
 
-            <Route path="/host/results"
-                render={(props) =>
-                 <Results {...props}
-                   users={this.state.users}/>
-              }/>
+              />
+            } />
 
-          </Switch>
+          <Route path="/host/results"
+            render={(props) =>
+              <Results {...props}
+                users={this.state.users} />
+            } />
 
-        </div >
+        </Switch>
 
-      )
-    }
+      </div >
+
+    )
+  }
 }
 
 export default withPeerJs(Host);
