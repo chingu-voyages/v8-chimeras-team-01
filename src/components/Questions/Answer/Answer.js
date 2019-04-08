@@ -5,7 +5,7 @@ export default function Answer({ sendAnswer, correct, answer, handlePreventClick
     return (
         <div className={`box ${correct}`}
              onClick={() => sendAnswer(correct, answer)}
-             onMouseUp={() => handlePreventClicks()}>
+             onMouseUp={(event) => handlePreventClicks(event)}>
             {answer}
         </div>
     )

@@ -56,7 +56,9 @@ export default function Question({ sendAnswer, question, onQ, totalQ, handleIncr
   /**
    * @function preventClicks [finds all Answers and prevents further clicks]
    */
-  const preventClicks = () => {
+  const preventClicks = (e) => {
+    e.target.classList.add('selected');
+
     let allAnswers = document.getElementsByClassName('box');
     [...allAnswers].forEach(element => element.classList.add('no-clicks') );
   }
