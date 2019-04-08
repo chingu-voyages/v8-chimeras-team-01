@@ -175,7 +175,7 @@ class Host extends Component {
         {
           this.state.me ?
             <h3> UserName: {this.state.me.userName}</h3> :
-            <div>
+            <div id="host-userName-form" className="fbc">
               <form onSubmit={this.handleUsername}>
                 <input type="text" name="userName" placeholder='Insert UserName' />
                 <button type='submit'>Submit</button>

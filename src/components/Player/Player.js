@@ -7,6 +7,7 @@ import Questions from '../Questions';
 import Results from '../Results';
 import LeaderBoard from '../LeaderBoard';
 import Instructions from '../Instructions';
+import Join from './Join';
 
 import './index.css';
 
@@ -29,44 +30,43 @@ class Player extends Component {
   * @property { String } message - content of message to be sent.
   *
   */
-    state = {
-      me: {
-        userName: "Clyde",
-        id: '124v34b6',
-        score: 120
+  state = {
+    me: {
+      userName: "",
+      myScore: 0
+    },
+    users: [
+      {
+        userName: "Inky",
+        id: '34vtt1fc',
+        score: 50
       },
-      users: [
-        {
-          userName: "Inky",
-          id: '34vtt1fc',
-          score: 50
-        },
-        {
-          userName: "Blinky",
-          id: '34vyv34',
-          score: 5
-        },
-        {
-          userName: "Pinky",
-          id: '124v34vvq',
-          score: 10
-        },
-        {
-          userName: "Clyde",
-          id: 'f431fvf4v',
-          score: 120
-        }
-      ],
-      questions: [],
-      currentQ: 0,
-      time: 10,
-      chosenAnswer: '',
-      message: '',
-      isConnected: false,
-      input: '',
-      conn: '',
-      currentResults: { individualResults: null}
-    }
+      {
+        userName: "Blinky",
+        id: '34vyv34',
+        score: 5
+      },
+      {
+        userName: "Pinky",
+        id: '124v34vvq',
+        score: 10
+      },
+      {
+        userName: "Clyde",
+        id: 'f431fvf4v',
+        score: 120
+      }
+    ],
+    questions: [],
+    currentQ: 0,
+    time: 10,
+    chosenAnswer: '',
+    message: '',
+    isConnected: false,
+    input: '',
+    conn: '',
+    currentResults: { individualResults: null }
+  }
 
   /* PUSH URL */
   /**
@@ -85,7 +85,7 @@ class Player extends Component {
    */
   incrementQ = () => {
     let cQ = this.state.currentQ;
-    this.setState({ currentQ: (cQ+1) })
+    this.setState({ currentQ: (cQ + 1) })
   }
 
   /* Set Game */
@@ -108,28 +108,28 @@ class Player extends Component {
     this.setState({ chosenAnswer: answer });
     // TODO: Handle setting own state before moving on
 
-      // Display data being sent to the host
-      console.log({
-          correct,
-          answer,
-          username: this.state.username
-      })
+    // Display data being sent to the host
+    console.log({
+      correct,
+      answer,
+      username: this.state.username
+    })
 
-      //Send data to Host
-      this.sendChosenAnswer(correct, answer);
+    //Send data to Host
+    this.sendChosenAnswer(correct, answer);
 
-      // At this point we should be waiting for a response from the host.
-      // TODO: Add function to gather info from players and send players object beck to players with updated results
-      console.log('Waiting for signal from host');
+    // At this point we should be waiting for a response from the host.
+    // TODO: Add function to gather info from players and send players object beck to players with updated results
+    console.log('Waiting for signal from host');
 
-      // Mimicking response from Host
-      setTimeout(() => {
+    // Mimicking response from Host
+    setTimeout(() => {
 
-          // Highlighting the correct answer
-          let correct = document.querySelector('.correct');
-          correct.classList.add('highlight');
+      // Highlighting the correct answer
+      let correct = document.querySelector('.correct');
+      correct.classList.add('highlight');
 
-      }, 3000)
+    }, 3000)
 
   }
 
@@ -138,157 +138,145 @@ class Player extends Component {
    */
 
   sendChosenAnswer = (correct, answer) => {
-      if (this.state.conn.open) {
-        let msg = {individualResults: {correct: correct, answer: answer, username: this.state.username}};
-        this.state.conn.send(msg);
-        console.log("Sent: " + msg);
-      }
+    if (this.state.conn.open) {
+      let msg = { individualResults: { correct: correct, answer: answer, username: this.state.username } };
+      this.state.conn.send(msg);
+      console.log("Sent: " + msg);
     }
+  }
 
-    handleInputChange = ({ target }) => {
+  handleInputChange = ({ target }) => {
 
-        const value = target.value;
-        const name = target.name;
+    const value = target.value;
+    const name = target.name;
 
-        this.setState({
-            [name]: value
-        });
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleMessage = () => {
+
+    this.state.conn.send(this.state.message)
+
+  }
+  handleConnection = (id) => {
+    let conn = this.props.data.peer.connect(id, {
+      reliable: true
+    });
+
+    this.setState({ conn, isConnected: true }, () => {
+      this.finishConnections();
+    })
+
+
+  }
+
+  finishConnections = () => {
+
+    this.state.conn.on('open', () => {
+      console.log("Connected to: " + this.state.conn.peer);
+    });
+
+    this.state.conn.on('data', (data) => {
+      console.log(data);
+      this.handleReceivedData(data);
+    });
+
+    this.state.conn.on('close', () => {
+      console.log("Connection closed");
+    });
+
+  }
+
+  handleReceivedData = (data) => {
+    switch (data) {
+      case "startGame":
+        console.log("this should be the startGame function");
+        break;
+      case "go Leaderboard":
+        console.log("do something to transition to Leaderboard");
+        break;
+      case "go Next Question":
+        console.log("transition next question");
+        break;
+      case "Game Over":
+        console.log("send to results screen");
+        break;
+      case "Rematch":
+        console.log("handle rematch here");
+        break;
+      default:
+        this.catchOthers(data);
+        console.log(data);
+        break;
+    };
+  }
+
+  /**
+   * @method catchOthers - Function used to receive score/results from host and update them
+   *
+   *
+   */
+
+  catchOthers = (data) => {
+
+    if (data.playerResults) {
+      this.updateResults(data);
     }
+    console.log(this.state.currentResults);
+  }
 
-    handleMessage = () => {
+  updateResults = (data) => {
+    this.setState({ currentResults: data.playerResults });
+  }
 
-        this.state.conn.send(this.state.message)
-
-    }
-    handleConnection = () => {
-        let conn = this.props.data.peer.connect(this.state.input, {
-            reliable: true
-        });
-
-        this.setState({ conn, isConnected: true }, () => {
-            this.finishConnections();
-        })
+  updateUsername = (userName) => {
+    let obj = { me: { userName, myScore: 0 } }
+    this.setState({ me: obj })
+  }
 
 
-    }
+  render() {
 
-    finishConnections = () => {
+    return (
+      <div>
 
-        this.state.conn.on('open', () => {
-            console.log("Connected to: " + this.state.conn.peer);
-        });
+        < br />
+        <Switch>
 
-        this.state.conn.on('data', (data) => {
-            console.log(data);
-            this.handleReceivedData(data);
-        });
+          <Route path="/player/join" render={() => <Join pushLocation={this.pushLocation} updateUsername={this.updateUsername} handleConnection={this.handleConnection} />} />
 
-        this.state.conn.on('close', () => {
-            console.log("Connection closed");
-        });
+          <Route path="/player/instructions" component={Instructions} />
 
-    }
+          <Route path="/player/questions"
+            render={(props) =>
+              <Questions {...props}
+                question={this.state.questions[this.state.currentQ]}
+                onQ={this.state.currentQ + 1}
+                totalQ={this.state.questions.length}
+                handleIncrementQ={this.incrementQ}
+                pushLocation={this.pushLocation}
+                sendAnswer={this.sendAnswer} />
+            } />
 
-    handleReceivedData = (data) => {
-        switch (data) {
-          case "startGame" :
-            console.log("this should be the startGame function");
-            break;
-          case "go Leaderboard" :
-            console.log("do something to transition to Leaderboard");
-            break;
-          case "go Next Question" :
-            console.log("transition next question");
-            break;
-          case "Game Over" :
-            console.log("send to results screen");
-            break;
-          case "Rematch" :
-            console.log("handle rematch here");
-            break;
-          default:
-            this.catchOthers(data);
-            console.log(data);
-            break;
-        };
-      }
+          <Route path="/player/leaderboard"
+            render={(props) =>
+              <LeaderBoard {...props}
+                users={this.state.users} />
+            } />
 
-      /**
-       * @method catchOthers - Function used to receive score/results from host and update them
-       *
-       *
-       */
+          <Route path="/player/results"
+            render={(props) =>
+              <Results {...props}
+                users={this.state.users} />
+            } />
 
-      catchOthers = (data) => {
+        </Switch>
+      </div >
 
-        if(data.playerResults){
-          this.updateResults(data);
-        }
-        console.log(this.state.currentResults);
-      }
-
-      updateResults = (data) => {
-        this.setState({ currentResults : data.playerResults });
-      }
-
-
-    render() {
-
-      return (
-        <div>
-          <h1>
-              Player
-          </h1>
-          <h3>connection ID: {this.props.data.id}</h3>
-
-          {
-              this.state.isConnected ?
-                  <div>
-                      <h1> Connections Made</h1>
-                      <br />
-                      <input name='message' value={this.state.message} onChange={this.handleInputChange} />
-                      <button onClick={this.handleMessage} >Send Message</button>
-                  </div>
-                  :
-                  <div>
-                      <input name='input' value={this.state.input} onChange={this.handleInputChange} />
-                      <button onClick={this.handleConnection}>Connect</button>
-                  </div>
-          }
-
-          < br />
-          <Switch>
-
-            <Route path="/host/instructions" component={Instructions} />
-
-            <Route path="/host/questions"
-                   render={(props) =>
-                    <Questions {...props}
-                      question={this.state.questions[this.state.currentQ]}
-                      onQ={this.state.currentQ + 1}
-                      totalQ={this.state.questions.length}
-                      handleIncrementQ={this.incrementQ}
-                      pushLocation={this.pushLocation}
-                      sendAnswer={this.sendAnswer} />
-            }/>
-
-            <Route path="/host/leaderboard"
-              render={(props) =>
-               <LeaderBoard {...props}
-                 users={this.state.users}/>
-            }/>
-
-            <Route path="/host/results"
-                render={(props) =>
-                 <Results {...props}
-                   users={this.state.users}/>
-              }/>
-
-          </Switch>
-        </div >
-
-        )
-    }
+    )
+  }
 }
 
 export default withPeerJs(Player);
