@@ -52,6 +52,15 @@ export default function Question({ sendAnswer, question, onQ, totalQ, handleIncr
           }
   }
 
+  /* Once user clicks answer, prevent more answers from being chosen */
+  /**
+   * @function preventClicks [finds all Answers and prevents further clicks]
+   */
+  const preventClicks = () => {
+    let allAnswers = document.getElementsByClassName('box');
+    [...allAnswers].forEach(element => element.classList.add('no-clicks') );
+  }
+
   return (
 
     <div id="questions">
@@ -75,11 +84,13 @@ export default function Question({ sendAnswer, question, onQ, totalQ, handleIncr
               return <Answer correct={'wrong'}
                              answer={answer}
                              sendAnswer={sendAnswer}
+                             handlePreventClicks={preventClicks}
                              key={i} />;
             } else {
               return <Answer correct={'correct'}
                              answer={answer}
                              sendAnswer={sendAnswer}
+                             handlePreventClicks={preventClicks}
                              key={i} />;
             }
           })

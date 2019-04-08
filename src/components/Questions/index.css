@@ -39,3 +39,7 @@
     background-color: yellow;
     color: black;
 }
+
+.no-clicks {
+  pointer-events: none;
+}

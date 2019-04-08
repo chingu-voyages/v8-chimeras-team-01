@@ -16,37 +16,37 @@ import './index.css';
  * @class Host
  * @extends {Component}
  */
-class Host extends Component {
+ class Host extends Component {
 
-    /**
-    * @property { Object } me - User in this instance of game.
-    * @property { Array } users - Array of user objects.
-    * @property { Array } questions - Array of questions and answers.
-    * @property { Array }  answers - An array of possible answers.
-    * @property { Number } currentQ - Index of current question.
-    * @property { Number } time - How many seconds to set timer.
-    * @property { String } chosenAnswer - String holding chosen answer.
-    * @property { String } message - content of message to be sent.
-    *
-    */
-      state = {
-        me: {
-          userName: "Clyde",
-          id: '124v34b6',
-          score: 120
-        },
-        users: {
-            Inky: 50,
-            Blinky: 5,
-            Pinky: 10,
-            Clyde: 120,
-        },
-        questions: [],
-        currentQ: 0,
-        chosenAnswer: '',
-        message: '',
-        resultsObject: {playerResults: null}
-      }
+     /**
+     * @property { Object } me - User in this instance of game.
+     * @property { Array } users - Array of user objects.
+     * @property { Array } questions - Array of questions and answers.
+     * @property { Array }  answers - An array of possible answers.
+     * @property { Number } currentQ - Index of current question.
+     * @property { Number } time - How many seconds to set timer.
+     * @property { String } chosenAnswer - String holding chosen answer.
+     * @property { String } message - content of message to be sent.
+     *
+     */
+       state = {
+         me: {
+           userName: "Clyde",
+           id: '124v34b6',
+           score: 120
+         },
+         users: {
+             Inky: 50,
+             Blinky: 5,
+             Pinky: 10,
+             Clyde: 120,
+         },
+         questions: [],
+         currentQ: 0,
+         chosenAnswer: '',
+         message: '',
+         resultsObject: {playerResults: null}
+       }
 
     /* PUSH URL */
     /**
@@ -166,16 +166,16 @@ class Host extends Component {
 
             <Route path="/host/instructions" component={Instructions} />
 
-              <Route path="/host/questions"
-                     render={(props) =>
-                      <Questions {...props}
-                        question={this.state.questions[this.state.currentQ]}
-                        onQ={this.state.currentQ + 1}
-                        totalQ={this.state.questions.length}
-                        handleIncrementQ={this.incrementQ}
-                        pushLocation={this.pushLocation}
-                        sendAnswer={this.sendAnswer} />
-              }/>
+            <Route path="/host/questions"
+                   render={(props) =>
+                    <Questions {...props}
+                      question={this.state.questions[this.state.currentQ]}
+                      onQ={this.state.currentQ + 1}
+                      totalQ={this.state.questions.length}
+                      handleIncrementQ={this.incrementQ}
+                      pushLocation={this.pushLocation}
+                      sendAnswer={this.sendAnswer} />
+            }/>
 
             <Route path="/host/leaderboard"
               render={(props) =>
