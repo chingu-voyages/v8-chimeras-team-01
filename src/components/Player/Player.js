@@ -238,7 +238,7 @@ class Player extends Component {
   }
 
   start = () => {
-    this.pushLocation("/player/questions");
+    //this.pushLocation("/player/questions");
     console.log("push to questions");
   }
 
