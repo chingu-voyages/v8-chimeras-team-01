@@ -172,7 +172,7 @@ class Host extends Component {
     return (
       <div id="host-container">
 
-        <section className="host-header fbc">
+        <section className="host-header">
           {
             this.state.me ?
               <h3> UserName: {this.state.me.userName}</h3> :
