@@ -175,7 +175,9 @@ class Host extends Component {
         <section className="host-header">
           {
             this.state.me ?
-              <h3> UserName: {this.state.me.userName}</h3> :
+              <h3> User Name: <span className="orange">
+                {this.state.me.userName}
+              </span></h3> :
               <div id="host-userName-form" className="fbc">
                 <form className="fbc"
                       onSubmit={this.handleUsername}>
@@ -189,8 +191,9 @@ class Host extends Component {
               </div>
           }
 
-          <h3>Game ID: {this.props.data.id}</h3>
-          <h3>Your players will need this to join your game</h3>
+          <h3>Game ID: <span className="orange">{this.props.data.id}
+          </span></h3>
+        <h3 className="hh-subtext pm0">click to copy, share so friends can join</h3>
         </section>
 
         <br />

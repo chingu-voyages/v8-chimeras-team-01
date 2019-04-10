@@ -1,5 +1,12 @@
 @import '../../App.css';
 
+/* Common Styles */
+
+.orange {
+  color: var(--color-orange);
+}
+
+
 #host-userName-form {
     position: fixed;
     top: 0;
@@ -38,11 +45,38 @@
 }
 
 .host-header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
   width: 100%;
+  padding: 0 0 0.6em 0;
+  margin: 0 auto;
   background-color: var(--color-gray);
   background-image: linear-gradient(
     to top left,
     var(--color-gray),
     var(--color-lGray) 90%
     );
+  color: #fff;
+}
+
+.host-header > h3 {
+  padding: 0.3em 0;
+  margin: 0;
+}
+
+.hh-subtext {
+  font-size: 0.8em;
+  font-family: var(--font-header);
+  color: var(--color-orange);
+}
+
+
+/* Media Queries */
+
+@media only screen and (min-width:600px) {
+  .host-header {
+    flex-flow: row nowrap;
+  }
 }
