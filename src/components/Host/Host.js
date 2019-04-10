@@ -204,9 +204,9 @@ class Host extends Component {
           }
 
           <h3>Game ID:
-            <span className="orange"
+            <span className="orange pointy"
                   id="game-id"
-                  onClick={() => {this.copyToClipboard("game-id")}}>{this.props.data.id}
+                  onClick={() => {this.copyToClipboard("game-id")}}> {this.props.data.id}
           </span></h3>
         <h3 className="hh-subtext pm0">click to copy, share so friends can join</h3>
         </section>
