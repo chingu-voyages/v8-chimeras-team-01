@@ -167,6 +167,18 @@ class Host extends Component {
     this.setState({ me: obj })
   }
 
+  /* Increment Current Q */
+  /**
+   * @function copyToClipboard
+   * @description [copies selection to clipboard.]
+   */
+  copyToClipboard = (target) => {
+    let text = document.getElementById(target).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Copied!");
+    });
+  }
+
   render() {
 
     return (
@@ -191,7 +203,10 @@ class Host extends Component {
               </div>
           }
 
-          <h3>Game ID: <span className="orange">{this.props.data.id}
+          <h3>Game ID:
+            <span className="orange"
+                  id="game-id"
+                  onClick={() => {this.copyToClipboard("game-id")}}>{this.props.data.id}
           </span></h3>
         <h3 className="hh-subtext pm0">click to copy, share so friends can join</h3>
         </section>
