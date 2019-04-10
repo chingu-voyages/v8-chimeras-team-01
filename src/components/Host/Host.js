@@ -134,7 +134,42 @@ class Host extends Component {
 
   }
 
+  handleGetStarted = () => {
+
+    this.props.data.players.forEach(conn => {
+      conn.send("start");
+      console.log("start game");
+    });
+
+  }
+
   // TODO: Handle data from players (SWITCH)
+  handleReceivedData = (data) => {
+    switch (data) {
+
+      default:
+        this.catchOthers(data);
+        console.log(data);
+        break;
+    };
+  }
+
+  catchOthers = (data) => {
+    if (data.individualResults) {
+      this.updateResults(data);
+      console.log("inner", this.state.resultsObject);
+
+    }
+    console.log("outer", this.state.resultsObject);
+  }
+
+  updateResults = (data) => {
+    this.setState({ resultsObject: data.individualResults });
+    this.setState({  })
+    console.log("results updated", this.state.resultsObject);
+
+  }
+
 
   // TODO: Remove after game is working
   handleInputChange = ({ target }) => {
@@ -203,7 +238,7 @@ class Host extends Component {
             } />
 
           <Route path="/host/instructions"
-            render={() => <Instructions getStarted={<GetStarted />} />}
+            render={() => <Instructions getStarted={<GetStarted handleGetStarted = {this.handleGetStarted}/>} />}
           />
 
           <Route path="/host/questions"

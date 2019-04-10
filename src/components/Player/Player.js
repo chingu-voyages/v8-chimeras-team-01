@@ -191,7 +191,8 @@ class Player extends Component {
 
   handleReceivedData = (data) => {
     switch (data) {
-      case "startGame":
+      case "start":
+      this.start();
         console.log("this should be the startGame function");
         break;
       case "go Leaderboard":
@@ -236,12 +237,19 @@ class Player extends Component {
     this.setState({ me: obj })
   }
 
+  start = () => {
+    this.pushLocation("/player/questions");
+    console.log("push to questions");
+  }
+
 
   render() {
 
     return (
       <div>
-
+        <button
+          onClick={()=>this.sendChosenAnswer()}
+        >send me</button>
         < br />
         <Switch>
 
