@@ -1,7 +1,38 @@
+@import '../../App.css';
+
 #host-userName-form {
-    position: absolute;
+    position: fixed;
+    top: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #fff;
+    background-color: #000000d5;
     z-index: 3;
+}
+
+.huf-input {
+  min-width: 220px;
+  padding: 0.4em;
+  border-radius: 0.2em;
+  font-size: 1.2em;
+  font-family: var(--font-header);
+  background-color: var(--color-gray);
+  color: #fff;
+  caret-color: #fff;
+}
+
+.huf-input::placeholder {
+  color: var(--color-orange);
+}
+
+.huf-button {
+  background-image:linear-gradient(
+    var(--color-yellow),
+    var(--color-orange),
+    var(--color-red) 90%,
+    var(--color-gray)
+    );
+  color: var(--color-gray);
+  margin: 1em auto;
+  font-size: 2em;
+  border-radius: 0.2em;
 }
