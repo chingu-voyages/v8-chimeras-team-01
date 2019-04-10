@@ -172,27 +172,29 @@ class Host extends Component {
     return (
       <div id="host-container">
 
-        {
-          this.state.me ?
-            <h3> UserName: {this.state.me.userName}</h3> :
-            <div id="host-userName-form" className="fbc">
-              <form className="fbc"
-                    onSubmit={this.handleUsername}>
-                <input type="text"
-                       className="huf-input"
-                       name="userName"
-                       placeholder='What should we call you?'/>
-                <button type='submit'
-                        className="huf-button pointy">Submit</button>
-              </form>
-            </div>
-        }
+        <section className="host-header fbc">
+          {
+            this.state.me ?
+              <h3> UserName: {this.state.me.userName}</h3> :
+              <div id="host-userName-form" className="fbc">
+                <form className="fbc"
+                      onSubmit={this.handleUsername}>
+                  <input type="text"
+                         className="huf-input"
+                         name="userName"
+                         placeholder='What should we call you?'/>
+                  <button type='submit'
+                          className="huf-button pointy">Submit</button>
+                </form>
+              </div>
+          }
 
-
-        <h3>Game ID: {this.props.data.id}</h3>
-        <h3>Your players will need this to join your game</h3>
+          <h3>Game ID: {this.props.data.id}</h3>
+          <h3>Your players will need this to join your game</h3>
+        </section>
 
         <br />
+        {/* TODO: REMOVE THIS WHEN GAME IS RUNNING */}
         <input name='message' value={this.state.message} onChange={this.handleInputChange} />
         <button onClick={this.handleMessage} >Send Message</button>
         <br />
