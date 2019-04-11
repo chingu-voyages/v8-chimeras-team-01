@@ -216,6 +216,7 @@ class Player extends Component {
         console.log("do something to transition to Leaderboard");
         break;
       case "go Next Question":
+        this.goNextQuestion();
         console.log("transition next question");
         break;
       case "Game Over":
@@ -266,9 +267,13 @@ class Player extends Component {
 
   goLeaderboard = () => {
     this.pushLocation("/player/leaderboard");
-    console.log("push to questions");
+    console.log("push to leaderboard");
   }
 
+  goNextQuestion = () => {
+    this.pushLocation("/player/questions");
+    console.log("push to next question");
+  }
 
   render() {
 
