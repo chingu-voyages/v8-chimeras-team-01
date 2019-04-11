@@ -203,19 +203,32 @@ class Host extends Component {
   }
 
   goNextQuestion = () => {
-    this.props.data.players.forEach(conn => {
-      conn.send("go Next Question");
-    });
-    this.pushLocation("/host/questions");
-    console.log("push to next question");
-  }
+      this.props.data.players.forEach(conn => {
+        conn.send("go Next Question");
+      });
+      this.pushLocation("/host/questions");
+      console.log("push to next question");
+    }
 
-  goLeaderboard = () => {
-    this.props.data.players.forEach(conn => {
-      conn.send("go Leaderboard");
+    goLeaderboard = () => {
+      this.props.data.players.forEach(conn => {
+        conn.send("go Leaderboard");
+      });
+      this.pushLocation("/host/leaderboard");
+      console.log("push to leaderboard");
+    }
+
+  /* Increment Current Q */
+  /**
+   * @function copyToClipboard
+   * @description [copies selection to clipboard.]
+   */
+  copyToClipboard = (target) => {
+    let text = document.getElementById(target).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Copied!");
     });
-    this.pushLocation("/host/leaderboard");
-    console.log("push to leaderboard");
+
   }
 
   render() {
@@ -223,22 +236,35 @@ class Host extends Component {
     return (
       <div id="host-container">
 
-        {
-          this.state.me ?
-            <h3> UserName: {this.state.me.userName}</h3> :
-            <div id="host-userName-form" className="fbc">
-              <form onSubmit={this.handleUsername}>
-                <input type="text" name="userName" placeholder='Insert UserName' />
-                <button type='submit'>Submit</button>
-              </form>
-            </div>
-        }
+        <section className="host-header">
+          {
+            this.state.me ?
+              <h3> User Name: <span className="orange">
+                {this.state.me.userName}
+              </span></h3> :
+              <div id="host-userName-form" className="fbc">
+                <form className="fbc"
+                      onSubmit={this.handleUsername}>
+                  <input type="text"
+                         className="huf-input"
+                         name="userName"
+                         placeholder='What should we call you?'/>
+                  <button type='submit'
+                          className="huf-button pointy">Submit</button>
+                </form>
+              </div>
+          }
 
-
-        <h3>Game ID: {this.props.data.id}</h3>
-        <h3>Your players will need this to join your game</h3>
+          <h3>Game ID:
+            <span className="orange pointy"
+                  id="game-id"
+                  onClick={() => {this.copyToClipboard("game-id")}}> {this.props.data.id}
+          </span></h3>
+        <h3 className="hh-subtext pm0">click to copy, share so friends can join</h3>
+        </section>
 
         <br />
+        {/* TODO: REMOVE THIS WHEN GAME IS RUNNING */}
         <input name='message' value={this.state.message} onChange={this.handleInputChange} />
         <button onClick={this.handleMessage} >Send Message</button>
         <br />
