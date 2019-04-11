@@ -51,6 +51,7 @@ const withPeerJs = (WrappedComponent) => {
 
         ready = () => {
             this.state.conn.on('data', (data) => {
+                this.handleReceivedData(data);
                 console.log("Data received: ", data);
             })
 
@@ -58,6 +59,32 @@ const withPeerJs = (WrappedComponent) => {
                 console.log("connection reset, awaiting connection...");
                 this.setState({ conn: null });
             })
+        }
+
+        handleReceivedData = (data) => {
+          switch (data) {
+
+            default:
+              this.catchOthers(data);
+              console.log(data);
+              break;
+          };
+        }
+
+        catchOthers = (data) => {
+          if (data.individualResults) {
+            this.updateResults(data);
+            console.log("inner", this.state.resultsObject);
+
+          }
+          console.log("outer", this.state.resultsObject);
+        }
+
+        updateResults = (data) => {
+          this.setState({ resultsObject: data.individualResults });
+          this.setState({  })
+          console.log("results updated", this.state.resultsObject);
+
         }
 
         componentDidMount() {

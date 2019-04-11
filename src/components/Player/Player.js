@@ -35,29 +35,29 @@ class Player extends Component {
       userName: "",
       myScore: 0
     },
-    users: [
+    users: {
+      Inky: 50,
+      Blinky: 5,
+      Pinky: 10,
+      Clyde: 120,
+    },
+    questions: [
       {
-        userName: "Inky",
-        id: '34vtt1fc',
-        score: 50
+        q: "What shape does a waffle have on top?",
+        a: ['Square', 'Circle', 'Triangle', 'Rhombus'],
+        c: 'Square'
       },
       {
-        userName: "Blinky",
-        id: '34vyv34',
-        score: 5
+        q: "The word 'Waffle' first appeared in English around what year?",
+        a: ['1', '1573', '1725', '2011'],
+        c: '1725'
       },
       {
-        userName: "Pinky",
-        id: '124v34vvq',
-        score: 10
+        q: "How many waffles-per-minute does the Waffle House sell on average??",
+        a: ['100', '145', '1000', 'All The Waffles'],
+        c: '145'
       },
-      {
-        userName: "Clyde",
-        id: 'f431fvf4v',
-        score: 120
-      }
     ],
-    questions: [],
     currentQ: 0,
     time: 10,
     chosenAnswer: '',
@@ -191,13 +191,16 @@ class Player extends Component {
 
   handleReceivedData = (data) => {
     switch (data) {
-      case "startGame":
+      case "start":
+        this.start();
         console.log("this should be the startGame function");
         break;
       case "go Leaderboard":
+        this.goLeaderboard();
         console.log("do something to transition to Leaderboard");
         break;
       case "go Next Question":
+        this.goNextQuestion();
         console.log("transition next question");
         break;
       case "Game Over":
@@ -236,12 +239,33 @@ class Player extends Component {
     this.setState({ me: obj })
   }
 
+  updateMyScore = (score) => {
+    var obj = { myScore: score, userName: this.state.me.userName }
+    this.setState({ me: obj })
+  }
+
+  start = () => {
+    this.pushLocation("/player/questions");
+    console.log("push to questions");
+  }
+
+  goLeaderboard = () => {
+    this.pushLocation("/player/leaderboard");
+    console.log("push to leaderboard");
+  }
+
+  goNextQuestion = () => {
+    this.pushLocation("/player/questions");
+    console.log("push to next question");
+  }
 
   render() {
 
     return (
       <div>
-
+        <button
+          onClick={()=>this.sendChosenAnswer()}
+        >send me</button>
         < br />
         <Switch>
 
@@ -257,13 +281,16 @@ class Player extends Component {
                 totalQ={this.state.questions.length}
                 handleIncrementQ={this.incrementQ}
                 pushLocation={this.pushLocation}
-                sendAnswer={this.sendAnswer} />
+                sendAnswer={this.sendAnswer}
+                updateMyScore={this.updateMyScore}
+               />
             } />
 
           <Route path="/player/leaderboard"
             render={(props) =>
               <LeaderBoard {...props}
-                users={this.state.users} />
+                users={this.state.users}
+                handleIncrementQ={this.incrementQ}/>
             } />
 
           <Route path="/player/results"

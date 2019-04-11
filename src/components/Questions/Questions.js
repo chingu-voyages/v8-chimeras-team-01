@@ -66,7 +66,7 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
         // pushLocation("/host/leaderboard");
         setTimeout(() => {
 
-          pushLocation("/host/leaderboard");
+          //pushLocation("/host/leaderboard");
         }, 5000)
       } else {
         // pushLocation("/host/results");

@@ -134,7 +134,42 @@ class Host extends Component {
 
   }
 
+  handleGetStarted = () => {
+
+    this.props.data.players.forEach(conn => {
+      conn.send("start");
+      console.log("start game");
+    });
+
+  }
+
   // TODO: Handle data from players (SWITCH)
+  handleReceivedData = (data) => {
+    switch (data) {
+
+      default:
+        this.catchOthers(data);
+        console.log(data);
+        break;
+    };
+  }
+
+  catchOthers = (data) => {
+    if (data.individualResults) {
+      this.updateResults(data);
+      console.log("inner", this.state.resultsObject);
+
+    }
+    console.log("outer", this.state.resultsObject);
+  }
+
+  updateResults = (data) => {
+    this.setState({ resultsObject: data.individualResults });
+    this.setState({  })
+    console.log("results updated", this.state.resultsObject);
+
+  }
+
 
   // TODO: Remove after game is working
   handleInputChange = ({ target }) => {
@@ -167,6 +202,22 @@ class Host extends Component {
     this.setState({ me: obj })
   }
 
+  goNextQuestion = () => {
+      this.props.data.players.forEach(conn => {
+        conn.send("go Next Question");
+      });
+      this.pushLocation("/host/questions");
+      console.log("push to next question");
+    }
+
+    goLeaderboard = () => {
+      this.props.data.players.forEach(conn => {
+        conn.send("go Leaderboard");
+      });
+      this.pushLocation("/host/leaderboard");
+      console.log("push to leaderboard");
+    }
+
   /* Increment Current Q */
   /**
    * @function copyToClipboard
@@ -177,6 +228,7 @@ class Host extends Component {
     navigator.clipboard.writeText(text).then(() => {
       alert("Copied!");
     });
+
   }
 
   render() {
@@ -216,6 +268,7 @@ class Host extends Component {
         <input name='message' value={this.state.message} onChange={this.handleInputChange} />
         <button onClick={this.handleMessage} >Send Message</button>
         <br />
+        <button onClick={this.goLeaderboard} >Send Message</button>
 
         <Switch>
 
@@ -228,7 +281,7 @@ class Host extends Component {
             } />
 
           <Route path="/host/instructions"
-            render={() => <Instructions getStarted={<GetStarted />} />}
+            render={() => <Instructions getStarted={<GetStarted handleGetStarted = {this.handleGetStarted}/>} />}
           />
 
           <Route path="/host/questions"
@@ -250,7 +303,9 @@ class Host extends Component {
                 users={this.state.users}
                 hostReady={true}
                 handleIncrementQ={this.incrementQ}
-                nextQuestion={<NextQuestion />}
+                nextQuestion={<NextQuestion
+                    goNextQuestion = {this.goNextQuestion}
+                   />}
 
               />
             } />

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function NextQuestion() {
+export default function NextQuestion({ goNextQuestion }) {
     return (
-        <Link to="/host/questions" className="lb__btn-anchor">
-            <button className="lb__btn">
+            <button className="lb__btn"
+                    onClick={goNextQuestion}
+            >
                 <p className="lb__anchor_txt">Next Question</p>
             </button>
-        </Link>
     )
 }
