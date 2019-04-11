@@ -57,7 +57,23 @@ class Player extends Component {
         score: 120
       }
     ],
-    questions: [],
+    questions: [
+      {
+        q: "What shape does a waffle have on top?",
+        a: ['Square', 'Circle', 'Triangle', 'Rhombus'],
+        c: 'Square'
+      },
+      {
+        q: "The word 'Waffle' first appeared in English around what year?",
+        a: ['1', '1573', '1725', '2011'],
+        c: '1725'
+      },
+      {
+        q: "How many waffles-per-minute does the Waffle House sell on average??",
+        a: ['100', '145', '1000', 'All The Waffles'],
+        c: '145'
+      },
+    ],
     currentQ: 0,
     time: 10,
     chosenAnswer: '',
@@ -192,10 +208,11 @@ class Player extends Component {
   handleReceivedData = (data) => {
     switch (data) {
       case "start":
-      this.start();
+        this.start();
         console.log("this should be the startGame function");
         break;
       case "go Leaderboard":
+        this.goLeaderboard();
         console.log("do something to transition to Leaderboard");
         break;
       case "go Next Question":
@@ -237,8 +254,18 @@ class Player extends Component {
     this.setState({ me: obj })
   }
 
+  updateMyScore = (score) => {
+    var obj = { myScore: score, userName: this.state.me.userName }
+    this.setState({ me: obj })
+  }
+
   start = () => {
-    //this.pushLocation("/player/questions");
+    this.pushLocation("/player/questions");
+    console.log("push to questions");
+  }
+
+  goLeaderboard = () => {
+    this.pushLocation("/player/leaderboard");
     console.log("push to questions");
   }
 
@@ -265,7 +292,9 @@ class Player extends Component {
                 totalQ={this.state.questions.length}
                 handleIncrementQ={this.incrementQ}
                 pushLocation={this.pushLocation}
-                sendAnswer={this.sendAnswer} />
+                sendAnswer={this.sendAnswer}
+                updateMyScore={this.updateMyScore}
+               />
             } />
 
           <Route path="/player/leaderboard"
