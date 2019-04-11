@@ -35,28 +35,12 @@ class Player extends Component {
       userName: "",
       myScore: 0
     },
-    users: [
-      {
-        userName: "Inky",
-        id: '34vtt1fc',
-        score: 50
-      },
-      {
-        userName: "Blinky",
-        id: '34vyv34',
-        score: 5
-      },
-      {
-        userName: "Pinky",
-        id: '124v34vvq',
-        score: 10
-      },
-      {
-        userName: "Clyde",
-        id: 'f431fvf4v',
-        score: 120
-      }
-    ],
+    users: {
+      Inky: 50,
+      Blinky: 5,
+      Pinky: 10,
+      Clyde: 120,
+    },
     questions: [
       {
         q: "What shape does a waffle have on top?",
@@ -305,7 +289,8 @@ class Player extends Component {
           <Route path="/player/leaderboard"
             render={(props) =>
               <LeaderBoard {...props}
-                users={this.state.users} />
+                users={this.state.users}
+                handleIncrementQ={this.incrementQ}/>
             } />
 
           <Route path="/player/results"

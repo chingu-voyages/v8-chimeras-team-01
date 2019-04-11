@@ -202,6 +202,22 @@ class Host extends Component {
     this.setState({ me: obj })
   }
 
+  goNextQuestion = () => {
+    this.props.data.players.forEach(conn => {
+      conn.send("go Next Question");
+    });
+    this.pushLocation("/host/questions");
+    console.log("push to next question");
+  }
+
+  goLeaderboard = () => {
+    this.props.data.players.forEach(conn => {
+      conn.send("go Leaderboard");
+    });
+    this.pushLocation("/host/leaderboard");
+    console.log("push to leaderboard");
+  }
+
   render() {
 
     return (
@@ -226,6 +242,7 @@ class Host extends Component {
         <input name='message' value={this.state.message} onChange={this.handleInputChange} />
         <button onClick={this.handleMessage} >Send Message</button>
         <br />
+        <button onClick={this.goLeaderboard} >Send Message</button>
 
         <Switch>
 
@@ -260,7 +277,9 @@ class Host extends Component {
                 users={this.state.users}
                 hostReady={true}
                 handleIncrementQ={this.incrementQ}
-                nextQuestion={<NextQuestion />}
+                nextQuestion={<NextQuestion
+                    goNextQuestion = {this.goNextQuestion}
+                   />}
 
               />
             } />
