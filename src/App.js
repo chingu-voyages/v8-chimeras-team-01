@@ -33,7 +33,7 @@ class App extends Component {
           <Route path="/host" component={Host} />
           <Route path="/player" component={Player} />
 
-        </Switch >
+        </Switch>
 
         <footer className="fbc pm0">
           <ul className="footer-list pm0">
