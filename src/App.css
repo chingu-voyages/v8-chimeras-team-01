@@ -76,9 +76,14 @@ a:active {
 footer {
   grid-column: c1 / c2;
   grid-row: r3 / r4;
+  justify-content: flex-start;
   width: 100%;
   margin-top: 1em;
   background-color: var(--color-gray);
   color: var(--color-orange);
   border-top: 3px solid #000;
+}
+
+.footer-list {
+  list-style: none;
 }

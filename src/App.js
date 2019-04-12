@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 //Stylesheets
 import './App.css';
@@ -35,13 +35,9 @@ class App extends Component {
 
         </Switch >
 
-        <footer>
-          <ul>
-              <li><Link to="/">Landing Component</Link></li>
-              <li><Link to="/results">Results Component</Link></li>
-              <li><Link to="/games">Games</Link></li>
-              <li><Link to="/questions">Questions Component</Link></li>
-              <li><Link to="/leaderBoard">LeaderBoard Component</Link></li>
+        <footer className="fbc pm0">
+          <ul className="footer-list pm0">
+              <li><a href="https://github.com/chingu-voyages/v8-chimeras-team-01" target="_blank" rel="noopener noreferrer">Source Code</a></li>
           </ul>
         </footer>
       </div>
