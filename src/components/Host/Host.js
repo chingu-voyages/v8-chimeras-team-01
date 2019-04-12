@@ -224,7 +224,7 @@ class Host extends Component {
    * @description [copies selection to clipboard.]
    */
   copyToClipboard = (target) => {
-    let text = document.getElementById(target).innerText;
+    let text = document.getElementById(target).innerText.trim();
     navigator.clipboard.writeText(text).then(() => {
       alert("Copied!");
     });
