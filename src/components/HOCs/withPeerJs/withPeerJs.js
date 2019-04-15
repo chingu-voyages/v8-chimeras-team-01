@@ -11,7 +11,8 @@ const withPeerJs = (WrappedComponent) => {
             conn: null,
             players: [],
             message: '',
-            id: ''
+            id: '',
+            users: {}
         }
 
         initialize = () => {
@@ -80,8 +81,26 @@ const withPeerJs = (WrappedComponent) => {
         updateResults = (data) => {
           this.setState({ resultsObject: data.individualResults });
           console.log("results updated", this.state.resultsObject);
+          this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
 
         }
+
+        updatePlayersScores = (user, score) => {
+          let scoreUpdate = {[user]: score};
+          this.setState({
+            users: {
+              ...this.state.users,
+              [user]: score,
+            },
+          });
+          this.setState({
+            users: Object.assign({}, this.state.users, {
+              [user]: score,
+            }),
+          });
+          console.log(this.state.users);
+        }
+
 
         componentDidMount() {
 

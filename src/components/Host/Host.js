@@ -144,7 +144,7 @@ class Host extends Component {
   }
 
   // TODO: Handle data from players (SWITCH)
-  handleReceivedData = (data) => {
+  /*handleReceivedData = (data) => {
     switch (data) {
 
       default:
@@ -169,7 +169,7 @@ class Host extends Component {
     console.log("results updated", this.state.resultsObject);
 
   }
-
+*/
 
   // TODO: Remove after game is working
   handleInputChange = ({ target }) => {
