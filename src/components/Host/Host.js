@@ -112,16 +112,16 @@ class Host extends Component {
 
     // At this point we should be waiting for a response from the host.
     // TODO: Add function to gather info from players and send players object beck to players with updated results
-    console.log('Waiting for signal from host');
+    console.log('Waiting for signal from players');
 
     // Mimicking response from Host
-    // setTimeout(() => {
+     setTimeout(() => {
 
-    //   // Highlighting the correct answer
-    //   let correct = document.querySelector('.correct');
-    //   correct.classList.add('highlight');
+       // Highlighting the correct answer
+       let correct = document.querySelector('.correct');
+       correct.classList.add('highlight');
 
-    // }, 3000)
+     }, 3000)
 
   }
 

@@ -71,8 +71,8 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
       } else {
         // pushLocation("/host/results");
         setTimeout(() => {
-
-          pushLocation("/host/results");
+          console.log("push to results next");
+          //pushLocation("/host/results");
         }, 5000)
       }
 

@@ -66,7 +66,6 @@ const withPeerJs = (WrappedComponent) => {
 
             default:
               this.catchOthers(data);
-              console.log(data);
               break;
           };
         }
@@ -74,15 +73,12 @@ const withPeerJs = (WrappedComponent) => {
         catchOthers = (data) => {
           if (data.individualResults) {
             this.updateResults(data);
-            console.log("inner", this.state.resultsObject);
 
           }
-          console.log("outer", this.state.resultsObject);
         }
 
         updateResults = (data) => {
           this.setState({ resultsObject: data.individualResults });
-          this.setState({  })
           console.log("results updated", this.state.resultsObject);
 
         }

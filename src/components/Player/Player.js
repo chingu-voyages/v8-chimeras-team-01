@@ -60,7 +60,6 @@ class Player extends Component {
     ],
     currentQ: 0,
     time: 10,
-    chosenAnswer: '',
     message: '',
     isConnected: false,
     input: '',
@@ -103,20 +102,11 @@ class Player extends Component {
    *
    * @memberof Questions
    */
-  sendAnswer = (correct, answer) => {
+  sendAnswer = (correct, answer, localScore) => {
 
-    this.setState({ chosenAnswer: answer });
-    // TODO: Handle setting own state before moving on
-
-    // Display data being sent to the host
-    console.log({
-      correct,
-      answer,
-      username: this.state.username
-    })
 
     //Send data to Host
-    this.sendChosenAnswer(correct, answer);
+    this.sendChosenAnswer(correct, answer, localScore);
 
     // At this point we should be waiting for a response from the host.
     // TODO: Add function to gather info from players and send players object beck to players with updated results
@@ -137,9 +127,9 @@ class Player extends Component {
    * @method sendChosenAnswer - Function used to send slected answer to the Host.
    */
 
-  sendChosenAnswer = (correct, answer) => {
+  sendChosenAnswer = (correct, answer, localScore) => {
     if (this.state.conn.open) {
-      let msg = { individualResults: { correct: correct, answer: answer, username: this.state.username } };
+      let msg = { individualResults: this.state.me };
       this.state.conn.send(msg);
       console.log("Sent: " + msg);
     }
@@ -193,7 +183,6 @@ class Player extends Component {
     switch (data) {
       case "start":
         this.start();
-        console.log("this should be the startGame function");
         break;
       case "go Leaderboard":
         this.goLeaderboard();
@@ -201,7 +190,6 @@ class Player extends Component {
         break;
       case "go Next Question":
         this.goNextQuestion();
-        console.log("transition next question");
         break;
       case "Game Over":
         console.log("send to results screen");
@@ -228,10 +216,6 @@ class Player extends Component {
       this.updateResults(data);
     }
     console.log(this.state.currentResults);
-  }
-
-  updateResults = (data) => {
-    this.setState({ currentResults: data.playerResults });
   }
 
   updateUsername = (myName) => {
@@ -264,10 +248,6 @@ class Player extends Component {
 
     return (
       <div>
-        <button
-          onClick={()=>this.sendChosenAnswer()}
-        >send me</button>
-
         <section className="player-header">
       {
         this.state.me.userName ?
@@ -279,7 +259,7 @@ class Player extends Component {
 
       }
       </section>
-      
+
         < br />
         <Switch>
 
