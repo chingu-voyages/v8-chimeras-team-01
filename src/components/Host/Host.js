@@ -201,6 +201,21 @@ class Host extends Component {
     this.setState({ me: obj })
   }
 
+  updateHost = () => {
+    this.setState({
+      users: {
+        ...this.state.users,
+        [this.state.me.userName]: this.state.me.myScore,
+      },
+    });
+    this.setState({
+      users: Object.assign({}, this.state.users, {
+        [this.state.me.userName]: this.state.me.myScore,
+      }),
+    });
+    console.log(this.state.users);
+  }
+
   goNextQuestion = () => {
       this.props.data.players.forEach(conn => {
         conn.send("go Next Question");
@@ -293,6 +308,7 @@ class Host extends Component {
                 sendAnswer={this.sendAnswer}
                 myScore={this.state.me.myScore}
                 updateMyScore={this.updateMyScore}
+                updateHost={this.updateHost}
               />
             } />
 
