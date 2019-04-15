@@ -12,7 +12,8 @@ const withPeerJs = (WrappedComponent) => {
             players: [],
             message: '',
             id: '',
-            users: {}
+            users: {},
+            playersUpdated: false
         }
 
         initialize = () => {
@@ -82,6 +83,13 @@ const withPeerJs = (WrappedComponent) => {
           this.setState({ resultsObject: data.individualResults });
           console.log("results updated", this.state.resultsObject);
           this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
+          //check if all results are received
+            if (Object.keys(this.state.users).length === this.state.players.length) {
+              //trigger host update users with own score
+              //by setting playersUpdated to true
+              this.setState({ playersUpdated : true });
+              console.log("players updated");
+            }
 
         }
 

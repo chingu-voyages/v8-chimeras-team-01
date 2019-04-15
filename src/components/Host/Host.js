@@ -100,7 +100,6 @@ class Host extends Component {
    */
   sendAnswer = (correct, answer) => {
 
-    this.setState({ chosenAnswer: answer });
     // TODO: Handle setting own state before moving on
 
     // Display data being sent to the host
