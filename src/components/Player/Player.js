@@ -234,14 +234,15 @@ class Player extends Component {
     this.setState({ currentResults: data.playerResults });
   }
 
-  updateUsername = (userName) => {
-    let obj = { me: { userName, myScore: 0 } }
-    this.setState({ me: obj })
+  updateUsername = (myName) => {
+    let obj = { userName : myName, myScore: 0 };
+    this.setState({ me: obj });
+    console.log(this.state.me.userName);
   }
 
   updateMyScore = (score) => {
-    var obj = { myScore: score, userName: this.state.me.userName }
-    this.setState({ me: obj })
+    var obj = { myScore: score, userName: this.state.me.userName };
+    this.setState({ me: obj });
   }
 
   start = () => {
@@ -266,6 +267,19 @@ class Player extends Component {
         <button
           onClick={()=>this.sendChosenAnswer()}
         >send me</button>
+
+        <section className="player-header">
+      {
+        this.state.me.userName ?
+          <h3> User Name: <span className="orange">
+            {this.state.me.userName}
+          </span></h3> :
+            <h3><span className="orange">Enter a User Name</span></h3>
+
+
+      }
+      </section>
+      
         < br />
         <Switch>
 
@@ -283,6 +297,7 @@ class Player extends Component {
                 pushLocation={this.pushLocation}
                 sendAnswer={this.sendAnswer}
                 updateMyScore={this.updateMyScore}
+                myScore={this.state.me.myScore}
                />
             } />
 
