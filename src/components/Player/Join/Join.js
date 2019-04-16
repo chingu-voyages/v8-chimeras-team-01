@@ -14,26 +14,35 @@ export default function Join(props) {
 
     return (
         <div id='join'>
+            <div className="join__container">
+                <h1 className="join__title">Join A Game</h1>
+                <div className="join__wrapper">
 
-            <input type="text"
-                name="username"
-                value={userName}
-                onChange={handleUserName}
-                placeholder="Add User Name Here" required />
+                    <h3>What shall we call you?</h3>
+                    <input type="text"
+                        className="join__input"
+                        name="username"
+                        value={userName}
+                        onChange={handleUserName}
+                        placeholder="Coolio_49" required />
 
-            <input type="text"
-                name="connectionID"
-                value={connectionID}
-                onChange={handleConnectionInput}
-                placeholder="Input your Game ID fromthe host" required />
+                    <h3>Enter the game ID you want to join</h3>
+                    <input type="text"
+                        className="join__input"
+                        name="connectionID"
+                        value={connectionID}
+                        onChange={handleConnectionInput}
+                        placeholder="y17kjteeff000000" required />
 
-            <button onClick={() => {
+                </div>
+            </div>
+            <button className="join__btn" onClick={() => {
                 props.handleConnection(connectionID);
                 props.updateUsername(userName);
                 props.pushLocation('/player/instructions');
-            }}>Submit</button>
-
-
+            }}>
+                <p className="join__anchor_txt">Game Time!</p>
+            </button>
         </div >
     )
 }
