@@ -9,8 +9,7 @@
   top: 400px;
   opacity: 0;
   width: 100%;
-  min-height: 100vh;
-  max-height: 1000px;
+  height: 300px;
   padding: 0;
   margin: 0;
   overflow: scroll;
@@ -22,6 +21,8 @@
 .show-games {
   top: 100px;
   opacity: 1;
+  min-height: 100vh;
+  max-height: 1000px;
   z-index: 3;
 }
 

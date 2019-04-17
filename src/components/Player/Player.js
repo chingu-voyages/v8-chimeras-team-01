@@ -219,7 +219,8 @@ class Player extends Component {
   }
 
   updateUsername = (myName) => {
-    let obj = { userName : myName, myScore: 0 };
+
+    let obj = { userName: myName, myScore: 0 };
     this.setState({ me: obj });
     console.log(this.state.me.userName);
   }
@@ -259,6 +260,7 @@ class Player extends Component {
 
       }
       </section>
+
 
         < br />
         <Switch>
