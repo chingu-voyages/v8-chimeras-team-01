@@ -60,7 +60,8 @@ class Host extends Component {
     currentQ: 0,
     chosenAnswer: '',
     message: '',
-    resultsObject: { playerResults: null }
+    resultsObject: { playerResults: null },
+    readyLeaderBoard: false
   }
 
   /* PUSH URL */
@@ -120,7 +121,7 @@ class Host extends Component {
        let correct = document.querySelector('.correct');
        correct.classList.add('highlight');
 
-     }, 3000)
+     }, 1000)
 
   }
 
@@ -204,19 +205,39 @@ class Host extends Component {
   updateHost = () => {
     this.setState({
       users: {
-        ...this.state.users,
+        ...this.props.data.users,
         [this.state.me.userName]: this.state.me.myScore,
       },
     });
     this.setState({
-      users: Object.assign({}, this.state.users, {
+      users: Object.assign({}, this.props.data.users, {
         [this.state.me.userName]: this.state.me.myScore,
       }),
+    }, this.sendUserObject(this.state.users));
+    this.props.resetPlayersUpdated();
+    console.log("host updated", this.state.users);
+
+  }
+
+  sendUserObject = (users) => {
+    this.props.data.players.forEach(conn => {
+      let obj = {usersObject: users};
+      conn.send(obj);
+      console.log("sent users object", obj);
     });
-    console.log(this.state.users);
+    this.readyLeaderBoard();
+  }
+
+  readyLeaderBoard = () => {
+    this.setState({ readyLeaderBoard : true });
+  }
+
+  unreadyLeaderBoard = () => {
+    this.setState({ readyLeaderBoard : false });
   }
 
   goNextQuestion = () => {
+      this.unreadyLeaderBoard();
       this.props.data.players.forEach(conn => {
         conn.send("go Next Question");
       });
@@ -238,7 +259,7 @@ class Host extends Component {
    * @description [copies selection to clipboard.]
    */
   copyToClipboard = (target) => {
-    let text = document.getElementById(target).innerText;
+    let text = document.getElementById(target).innerText.trim();
     navigator.clipboard.writeText(text).then(() => {
       alert("Copied!");
     });
@@ -282,7 +303,7 @@ class Host extends Component {
         <input name='message' value={this.state.message} onChange={this.handleInputChange} />
         <button onClick={this.handleMessage} >Send Message</button>
         <br />
-        <button onClick={this.goLeaderboard} >Send Message</button>
+        <button onClick={this.goLeaderboard} >Go LeaderBoard</button>
 
         <Switch>
 
@@ -309,6 +330,9 @@ class Host extends Component {
                 myScore={this.state.me.myScore}
                 updateMyScore={this.updateMyScore}
                 updateHost={this.updateHost}
+                playersUpdated={this.props.data.playersUpdated}
+                goLeaderboard={this.goLeaderboard}
+                readyLeaderBoard={this.state.readyLeaderBoard}
               />
             } />
 
@@ -332,6 +356,7 @@ class Host extends Component {
             } />
 
         </Switch>
+        {(this.state.readyLeaderBoard === true) && <button onClick={this.goLeaderboard}>go leaderboard</button>}
 
       </div >
 

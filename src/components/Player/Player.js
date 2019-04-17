@@ -212,10 +212,14 @@ class Player extends Component {
 
   catchOthers = (data) => {
 
-    if (data.playerResults) {
-      this.updateResults(data);
+    if (data.usersObject) {
+      this.updateUsersObject(data);
     }
-    console.log(this.state.currentResults);
+    console.log(this.state.users);
+  }
+
+  updateUsersObject = (data) => {
+    this.setState({ users : data.usersObject})
   }
 
   updateUsername = (myName) => {

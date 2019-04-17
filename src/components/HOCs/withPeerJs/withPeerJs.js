@@ -109,6 +109,9 @@ const withPeerJs = (WrappedComponent) => {
           console.log(this.state.users);
         }
 
+        resetPlayersUpdated = () => {
+          this.setState({ playersUpdated : false });
+        }
 
         componentDidMount() {
 
@@ -117,7 +120,7 @@ const withPeerJs = (WrappedComponent) => {
 
         render() {
             return (
-                <WrappedComponent {...this.props} data={this.state} />
+                <WrappedComponent {...this.props} data={this.state} resetPlayersUpdated={this.resetPlayersUpdated}/>
             )
         }
     }
