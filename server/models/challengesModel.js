@@ -1,17 +1,14 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-
+ 
 const questionsSchema = mongoose.Schema({ 
-    Q1: 'string',
-    correct: 'string',
-    anwserOne: 'string',
-    anwsertwo: 'string',
-    answerThree: 'string',
-    answerFour: 'string'
+    q: String,
+    a: [String],
+    c: String,
 });
 
 const challengeSchema = mongoose.Schema ({
-    category: 'string',
+    category: String,
     questions: [questionsSchema],
 })
 

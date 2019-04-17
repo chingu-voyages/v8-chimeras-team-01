@@ -40,29 +40,14 @@ class Host extends Component {
       Pinky: 10,
       Clyde: 120,
     },
-    questions: [
-      {
-        q: "What shape does a waffle have on top?",
-        a: ['Square', 'Circle', 'Triangle', 'Rhombus'],
-        c: 'Square'
-      },
-      {
-        q: "The word 'Waffle' first appeared in English around what year?",
-        a: ['1', '1573', '1725', '2011'],
-        c: '1725'
-      },
-      {
-        q: "How many waffles-per-minute does the Waffle House sell on average??",
-        a: ['100', '145', '1000', 'All The Waffles'],
-        c: '145'
-      },
-    ],
+    questions: [],
     currentQ: 0,
     chosenAnswer: '',
     message: '',
     resultsObject: { playerResults: null }
   }
 
+  
   /* PUSH URL */
   /**
    * @function pushLocation
