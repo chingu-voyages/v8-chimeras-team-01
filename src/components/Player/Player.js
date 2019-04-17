@@ -36,10 +36,7 @@ class Player extends Component {
       myScore: 0
     },
     users: {
-      Inky: 50,
-      Blinky: 5,
-      Pinky: 10,
-      Clyde: 120,
+
     },
     questions: [
       {
@@ -64,7 +61,6 @@ class Player extends Component {
     isConnected: false,
     input: '',
     conn: '',
-    currentResults: { individualResults: null }
   }
 
   /* PUSH URL */

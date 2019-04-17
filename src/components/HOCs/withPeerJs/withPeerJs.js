@@ -80,8 +80,7 @@ const withPeerJs = (WrappedComponent) => {
         }
 
         updateResults = (data) => {
-          this.setState({ resultsObject: data.individualResults });
-          console.log("results updated", this.state.resultsObject);
+
           this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
           //check if all results are received
             if (Object.keys(this.state.users).length === this.state.players.length) {

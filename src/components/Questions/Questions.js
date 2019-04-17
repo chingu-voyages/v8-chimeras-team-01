@@ -3,7 +3,7 @@ import Answer from './Answer';
 import './index.css';
 import Loader from '../Loader';
 
-export default function Questions({ updateMyScore, myScore, sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation, playersUpdated, updateHost }) {
+export default function Questions({ updateMyScore, myScore, sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation, playersUpdated, updateHost, readyLeaderBoard, goLeaderboard }) {
 
 
   /**
@@ -83,6 +83,9 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
     }
 
   }
+
+  useEffect(() => {checkHost()})
+
   const checkHost = () => {
     if (playersUpdated === true) {
       updateHost();
@@ -102,7 +105,6 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
   return (
 
     <div id="questions">
-      {checkHost()}
       <h1>Question {onQ} of {totalQ} </h1>
 
       <div className='image-wrapper'>

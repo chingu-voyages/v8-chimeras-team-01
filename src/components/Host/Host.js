@@ -60,7 +60,6 @@ class Host extends Component {
     currentQ: 0,
     chosenAnswer: '',
     message: '',
-    resultsObject: { playerResults: null },
     readyLeaderBoard: false
   }
 
@@ -143,34 +142,6 @@ class Host extends Component {
 
   }
 
-  // TODO: Handle data from players (SWITCH)
-  /*handleReceivedData = (data) => {
-    switch (data) {
-
-      default:
-        this.catchOthers(data);
-        console.log(data);
-        break;
-    };
-  }
-
-  catchOthers = (data) => {
-    if (data.individualResults) {
-      this.updateResults(data);
-      console.log("inner", this.state.resultsObject);
-
-    }
-    console.log("outer", this.state.resultsObject);
-  }
-
-  updateResults = (data) => {
-    this.setState({ resultsObject: data.individualResults });
-    this.setState({  })
-    console.log("results updated", this.state.resultsObject);
-
-  }
-*/
-
   // TODO: Remove after game is working
   handleInputChange = ({ target }) => {
 
@@ -208,21 +179,30 @@ class Host extends Component {
         ...this.props.data.users,
         [this.state.me.userName]: this.state.me.myScore,
       },
-    });
+    }, console.log("1st ", this.state.users));
     this.setState({
       users: Object.assign({}, this.props.data.users, {
         [this.state.me.userName]: this.state.me.myScore,
       }),
-    }, this.sendUserObject(this.state.users));
+    });
     this.props.resetPlayersUpdated();
+    this.setState({ readyToSend : true });
     console.log("host updated", this.state.users);
 
   }
 
-  sendUserObject = (users) => {
+  componentDidUpdate() {
+    if(this.state.readyToSend === true) {
+      this.sendUserObject();
+    }
+
+  }
+
+  sendUserObject = () => {
     this.props.data.players.forEach(conn => {
-      let obj = {usersObject: users};
+      let obj = {usersObject: this.state.users};
       conn.send(obj);
+      this.setState({ readyToSend : false });
       console.log("sent users object", obj);
     });
     this.readyLeaderBoard();
