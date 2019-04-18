@@ -34,9 +34,7 @@ class Player extends Component {
       userName: "",
       myScore: 0
     },
-    users: {
-
-    },
+    users: {},
     questions: [],
     currentQ: 0,
     time: 10,
@@ -108,17 +106,16 @@ class Player extends Component {
     this.sendChosenAnswer(correct, answer, localScore);
 
     // At this point we should be waiting for a response from the host.
-    // TODO: Add function to gather info from players and send players object beck to players with updated results
     console.log('Waiting for signal from host');
 
-    // Mimicking response from Host
+    // Pausing while others are still answering Qs
     setTimeout(() => {
 
       // Highlighting the correct answer
       let correct = document.querySelector('.correct');
       correct.classList.add('highlight');
 
-    }, 3000)
+    }, 1000)
 
   }
 
@@ -132,16 +129,6 @@ class Player extends Component {
       this.state.conn.send(msg);
       console.log("Sent: " + msg);
     }
-  }
-
-  handleInputChange = ({ target }) => {
-
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
   }
 
   handleConnection = (id) => {
@@ -180,7 +167,6 @@ class Player extends Component {
         break;
       case "go Leaderboard":
         this.goLeaderboard();
-        console.log("do something to transition to Leaderboard");
         break;
       case "go Next Question":
         this.goNextQuestion();
@@ -209,7 +195,6 @@ class Player extends Component {
     if (data.usersObject) {
       this.updateUsersObject(data);
     }
-    console.log(this.state.users);
   }
 
   updateUsersObject = (data) => {
@@ -220,7 +205,6 @@ class Player extends Component {
 
     let obj = { userName: myName, myScore: 0 };
     this.setState({ me: obj });
-    console.log(this.state.me.userName);
   }
 
   updateMyScore = (score) => {
@@ -230,17 +214,14 @@ class Player extends Component {
 
   start = () => {
     this.pushLocation("/player/questions");
-    console.log("push to questions");
   }
 
   goLeaderboard = () => {
     this.pushLocation("/player/leaderboard");
-    console.log("push to leaderboard");
   }
 
   goNextQuestion = () => {
     this.pushLocation("/player/questions");
-    console.log("push to next question");
   }
 
   render() {

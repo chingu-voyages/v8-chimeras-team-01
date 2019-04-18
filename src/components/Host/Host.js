@@ -33,12 +33,7 @@ class Host extends Component {
   */
   state = {
     me: null,
-    users: {
-      Inky: 50,
-      Blinky: 5,
-      Pinky: 10,
-      Clyde: 120,
-    },
+    users: {},
     questions: [],
     currentQ: 0,
     chosenAnswer: '',
@@ -83,20 +78,9 @@ class Host extends Component {
    */
   sendAnswer = (correct, answer) => {
 
-    // TODO: Handle setting own state before moving on
-
-    // Display data being sent to the host
-    console.log({
-      correct,
-      answer,
-      username: this.state.username
-    })
-
-    // At this point we should be waiting for a response from the host.
-    // TODO: Add function to gather info from players and send players object beck to players with updated results
     console.log('Waiting for signal from players');
 
-    // Mimicking response from Host
+    // Pausing while others are still answering Qs
      setTimeout(() => {
 
        // Highlighting the correct answer
@@ -111,7 +95,6 @@ class Host extends Component {
 
     this.props.data.players.forEach(conn => {
       conn.send("go Leaderboard");
-      console.log("pushing to leaderboard");
     });
 
   }
@@ -120,20 +103,8 @@ class Host extends Component {
 
     this.props.data.players.forEach(conn => {
       conn.send("start");
-      console.log("start game");
     });
 
-  }
-
-  // TODO: Remove after game is working
-  handleInputChange = ({ target }) => {
-
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
   }
 
   handleUsername = (e) => {
@@ -154,7 +125,7 @@ class Host extends Component {
         ...this.props.data.users,
         [this.state.me.userName]: this.state.me.myScore,
       },
-    }, console.log("1st ", this.state.users));
+    });
     this.setState({
       users: Object.assign({}, this.props.data.users, {
         [this.state.me.userName]: this.state.me.myScore,
@@ -162,8 +133,6 @@ class Host extends Component {
     });
     this.props.resetPlayersUpdated();
     this.setState({ readyToSend : true });
-    console.log("host updated", this.state.users);
-
   }
 
   componentDidUpdate() {
@@ -197,7 +166,6 @@ class Host extends Component {
         conn.send("go Next Question");
       });
       this.pushLocation("/host/questions");
-      console.log("push to next question");
     }
 
     goLeaderboard = () => {
@@ -205,7 +173,6 @@ class Host extends Component {
         conn.send("go Leaderboard");
       });
       this.pushLocation("/host/leaderboard");
-      console.log("push to leaderboard");
     }
 
   /* Increment Current Q */
