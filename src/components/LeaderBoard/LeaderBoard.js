@@ -11,7 +11,6 @@ export default function LeaderBoard(props) {
  */
   useEffect(() => {
     props.handleIncrementQ();
-    console.log('why !!!');
   }, []);
 
   /**
