@@ -4,6 +4,11 @@
 
 #### Running this project locally
 
+1. Clone this project locally
+2. Run `npm install` in your bash / command line
+3. Run `npm run dev` in your bash / command line
+4. Host a game and invite some friends!!
+
 #### Dependencies / Tech Used
 
 - MERN stack
