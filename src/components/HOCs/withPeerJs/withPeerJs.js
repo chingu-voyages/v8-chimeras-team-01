@@ -11,7 +11,9 @@ const withPeerJs = (WrappedComponent) => {
             conn: null,
             players: [],
             message: '',
-            id: ''
+            id: '',
+            users: {},
+            playersUpdated: false
         }
 
         initialize = () => {
@@ -66,7 +68,6 @@ const withPeerJs = (WrappedComponent) => {
 
             default:
               this.catchOthers(data);
-              console.log(data);
               break;
           };
         }
@@ -74,17 +75,41 @@ const withPeerJs = (WrappedComponent) => {
         catchOthers = (data) => {
           if (data.individualResults) {
             this.updateResults(data);
-            console.log("inner", this.state.resultsObject);
 
           }
-          console.log("outer", this.state.resultsObject);
         }
 
         updateResults = (data) => {
-          this.setState({ resultsObject: data.individualResults });
-          this.setState({  })
-          console.log("results updated", this.state.resultsObject);
 
+          this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
+          //check if all results are received
+            if (Object.keys(this.state.users).length === this.state.players.length) {
+              //trigger host update users with own score
+              //by setting playersUpdated to true
+              this.setState({ playersUpdated : true });
+              console.log("players updated");
+            }
+
+        }
+
+        updatePlayersScores = (user, score) => {
+          let scoreUpdate = {[user]: score};
+          this.setState({
+            users: {
+              ...this.state.users,
+              [user]: score,
+            },
+          });
+          this.setState({
+            users: Object.assign({}, this.state.users, {
+              [user]: score,
+            }),
+          });
+          console.log(this.state.users);
+        }
+
+        resetPlayersUpdated = () => {
+          this.setState({ playersUpdated : false });
         }
 
         componentDidMount() {
@@ -94,7 +119,7 @@ const withPeerJs = (WrappedComponent) => {
 
         render() {
             return (
-                <WrappedComponent {...this.props} data={this.state} />
+                <WrappedComponent {...this.props} data={this.state} resetPlayersUpdated={this.resetPlayersUpdated}/>
             )
         }
     }

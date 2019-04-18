@@ -60,7 +60,7 @@ class Host extends Component {
     currentQ: 0,
     chosenAnswer: '',
     message: '',
-    resultsObject: { playerResults: null }
+    readyLeaderBoard: false
   }
 
   /* PUSH URL */
@@ -100,7 +100,6 @@ class Host extends Component {
    */
   sendAnswer = (correct, answer) => {
 
-    this.setState({ chosenAnswer: answer });
     // TODO: Handle setting own state before moving on
 
     // Display data being sent to the host
@@ -112,16 +111,16 @@ class Host extends Component {
 
     // At this point we should be waiting for a response from the host.
     // TODO: Add function to gather info from players and send players object beck to players with updated results
-    console.log('Waiting for signal from host');
+    console.log('Waiting for signal from players');
 
     // Mimicking response from Host
-    // setTimeout(() => {
+     setTimeout(() => {
 
-    //   // Highlighting the correct answer
-    //   let correct = document.querySelector('.correct');
-    //   correct.classList.add('highlight');
+       // Highlighting the correct answer
+       let correct = document.querySelector('.correct');
+       correct.classList.add('highlight');
 
-    // }, 3000)
+     }, 1000)
 
   }
 
@@ -142,34 +141,6 @@ class Host extends Component {
     });
 
   }
-
-  // TODO: Handle data from players (SWITCH)
-  handleReceivedData = (data) => {
-    switch (data) {
-
-      default:
-        this.catchOthers(data);
-        console.log(data);
-        break;
-    };
-  }
-
-  catchOthers = (data) => {
-    if (data.individualResults) {
-      this.updateResults(data);
-      console.log("inner", this.state.resultsObject);
-
-    }
-    console.log("outer", this.state.resultsObject);
-  }
-
-  updateResults = (data) => {
-    this.setState({ resultsObject: data.individualResults });
-    this.setState({  })
-    console.log("results updated", this.state.resultsObject);
-
-  }
-
 
   // TODO: Remove after game is working
   handleInputChange = ({ target }) => {
@@ -202,7 +173,51 @@ class Host extends Component {
     this.setState({ me: obj })
   }
 
+  updateHost = () => {
+    this.setState({
+      users: {
+        ...this.props.data.users,
+        [this.state.me.userName]: this.state.me.myScore,
+      },
+    }, console.log("1st ", this.state.users));
+    this.setState({
+      users: Object.assign({}, this.props.data.users, {
+        [this.state.me.userName]: this.state.me.myScore,
+      }),
+    });
+    this.props.resetPlayersUpdated();
+    this.setState({ readyToSend : true });
+    console.log("host updated", this.state.users);
+
+  }
+
+  componentDidUpdate() {
+    if(this.state.readyToSend === true) {
+      this.sendUserObject();
+    }
+
+  }
+
+  sendUserObject = () => {
+    this.props.data.players.forEach(conn => {
+      let obj = {usersObject: this.state.users};
+      conn.send(obj);
+      this.setState({ readyToSend : false });
+      console.log("sent users object", obj);
+    });
+    this.readyLeaderBoard();
+  }
+
+  readyLeaderBoard = () => {
+    this.setState({ readyLeaderBoard : true });
+  }
+
+  unreadyLeaderBoard = () => {
+    this.setState({ readyLeaderBoard : false });
+  }
+
   goNextQuestion = () => {
+      this.unreadyLeaderBoard();
       this.props.data.players.forEach(conn => {
         conn.send("go Next Question");
       });
@@ -268,7 +283,7 @@ class Host extends Component {
         <input name='message' value={this.state.message} onChange={this.handleInputChange} />
         <button onClick={this.handleMessage} >Send Message</button>
         <br />
-        <button onClick={this.goLeaderboard} >Send Message</button>
+        <button onClick={this.goLeaderboard} >Go LeaderBoard</button>
 
         <Switch>
 
@@ -294,6 +309,10 @@ class Host extends Component {
                 sendAnswer={this.sendAnswer}
                 myScore={this.state.me.myScore}
                 updateMyScore={this.updateMyScore}
+                updateHost={this.updateHost}
+                playersUpdated={this.props.data.playersUpdated}
+                goLeaderboard={this.goLeaderboard}
+                readyLeaderBoard={this.state.readyLeaderBoard}
               />
             } />
 
@@ -317,6 +336,7 @@ class Host extends Component {
             } />
 
         </Switch>
+        {(this.state.readyLeaderBoard === true) && <button onClick={this.goLeaderboard}>go leaderboard</button>}
 
       </div >
 

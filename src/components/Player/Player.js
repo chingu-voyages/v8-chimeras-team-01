@@ -36,10 +36,7 @@ class Player extends Component {
       myScore: 0
     },
     users: {
-      Inky: 50,
-      Blinky: 5,
-      Pinky: 10,
-      Clyde: 120,
+
     },
     questions: [
       {
@@ -60,12 +57,10 @@ class Player extends Component {
     ],
     currentQ: 0,
     time: 10,
-    chosenAnswer: '',
     message: '',
     isConnected: false,
     input: '',
     conn: '',
-    currentResults: { individualResults: null }
   }
 
   /* PUSH URL */
@@ -103,20 +98,11 @@ class Player extends Component {
    *
    * @memberof Questions
    */
-  sendAnswer = (correct, answer) => {
+  sendAnswer = (correct, answer, localScore) => {
 
-    this.setState({ chosenAnswer: answer });
-    // TODO: Handle setting own state before moving on
-
-    // Display data being sent to the host
-    console.log({
-      correct,
-      answer,
-      username: this.state.username
-    })
 
     //Send data to Host
-    this.sendChosenAnswer(correct, answer);
+    this.sendChosenAnswer(correct, answer, localScore);
 
     // At this point we should be waiting for a response from the host.
     // TODO: Add function to gather info from players and send players object beck to players with updated results
@@ -137,9 +123,9 @@ class Player extends Component {
    * @method sendChosenAnswer - Function used to send slected answer to the Host.
    */
 
-  sendChosenAnswer = (correct, answer) => {
+  sendChosenAnswer = (correct, answer, localScore) => {
     if (this.state.conn.open) {
-      let msg = { individualResults: { correct: correct, answer: answer, username: this.state.username } };
+      let msg = { individualResults: this.state.me };
       this.state.conn.send(msg);
       console.log("Sent: " + msg);
     }
@@ -193,7 +179,6 @@ class Player extends Component {
     switch (data) {
       case "start":
         this.start();
-        console.log("this should be the startGame function");
         break;
       case "go Leaderboard":
         this.goLeaderboard();
@@ -201,7 +186,6 @@ class Player extends Component {
         break;
       case "go Next Question":
         this.goNextQuestion();
-        console.log("transition next question");
         break;
       case "Game Over":
         console.log("send to results screen");
@@ -224,17 +208,18 @@ class Player extends Component {
 
   catchOthers = (data) => {
 
-    if (data.playerResults) {
-      this.updateResults(data);
+    if (data.usersObject) {
+      this.updateUsersObject(data);
     }
-    console.log(this.state.currentResults);
+    console.log(this.state.users);
   }
 
-  updateResults = (data) => {
-    this.setState({ currentResults: data.playerResults });
+  updateUsersObject = (data) => {
+    this.setState({ users : data.usersObject})
   }
 
   updateUsername = (myName) => {
+
     let obj = { userName: myName, myScore: 0 };
     this.setState({ me: obj });
     console.log(this.state.me.userName);
@@ -264,21 +249,18 @@ class Player extends Component {
 
     return (
       <div>
-        <button
-          onClick={()=>this.sendChosenAnswer()}
-        >send me</button>
-
         <section className="player-header">
-          {
-            this.state.me.userName ?
-              <h3> User Name: <span className="orange">
-                {this.state.me.userName}
-              </span></h3> :
-                <h3><span className="orange">Enter a User Name</span></h3>
+      {
+        this.state.me.userName ?
+          <h3> User Name: <span className="orange">
+            {this.state.me.userName}
+          </span></h3> :
+            <h3><span className="orange">Enter a User Name</span></h3>
 
 
-          }
-          </section>
+      }
+      </section>
+
 
         < br />
         <Switch>
@@ -297,6 +279,7 @@ class Player extends Component {
                 pushLocation={this.pushLocation}
                 sendAnswer={this.sendAnswer}
                 updateMyScore={this.updateMyScore}
+                myScore={this.state.me.myScore}
                />
             } />
 

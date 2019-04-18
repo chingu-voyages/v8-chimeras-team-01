@@ -3,7 +3,7 @@ import Answer from './Answer';
 import './index.css';
 import Loader from '../Loader';
 
-export default function Questions({ updateMyScore, myScore, sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation }) {
+export default function Questions({ updateMyScore, myScore, sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation, playersUpdated, updateHost, readyLeaderBoard, goLeaderboard }) {
 
 
   /**
@@ -22,6 +22,7 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
   const [localScore, setLocalScore] = useState(myScore);
   const [correct, setCorrect] = useState('wrong');
   const [answer, setAnswer] = useState('');
+
 
   const handleChoice = (event, correct, answer) => {
     preventClicks(event);
@@ -71,8 +72,8 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
       } else {
         // pushLocation("/host/results");
         setTimeout(() => {
-
-          pushLocation("/host/results");
+          console.log("push to results next");
+          //pushLocation("/host/results");
         }, 5000)
       }
 
@@ -80,8 +81,16 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
       let newTime = (time - 1);
       setTime(newTime);
     }
+
   }
 
+  useEffect(() => {checkHost()})
+
+  const checkHost = () => {
+    if (playersUpdated === true) {
+      updateHost();
+    }
+  }
   /* Once user clicks answer, prevent more answers from being chosen */
   /**
    * @function preventClicks [finds all Answers and prevents further clicks]
@@ -96,8 +105,6 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
   return (
 
     <div id="questions">
-      {console.log(onQ)}
-
       <h1>Question {onQ} of {totalQ} </h1>
 
       <div className='image-wrapper'>
