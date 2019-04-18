@@ -29,7 +29,6 @@ class Host extends Component {
   * @property { Number } currentQ - Index of current question.
   * @property { Number } time - How many seconds to set timer.
   * @property { String } chosenAnswer - String holding chosen answer.
-  * @property { String } message - content of message to be sent.
   *
   */
   state = {
@@ -43,11 +42,10 @@ class Host extends Component {
     questions: [],
     currentQ: 0,
     chosenAnswer: '',
-    message: '',
     readyLeaderBoard: false
   }
 
-  
+
   /* PUSH URL */
   /**
    * @function pushLocation
@@ -136,14 +134,6 @@ class Host extends Component {
     this.setState({
       [name]: value
     });
-  }
-
-  handleMessage = () => {
-
-    this.props.data.players.forEach(conn => {
-      conn.send(this.state.message);
-    });
-
   }
 
   handleUsername = (e) => {
@@ -264,11 +254,6 @@ class Host extends Component {
         </section>
 
         <br />
-        {/* TODO: REMOVE THIS WHEN GAME IS RUNNING */}
-        <input name='message' value={this.state.message} onChange={this.handleInputChange} />
-        <button onClick={this.handleMessage} >Send Message</button>
-        <br />
-        <button onClick={this.goLeaderboard} >Go LeaderBoard</button>
 
         <Switch>
 

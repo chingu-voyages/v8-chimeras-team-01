@@ -27,7 +27,6 @@ class Player extends Component {
   * @property { Number } currentQ - Index of current question.
   * @property { Number } time - How many seconds to set timer.
   * @property { String } chosenAnswer - String holding chosen answer.
-  * @property { String } message - content of message to be sent.
   *
   */
   state = {
@@ -41,7 +40,6 @@ class Player extends Component {
     questions: [],
     currentQ: 0,
     time: 10,
-    message: '',
     isConnected: false,
     input: '',
     conn: '',
@@ -50,8 +48,8 @@ class Player extends Component {
   componentDidMount() {
     this.loadQuestions();
   }
-  
-  loadQuestions() { 
+
+  loadQuestions() {
     return fetch('/api/questions')
       .then(res => {
         if (!res.ok) {
@@ -59,7 +57,7 @@ class Player extends Component {
         }
         return res.json();
         })
-        .then(data => 
+        .then(data =>
           this.setState({
             questions: data[0].questions,
           })
@@ -146,11 +144,6 @@ class Player extends Component {
     });
   }
 
-  handleMessage = () => {
-
-    this.state.conn.send(this.state.message)
-
-  }
   handleConnection = (id) => {
     let conn = this.props.data.peer.connect(id, {
       reliable: true
