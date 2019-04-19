@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-export default function Instructions(props) {
+export default function Instructions({ getStarted, users}) {
 
   return (
 
@@ -24,7 +24,7 @@ export default function Instructions(props) {
           <p className="players-that-joined">This is where player names will show as they join ... maybe</p>
         </div>
       </div>
-      {props.getStarted}
+      {getStarted}
 
     </div>
   )

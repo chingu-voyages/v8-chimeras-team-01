@@ -242,7 +242,9 @@ class Host extends Component {
             } />
 
           <Route path="/host/instructions"
-            render={() => <Instructions getStarted={<GetStarted handleGetStarted = {this.handleGetStarted}/>} />}
+            render={() => <Instructions
+                getStarted={<GetStarted handleGetStarted = {this.handleGetStarted}/>}
+                users={this.state.users} />}
           />
 
           <Route path="/host/questions"
