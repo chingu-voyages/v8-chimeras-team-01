@@ -75,7 +75,6 @@ const withPeerJs = (WrappedComponent) => {
         catchOthers = (data) => {
           if (data.individualResults) {
             this.updateResults(data);
-
           }
         }
 

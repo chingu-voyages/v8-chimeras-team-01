@@ -27,7 +27,6 @@ class Player extends Component {
   * @property { Number } currentQ - Index of current question.
   * @property { Number } time - How many seconds to set timer.
   * @property { String } chosenAnswer - String holding chosen answer.
-  * @property { String } message - content of message to be sent.
   *
   */
   state = {
@@ -35,13 +34,10 @@ class Player extends Component {
       userName: "",
       myScore: 0
     },
-    users: {
-
-    },
+    users: {},
     questions: [],
     currentQ: 0,
     time: 10,
-    message: '',
     isConnected: false,
     input: '',
     conn: '',
@@ -50,8 +46,8 @@ class Player extends Component {
   componentDidMount() {
     this.loadQuestions();
   }
-  
-  loadQuestions() { 
+
+  loadQuestions() {
     return fetch('/api/questions')
       .then(res => {
         if (!res.ok) {
@@ -59,7 +55,7 @@ class Player extends Component {
         }
         return res.json();
         })
-        .then(data => 
+        .then(data =>
           this.setState({
             questions: data[0].questions,
           })
@@ -110,17 +106,16 @@ class Player extends Component {
     this.sendChosenAnswer(correct, answer, localScore);
 
     // At this point we should be waiting for a response from the host.
-    // TODO: Add function to gather info from players and send players object beck to players with updated results
     console.log('Waiting for signal from host');
 
-    // Mimicking response from Host
+    // Pausing while others are still answering Qs
     setTimeout(() => {
 
       // Highlighting the correct answer
       let correct = document.querySelector('.correct');
       correct.classList.add('highlight');
 
-    }, 3000)
+    }, 1000)
 
   }
 
@@ -136,21 +131,6 @@ class Player extends Component {
     }
   }
 
-  handleInputChange = ({ target }) => {
-
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
-  handleMessage = () => {
-
-    this.state.conn.send(this.state.message)
-
-  }
   handleConnection = (id) => {
     let conn = this.props.data.peer.connect(id, {
       reliable: true
@@ -187,7 +167,6 @@ class Player extends Component {
         break;
       case "go Leaderboard":
         this.goLeaderboard();
-        console.log("do something to transition to Leaderboard");
         break;
       case "go Next Question":
         this.goNextQuestion();
@@ -216,7 +195,6 @@ class Player extends Component {
     if (data.usersObject) {
       this.updateUsersObject(data);
     }
-    console.log(this.state.users);
   }
 
   updateUsersObject = (data) => {
@@ -227,7 +205,6 @@ class Player extends Component {
 
     let obj = { userName: myName, myScore: 0 };
     this.setState({ me: obj });
-    console.log(this.state.me.userName);
   }
 
   updateMyScore = (score) => {
@@ -237,17 +214,14 @@ class Player extends Component {
 
   start = () => {
     this.pushLocation("/player/questions");
-    console.log("push to questions");
   }
 
   goLeaderboard = () => {
     this.pushLocation("/player/leaderboard");
-    console.log("push to leaderboard");
   }
 
   goNextQuestion = () => {
     this.pushLocation("/player/questions");
-    console.log("push to next question");
   }
 
   render() {
