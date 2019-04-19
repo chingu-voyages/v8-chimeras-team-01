@@ -77,18 +77,6 @@ class Host extends Component {
    * @memberof Questions
    */
   sendAnswer = (correct, answer) => {
-
-    // console.log('Waiting for signal from players');
-    //
-    // // Pausing while others are still answering Qs
-    //  setTimeout(() => {
-    //
-    //    // Highlighting the correct answer
-    //    let correct = document.querySelector('.correct');
-    //    correct.classList.add('highlight');
-    //
-    //  }, 1000)
-
      // if there are no players connected, single player mode
      if(this.props.data.players.length === 0){
        //show leaderboard push button
