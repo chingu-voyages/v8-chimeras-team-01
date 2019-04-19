@@ -89,6 +89,15 @@ class Host extends Component {
 
      }, 1000)
 
+     // if there are no players connected, single player mode
+     if(this.props.data.players.length === 0){
+       //show leaderboard push button
+       this.setState({ readyLeaderBoard : true });
+       //update own score in users object
+       let username = this.state.me.userName;
+       let scoreObj = {[username]: this.state.me.myScore };
+       this.setState({ users : scoreObj });
+     }
   }
 
   handleLeaderBoardTransition = () => {
@@ -161,7 +170,6 @@ class Host extends Component {
   }
 
   goNextQuestion = () => {
-      this.unreadyLeaderBoard();
       this.props.data.players.forEach(conn => {
         conn.send("go Next Question");
       });
@@ -173,6 +181,7 @@ class Host extends Component {
         conn.send("go Leaderboard");
       });
       this.pushLocation("/host/leaderboard");
+      this.unreadyLeaderBoard();
     }
 
   /* Increment Current Q */
