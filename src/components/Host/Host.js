@@ -33,11 +33,7 @@ class Host extends Component {
   */
   state = {
     me: null,
-    users: {
-      Tom: 0,
-      Mick: 12,
-      Carlita: 7
-    },
+    users: {},
     questions: [],
     currentQ: 0,
     chosenAnswer: '',

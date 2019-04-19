@@ -26,7 +26,7 @@ export default function Instructions({ getStarted, users }) {
         <div className="join-board">
           <p className="players-that-joined">
             <ul>
-              {!!userNames ?
+              {(userNames.length > 0) ?
                 userNames.map( (name, index) => (
                   <li key={index}>{name}</li>
                 ))
