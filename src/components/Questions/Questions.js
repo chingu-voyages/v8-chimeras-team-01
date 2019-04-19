@@ -61,20 +61,18 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
     if (time === 0) {
       let newTime = (time - 1);
       setTime(newTime);
+
+      // Highlighting the correct answer
+      let correct = document.querySelector('.correct');
+      correct.classList.add('highlight');
+
       // send answers to host regardless
       sendAnswer(correct, answer, localScore)
+
       if (!isLastQ) {
         // pushLocation("/host/leaderboard");
-        setTimeout(() => {
-
-          //pushLocation("/host/leaderboard");
-        }, 5000)
       } else {
         // pushLocation("/host/results");
-        setTimeout(() => {
-          console.log("push to results next");
-          //pushLocation("/host/results");
-        }, 5000)
       }
 
     } else {
