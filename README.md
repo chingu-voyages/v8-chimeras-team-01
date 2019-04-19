@@ -1,9 +1,15 @@
 ## Bragging Rights
+  This game uses **WebRTC** technology to make direct peer-to-peer connections between players and host. Load it up, invite some friends, and earn your **_Bragging Rights_**!
 
 #### Project Details
+  This project was built as a team in a Scrum style process over 8 weeks.
 
 #### Running this project locally
 
+###### Live version:
+[URL](http://INSERT_LIVE_LINK_HERE)
+
+###### From the repo:
 1. Clone this project locally
 2. Run `npm install` in your bash / command line
 3. Run `npm run dev` in your bash / command line
