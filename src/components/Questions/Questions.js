@@ -53,6 +53,14 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
    */
   const isLastQ = (onQ === totalQ) ? true : false;
 
+  /**
+   * @function highlightCorrect [Highlights Answer marked as correct]
+   */
+  const highlightCorrect = () => {
+    let correct = document.querySelector('.correct');
+    correct.classList.add('highlight');
+  }
+
 
   /**
    * @function timer [Decrements the time in state and pushes to Leaderboard URL except last question, then pushes to Results URL]
@@ -63,8 +71,7 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
       setTime(newTime);
 
       // Highlighting the correct answer
-      let correct = document.querySelector('.correct');
-      correct.classList.add('highlight');
+      highlightCorrect();
 
       // send answers to host regardless
       sendAnswer(correct, answer, localScore)
