@@ -100,23 +100,8 @@ class Player extends Component {
    * @memberof Questions
    */
   sendAnswer = (correct, answer, localScore) => {
-
-
     //Send data to Host
     this.sendChosenAnswer(correct, answer, localScore);
-
-    // At this point we should be waiting for a response from the host.
-    console.log('Waiting for signal from host');
-
-    // Pausing while others are still answering Qs
-    setTimeout(() => {
-
-      // Highlighting the correct answer
-      let correct = document.querySelector('.correct');
-      correct.classList.add('highlight');
-
-    }, 1000)
-
   }
 
   /**
