@@ -29,39 +29,17 @@ class Host extends Component {
   * @property { Number } currentQ - Index of current question.
   * @property { Number } time - How many seconds to set timer.
   * @property { String } chosenAnswer - String holding chosen answer.
-  * @property { String } message - content of message to be sent.
   *
   */
   state = {
     me: null,
-    users: {
-      Inky: 50,
-      Blinky: 5,
-      Pinky: 10,
-      Clyde: 120,
-    },
-    questions: [
-      {
-        q: "What shape does a waffle have on top?",
-        a: ['Square', 'Circle', 'Triangle', 'Rhombus'],
-        c: 'Square'
-      },
-      {
-        q: "The word 'Waffle' first appeared in English around what year?",
-        a: ['1', '1573', '1725', '2011'],
-        c: '1725'
-      },
-      {
-        q: "How many waffles-per-minute does the Waffle House sell on average??",
-        a: ['100', '145', '1000', 'All The Waffles'],
-        c: '145'
-      },
-    ],
+    users: {},
+    questions: [],
     currentQ: 0,
     chosenAnswer: '',
-    message: '',
     readyLeaderBoard: false
   }
+
 
   /* PUSH URL */
   /**
@@ -100,20 +78,9 @@ class Host extends Component {
    */
   sendAnswer = (correct, answer) => {
 
-    // TODO: Handle setting own state before moving on
-
-    // Display data being sent to the host
-    console.log({
-      correct,
-      answer,
-      username: this.state.username
-    })
-
-    // At this point we should be waiting for a response from the host.
-    // TODO: Add function to gather info from players and send players object beck to players with updated results
     console.log('Waiting for signal from players');
 
-    // Mimicking response from Host
+    // Pausing while others are still answering Qs
      setTimeout(() => {
 
        // Highlighting the correct answer
@@ -122,13 +89,21 @@ class Host extends Component {
 
      }, 1000)
 
+     // if there are no players connected, single player mode
+     if(this.props.data.players.length === 0){
+       //show leaderboard push button
+       this.setState({ readyLeaderBoard : true });
+       //update own score in users object
+       let username = this.state.me.userName;
+       let scoreObj = {[username]: this.state.me.myScore };
+       this.setState({ users : scoreObj });
+     }
   }
 
   handleLeaderBoardTransition = () => {
 
     this.props.data.players.forEach(conn => {
       conn.send("go Leaderboard");
-      console.log("pushing to leaderboard");
     });
 
   }
@@ -137,26 +112,6 @@ class Host extends Component {
 
     this.props.data.players.forEach(conn => {
       conn.send("start");
-      console.log("start game");
-    });
-
-  }
-
-  // TODO: Remove after game is working
-  handleInputChange = ({ target }) => {
-
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
-  handleMessage = () => {
-
-    this.props.data.players.forEach(conn => {
-      conn.send(this.state.message);
     });
 
   }
@@ -179,7 +134,7 @@ class Host extends Component {
         ...this.props.data.users,
         [this.state.me.userName]: this.state.me.myScore,
       },
-    }, console.log("1st ", this.state.users));
+    });
     this.setState({
       users: Object.assign({}, this.props.data.users, {
         [this.state.me.userName]: this.state.me.myScore,
@@ -187,8 +142,6 @@ class Host extends Component {
     });
     this.props.resetPlayersUpdated();
     this.setState({ readyToSend : true });
-    console.log("host updated", this.state.users);
-
   }
 
   componentDidUpdate() {
@@ -217,12 +170,10 @@ class Host extends Component {
   }
 
   goNextQuestion = () => {
-      this.unreadyLeaderBoard();
       this.props.data.players.forEach(conn => {
         conn.send("go Next Question");
       });
       this.pushLocation("/host/questions");
-      console.log("push to next question");
     }
 
     goLeaderboard = () => {
@@ -230,7 +181,7 @@ class Host extends Component {
         conn.send("go Leaderboard");
       });
       this.pushLocation("/host/leaderboard");
-      console.log("push to leaderboard");
+      this.unreadyLeaderBoard();
     }
 
   /* Increment Current Q */
@@ -279,11 +230,6 @@ class Host extends Component {
         </section>
 
         <br />
-        {/* TODO: REMOVE THIS WHEN GAME IS RUNNING */}
-        <input name='message' value={this.state.message} onChange={this.handleInputChange} />
-        <button onClick={this.handleMessage} >Send Message</button>
-        <br />
-        <button onClick={this.goLeaderboard} >Go LeaderBoard</button>
 
         <Switch>
 
