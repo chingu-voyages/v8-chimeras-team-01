@@ -24,8 +24,8 @@ export default function Instructions({ getStarted, users }) {
           </li>
         </ol>
         <div className="join-board">
-          <p className="players-that-joined">
-            <ul>
+          <div className="players-that-joined">
+            <ul className="player-list pm0">
               {(userNames.length > 0) ?
                 userNames.map( (name, index) => (
                   <li key={index}>{name}</li>
@@ -34,7 +34,7 @@ export default function Instructions({ getStarted, users }) {
                 <li>No one but you here so far...</li>
               }
             </ul>
-          </p>
+          </div>
         </div>
       </div>
       {getStarted}
