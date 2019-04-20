@@ -246,7 +246,9 @@ class Player extends Component {
 
           <Route path="/player/join" render={() => <Join pushLocation={this.pushLocation} updateUsername={this.updateUsername} handleConnection={this.handleConnection} />} />
 
-          <Route path="/player/instructions" component={Instructions} />
+          <Route path="/player/instructions"
+            render={() => <Instructions
+                users={this.state.users} />} />
 
           <Route path="/player/questions"
             render={(props) =>
