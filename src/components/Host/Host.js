@@ -113,11 +113,14 @@ class Host extends Component {
   updateResults = (data) => {
 
     this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
+    this.sendUserObject();
+
     //check if all results are received
       if (Object.keys(this.state.users).length === this.state.players.length) {
         //trigger host update users with own score
         //by setting playersUpdated to true
         this.setState({ playersUpdated : true });
+        this.updateHost();
         console.log("players updated");
       }
 
@@ -228,7 +231,8 @@ class Host extends Component {
     e.preventDefault();
     let myName = e.target.userName.value;
     let obj = { myScore: 0, userName: myName }
-    this.setState({ me: obj })
+    this.setState({ me: obj }, () => this.updateHost());
+
   }
 
   updateMyScore = (score) => {
@@ -270,7 +274,9 @@ class Host extends Component {
   }
 
   readyLeaderBoard = () => {
-    this.setState({ readyLeaderBoard : true });
+    if (this.state.readyLeaderBoard === false){
+      this.setState({ readyLeaderBoard : true });
+    }
   }
 
   unreadyLeaderBoard = () => {
