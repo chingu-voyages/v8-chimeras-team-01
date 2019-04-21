@@ -161,6 +161,7 @@ class Player extends Component {
 
     this.state.conn.on('open', () => {
       console.log("Connected to: " + this.state.conn.peer);
+      this.sendChosenAnswer();
     });
 
     this.state.conn.on('data', (data) => {
