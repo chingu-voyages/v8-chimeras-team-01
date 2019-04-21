@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import withPeerJs from '../HOCs/withPeerJs';
+import Peer from 'peerjs';
 
 import history from '../../History.js';
 import Questions from '../Questions';
@@ -30,6 +30,10 @@ class Player extends Component {
   *
   */
   state = {
+    peer: new Peer(null, {
+        debug: 2
+    }),
+    id: '',
     me: {
       userName: "",
       myScore: 0
@@ -43,7 +47,32 @@ class Player extends Component {
     conn: '',
   }
 
+  initialize = () => {
+
+      this.state.peer.on('open', (id) => {
+          console.log("ID: " + this.state.peer.id);
+          this.setState({ id })
+
+      });
+
+      this.state.peer.on('disconnected', () => {
+          //handle connection message
+          console.log("Connection lost. Please reconnect");
+          this.state.peer.reconnect();
+      });
+
+      this.state.peer.on('close', () => {
+          this.setState({ conn: null });
+          console.log('Connection destroyed');
+      });
+
+      this.state.peer.on('error', (err) => {
+          console.log(err);
+      })
+  }
+
   componentDidMount() {
+    this.initialize();
     this.loadQuestions();
   }
 
@@ -117,7 +146,7 @@ class Player extends Component {
   }
 
   handleConnection = (id) => {
-    let conn = this.props.data.peer.connect(id, {
+    let conn = this.state.peer.connect(id, {
       reliable: true
     });
 
@@ -269,4 +298,4 @@ class Player extends Component {
   }
 }
 
-export default withPeerJs(Player);
+export default Player;

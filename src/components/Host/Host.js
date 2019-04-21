@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import history from '../../History.js';
-import withPeerJs from '../HOCs/withPeerJs';
+import Peer from 'peerjs';
 import Questions from '../Questions';
 import Games from '../Games';
 import Instructions from '../Instructions';
@@ -32,6 +32,13 @@ class Host extends Component {
   *
   */
   state = {
+    peer: new Peer(null, {
+        debug: 2
+    }),
+    conn: null,
+    players: [],
+    id: '',
+    playersUpdated: false,
     me: null,
     users: {},
     questions: [],
@@ -40,6 +47,107 @@ class Host extends Component {
     readyLeaderBoard: false
   }
 
+  // Connection functions
+  initialize = () => {
+
+      this.state.peer.on('open', (id) => {
+          console.log("ID: " + this.state.peer.id);
+          this.setState({ id })
+
+      });
+
+      this.state.peer.on('connection', (c) => {
+          console.log(c)
+          this.setState({ conn: c });
+          let players = [...this.state.players];
+          players.push(this.state.conn);
+          this.setState({ players });
+          console.log("Connected to: " + this.state.conn.peer);
+          this.ready()
+          console.log(this.state.players);
+      });
+
+      this.state.peer.on('disconnected', () => {
+          //handle connection message
+          console.log("Connection lost. Please reconnect");
+          this.state.peer.reconnect();
+      });
+
+      this.state.peer.on('close', () => {
+          this.setState({ conn: null });
+          console.log('Connection destroyed');
+      });
+
+      this.state.peer.on('error', (err) => {
+          console.log(err);
+      })
+  }
+
+  ready = () => {
+      this.state.conn.on('data', (data) => {
+          this.handleReceivedData(data);
+          console.log("Data received: ", data);
+      })
+
+      this.state.conn.on('close', () => {
+          console.log("connection reset, awaiting connection...");
+          this.setState({ conn: null });
+      })
+  }
+
+  handleReceivedData = (data) => {
+    switch (data) {
+
+      default:
+        this.catchOthers(data);
+        break;
+    };
+  }
+
+  catchOthers = (data) => {
+    if (data.individualResults) {
+      this.updateResults(data);
+    }
+  }
+
+  updateResults = (data) => {
+
+    this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
+    //check if all results are received
+      if (Object.keys(this.state.users).length === this.state.players.length) {
+        //trigger host update users with own score
+        //by setting playersUpdated to true
+        this.setState({ playersUpdated : true });
+        console.log("players updated");
+      }
+
+  }
+
+  updatePlayersScores = (user, score) => {
+    let scoreUpdate = {[user]: score};
+    this.setState({
+      users: {
+        ...this.state.users,
+        [user]: score,
+      },
+    });
+    this.setState({
+      users: Object.assign({}, this.state.users, {
+        [user]: score,
+      }),
+    });
+    console.log(this.state.users);
+  }
+
+  resetPlayersUpdated = () => {
+    this.setState({ playersUpdated : false });
+  }
+
+  componentDidMount() {
+
+      this.initialize();
+  }
+  //End connection functions
 
   /* PUSH URL */
   /**
@@ -78,7 +186,7 @@ class Host extends Component {
    */
   sendAnswer = (correct, answer) => {
      // if there are no players connected, single player mode
-     if(this.props.data.players.length === 0){
+     if(this.state.players.length === 0){
        //show leaderboard push button
        this.setState({ readyLeaderBoard : true });
        //update own score in users object
@@ -90,7 +198,7 @@ class Host extends Component {
 
   handleLeaderBoardTransition = () => {
 
-    this.props.data.players.forEach(conn => {
+    this.state.players.forEach(conn => {
       conn.send("go Leaderboard");
     });
 
@@ -98,7 +206,7 @@ class Host extends Component {
 
   handleGetStarted = () => {
 
-    this.props.data.players.forEach(conn => {
+    this.state.players.forEach(conn => {
       conn.send("start");
     });
 
@@ -119,16 +227,16 @@ class Host extends Component {
   updateHost = () => {
     this.setState({
       users: {
-        ...this.props.data.users,
+        ...this.state.users,
         [this.state.me.userName]: this.state.me.myScore,
       },
     });
     this.setState({
-      users: Object.assign({}, this.props.data.users, {
+      users: Object.assign({}, this.state.users, {
         [this.state.me.userName]: this.state.me.myScore,
       }),
     });
-    this.props.resetPlayersUpdated();
+    this.resetPlayersUpdated();
     this.setState({ readyToSend : true });
   }
 
@@ -140,7 +248,7 @@ class Host extends Component {
   }
 
   sendUserObject = () => {
-    this.props.data.players.forEach(conn => {
+    this.state.players.forEach(conn => {
       let obj = {usersObject: this.state.users};
       conn.send(obj);
       this.setState({ readyToSend : false });
@@ -158,14 +266,14 @@ class Host extends Component {
   }
 
   goNextQuestion = () => {
-      this.props.data.players.forEach(conn => {
+      this.state.players.forEach(conn => {
         conn.send("go Next Question");
       });
       this.pushLocation("/host/questions");
     }
 
     goLeaderboard = () => {
-      this.props.data.players.forEach(conn => {
+      this.state.players.forEach(conn => {
         conn.send("go Leaderboard");
       });
       this.pushLocation("/host/leaderboard");
@@ -212,7 +320,7 @@ class Host extends Component {
           <h3>Game ID:
             <span className="orange pointy"
                   id="game-id"
-                  onClick={() => {this.copyToClipboard("game-id")}}> {this.props.data.id}
+                  onClick={() => {this.copyToClipboard("game-id")}}> {this.state.id}
           </span></h3>
         <h3 className="hh-subtext pm0">click to copy, share so friends can join</h3>
         </section>
@@ -246,7 +354,7 @@ class Host extends Component {
                 myScore={this.state.me.myScore}
                 updateMyScore={this.updateMyScore}
                 updateHost={this.updateHost}
-                playersUpdated={this.props.data.playersUpdated}
+                playersUpdated={this.state.playersUpdated}
                 goLeaderboard={this.goLeaderboard}
                 readyLeaderBoard={this.state.readyLeaderBoard}
               />
@@ -280,4 +388,4 @@ class Host extends Component {
   }
 }
 
-export default withPeerJs(Host);
+export default Host;
