@@ -168,6 +168,7 @@ class Host extends Component {
    * @description [Takes in questions and answers from game selected in Games component and places them in the questions array in state.]
    */
   setGame = (game) => {
+    // To Do Clear all players and host scores
     this.setState({ questions: game.questions });
   }
 
