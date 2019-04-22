@@ -52,6 +52,12 @@
   color: #fff;
 }
 
+.game-image {
+  height: 130px;
+  width: 130px;
+  padding: 5px;
+}
+
 .game-tile {
   width: 200px;
   height: 250px;
