@@ -230,6 +230,10 @@ class Host extends Component {
     this.setState({ readyToSend : true });
   }
 
+  clearUsers = () => {
+    this.setState({ users : {} })
+  }
+
   handleLeaderBoardTransition = () => {
 
     this.state.players.forEach(conn => {
@@ -243,6 +247,7 @@ class Host extends Component {
     this.state.players.forEach(conn => {
       conn.send("start");
     });
+    this.clearUsers();
 
   }
 
@@ -296,6 +301,7 @@ class Host extends Component {
         conn.send("go Next Question");
       });
       this.pushLocation("/host/questions");
+      this.clearUsers();
     }
 
     goLeaderboard = () => {
