@@ -11,17 +11,19 @@ export default function Results({ users }) {
    * @description [Takes in users and returns the top 3 players by descending order]
    * @returns {Object[]} Top three players with userName and score as key.
    */
-  const topThree = function(list) {
+  const topThree = function (list) {
     const sortable = [],
       topThree = [];
 
     // Put keys and value into an array of arrays
     for (let key in list) {
+      console.log(key);
+      console.log(list);
       sortable.push([key, list[key]]);
     }
 
     // Sort array by value, highest to low
-    sortable.sort(function(a, b) {
+    sortable.sort(function (a, b) {
       return a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : 0;
     });
 
