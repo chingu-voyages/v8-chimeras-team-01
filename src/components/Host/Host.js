@@ -159,52 +159,59 @@ class Host extends Component {
        //show leaderboard push button
        this.readyLeaderBoard();
        //update own score in users object
-       let username = this.state.me.userName;
-       let scoreObj = {[username]: this.state.me.myScore };
-       this.setState({ users : scoreObj });
+       this.initiateHostUsers();
      }
      console.log("sendAnswer");
   }
 
-  initiateUsers = (data) => {
-    this.updatePlayersScores(data.initialMe.userName, data.initialMe.myScore);
-    this.sendUserObject();
+  initiateHostUsers = () => {
+    let username = this.state.me.userName;
+    let scoreObj = {[username]: this.state.me.myScore };
+    this.setState({ users : scoreObj });
   }
 
-    updateResults = (data) => {
+  initiateUsers = (data) => {
+    this.updatePlayersScores(data.initialMe.userName, data.initialMe.myScore);
+    this.state.players.forEach(conn => {
+      let obj = {usersObject: this.state.users};
+      conn.send(obj);
+      console.log("sent users object", obj);
+    });
+  }
 
-      this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
+  updateResults = (data) => {
 
-      //check if all results are received on initial join
-        if (Object.keys(this.state.users).length === this.state.players.length) {
-          //trigger host update users with own score
-          //by setting playersUpdated to true
-          this.setState({ playersUpdated : true });
-          this.updateHost();
-          console.log("players updated");
-        }
+    this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
 
-    }
+    //check if all results are received on initial join
+      if (Object.keys(this.state.users).length === this.state.players.length) {
+        //trigger host update users with own score
+        //by setting playersUpdated to true
+        this.setState({ playersUpdated : true });
+        this.updateHost();
+        console.log("players updated");
+      }
+  }
 
-    updatePlayersScores = (user, score) => {
-      let scoreUpdate = {[user]: score};
-      this.setState({
-        users: {
-          ...this.state.users,
-          [user]: score,
-        },
-      });
-      this.setState({
-        users: Object.assign({}, this.state.users, {
-          [user]: score,
-        }),
-      });
-      console.log(this.state.users);
-    }
+  updatePlayersScores = (user, score) => {
+    let scoreUpdate = {[user]: score};
+    this.setState({
+      users: {
+        ...this.state.users,
+        [user]: score,
+      },
+    });
+    this.setState({
+      users: Object.assign({}, this.state.users, {
+        [user]: score,
+      }),
+    });
+    console.log(this.state.users);
+  }
 
-    resetPlayersUpdated = () => {
-      this.setState({ playersUpdated : false });
-    }
+  resetPlayersUpdated = () => {
+    this.setState({ playersUpdated : false });
+  }
 
 
   updateHost = () => {
@@ -243,7 +250,7 @@ class Host extends Component {
     e.preventDefault();
     let myName = e.target.userName.value;
     let obj = { myScore: 0, userName: myName }
-    this.setState({ me: obj }, () => this.updateHost());
+    this.setState({ me: obj }, () => this.initiateHostUsers());
 
   }
 
@@ -268,7 +275,7 @@ class Host extends Component {
       this.setState({ readyToSend : false });
       console.log("sent users object", obj);
     });
-    //this.readyLeaderBoard();
+    this.readyLeaderBoard();
     console.log("sendUserObject");
   }
 
