@@ -115,7 +115,7 @@ class Host extends Component {
     this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
     this.sendUserObject();
 
-    //check if all results are received
+    //check if all results are received on initial join
       if (Object.keys(this.state.users).length === this.state.players.length) {
         //trigger host update users with own score
         //by setting playersUpdated to true
@@ -191,12 +191,13 @@ class Host extends Component {
      // if there are no players connected, single player mode
      if(this.state.players.length === 0){
        //show leaderboard push button
-       this.setState({ readyLeaderBoard : true });
+       this.readyLeaderBoard();
        //update own score in users object
        let username = this.state.me.userName;
        let scoreObj = {[username]: this.state.me.myScore };
        this.setState({ users : scoreObj });
      }
+     console.log("sendAnswer");
   }
 
   handleLeaderBoardTransition = () => {
@@ -247,6 +248,7 @@ class Host extends Component {
   componentDidUpdate() {
     if(this.state.readyToSend === true) {
       this.sendUserObject();
+      this.setState({ readyToSend : false });
     }
 
   }
@@ -258,17 +260,20 @@ class Host extends Component {
       this.setState({ readyToSend : false });
       console.log("sent users object", obj);
     });
-    this.readyLeaderBoard();
+    //this.readyLeaderBoard();
+    console.log("sendUserObject");
   }
 
   readyLeaderBoard = () => {
     if (this.state.readyLeaderBoard === false){
       this.setState({ readyLeaderBoard : true });
     }
+    console.log("readyLeaderBoard");
   }
 
   unreadyLeaderBoard = () => {
     this.setState({ readyLeaderBoard : false });
+    console.log("unreadyLeaderBoard");
   }
 
   goNextQuestion = () => {
