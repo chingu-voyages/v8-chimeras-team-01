@@ -110,20 +110,20 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
   return (
 
     <div id="questions">
-      <h1>Question {onQ} of {totalQ} </h1>
+      <h1 className="questions__title text-center">Question {onQ} of {totalQ} </h1>
 
       <div className='image-wrapper'>
         {time <= 0 ? <Loader /> :
           <>
             <img className='outline image-question' alt='of question' src='https://picsum.photos/200'></img>
-            <div>Timer {time}</div>
+            <div className="question__timer">Timer {time}</div>
           </>
 
         }
       </div>
 
-      <div className='center'>
-        <h1 className='inline'>{question.q}</h1>
+      <div className='text-center'>
+        <h2 className='question__display'>{question.q}</h2>
       </div>
 
       <div className='answers-wrapper'>

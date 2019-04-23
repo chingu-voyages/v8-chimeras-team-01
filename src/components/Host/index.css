@@ -72,6 +72,19 @@
   color: var(--color-orange);
 }
 
+.host-next__btn {
+  font-size: 32px;
+  font-weight: 900;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 -1px 12px var(--color-gray);
+  background-color: var(--color-yellow);
+  background-image: url(https://www.transparenttextures.com/patterns/always-grey.png);
+  margin: 0 auto;
+  display: inherit;
+}
 
 /* Media Queries */
 
@@ -94,4 +107,9 @@
     font-size: 0.9em;
   }
 
+}
+@media (max-width:600px) {
+  .host-next__btn {
+      width: 100%;
+  }
 }

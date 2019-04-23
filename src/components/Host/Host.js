@@ -412,7 +412,7 @@ class Host extends Component {
             } />
 
         </Switch>
-        {(this.state.readyLeaderBoard === true) && <button onClick={this.goLeaderboard}>go leaderboard</button>}
+        {(this.state.readyLeaderBoard === true) && <button className="host-next__btn" onClick={this.goLeaderboard}>go leaderboard</button>}
 
       </div >
 

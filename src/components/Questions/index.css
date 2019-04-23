@@ -6,6 +6,25 @@
     margin: 1rem;
 }
 
+.questions__title,
+.question__display,
+.question__timer {
+    font-size: 32px;
+    font-weight: 900;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 -1px 12px var(--color-gray);
+    background-color: var(--color-yellow);
+    background-image: url(https://www.transparenttextures.com/patterns/always-grey.png);
+    margin: 0 auto;
+}
+
+.question__timer {
+    margin-top: 20px;
+}
+
 .box {
     background-color: #444;
     color: #fff;
@@ -18,14 +37,6 @@
 .image-wrapper {
     text-align: center;
     margin: 1rem;
-}
-
-.inline {
-    display: inline-block;
-}
-
-.center {
-    text-align: center;
 }
 
 .hide {
@@ -47,4 +58,11 @@
 
 .no-clicks {
   pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .questions__title,
+    .question__display {
+        width: 100%;
+    }
 }
