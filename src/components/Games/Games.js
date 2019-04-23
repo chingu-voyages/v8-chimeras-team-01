@@ -28,7 +28,7 @@ export default function Games({ showGames, handleSetGame, pushLocation }) {
         name: questions.category,
         image: <i className="fas fa-stroopwafel fa-6x"></i>,
         desc: "What you know 'bout Waffles??",
-        questions: questions.questions.slice(4)
+        questions: questions.questions
       })
     }
     fetchQuestions();

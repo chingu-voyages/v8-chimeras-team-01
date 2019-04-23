@@ -30,9 +30,13 @@ export default function Results({ users }) {
     // return just the first 3 items in the array of objects
     let i;
     for (i = 0; i < 3; i += 1) {
+
+      const userName = sortable[i] ? sortable[i][0] : 'N/A';
+      const score = sortable[i] ? sortable[i][1] : 0;
+
       topThree.push({
-        userName: sortable[i][0],
-        score: sortable[i][1]
+        userName,
+        score
       });
     }
 
@@ -66,8 +70,8 @@ export default function Results({ users }) {
         </div>
       </div>
       <button className="res__btn">
-        <Link to="/start-game" className="res__btn-anchor">
-          <p className="res__anchor_txt">Time for a REMATCH??</p>
+        <Link to="/" className="res__btn-anchor">
+          <p className="res__anchor_txt">Time for another game?</p>
         </Link>
       </button>
     </div>

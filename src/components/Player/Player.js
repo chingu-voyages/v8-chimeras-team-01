@@ -86,7 +86,7 @@ class Player extends Component {
       })
       .then(data =>
         this.setState({
-          questions: data[0].questions.slice(4),
+          questions: data[0].questions
         })
       )
       .catch(err =>

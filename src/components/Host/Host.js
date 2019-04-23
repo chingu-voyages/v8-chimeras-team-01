@@ -54,9 +54,18 @@ class Host extends Component {
 
   // Connection functions
   componentDidMount() {
-
     this.initialize();
   }
+
+  componentDidUpdate() {
+
+    if (this.state.readyToSend === true) {
+      this.sendUserObject();
+      this.setState({ readyToSend: false });
+    }
+
+  }
+
   initialize = () => {
 
     this.state.peer.on('open', (id) => {
@@ -103,6 +112,7 @@ class Host extends Component {
       this.setState({ conn: null });
     })
   }
+
 
   handleReceivedData = (data) => {
     switch (data) {
@@ -172,7 +182,6 @@ class Host extends Component {
     this.setState({ questions: game.questions });
   }
 
-
   /**
    * @method sendAnswer - Function used to send computed answer to the Host.
    *
@@ -182,18 +191,23 @@ class Host extends Component {
     // if there are no players connected, single player mode
     //show leaderboard push button
     // if last questions run
-    if (this.state.questions.length === this.state.currentQ + 1) {
-      this.setState({ readyResults: true })
-    } else {
+    if (this.state.players.length === 0) {
 
-      if (this.state.readyLeaderBoard === false) {
+      if (this.state.questions.length === this.state.currentQ + 1) {
+        this.setState({ readyResults: true })
+      } else {
         this.setState({ readyLeaderBoard: true });
-        console.log("readyLeaderBoard");
       }
+
+      console.log("readyLeaderBoard");
+
+      //update own score in users object
+      this.initiateHostUsers();
+
     }
-    //update own score in users object
-    this.initiateHostUsers();
+
     console.log("sendAnswer");
+
   }
 
   updateResults = (data) => {
@@ -204,7 +218,7 @@ class Host extends Component {
     if (Object.keys(this.state.users).length === this.state.players.length) {
       //trigger host update users with own score
       //by setting playersUpdated to true
-      this.setState({ playersUpdated: true });
+      // this.setState({ playersUpdated: true });
       this.updateHost();
       console.log("players updated");
     }
@@ -218,37 +232,20 @@ class Host extends Component {
         [this.state.me.userName]: this.state.me.myScore,
       },
     });
+    this.setState({ playersUpdated: false });
 
-    this.setState({
-      users: Object.assign({}, this.state.users, {
-        [this.state.me.userName]: this.state.me.myScore,
-      }),
-    });
-
-    this.resetPlayersUpdated();
     this.setState({ readyToSend: true });
   }
 
   updatePlayersScores = (user, score) => {
-    let scoreUpdate = { [user]: score };
     this.setState({
       users: {
         ...this.state.users,
         [user]: score,
       },
     });
-    this.setState({
-      users: Object.assign({}, this.state.users, {
-        [user]: score,
-      }),
-    });
     console.log(this.state.users);
   }
-
-  resetPlayersUpdated = () => {
-    this.setState({ playersUpdated: false });
-  }
-
 
 
   clearUsers = () => {
@@ -285,17 +282,8 @@ class Host extends Component {
     this.setState({ me: obj })
   }
 
-
-  componentDidUpdate() {
-
-    if (this.state.readyToSend === true) {
-      this.sendUserObject();
-      this.setState({ readyToSend: false });
-    }
-
-  }
-
   sendUserObject = () => {
+
     this.state.players.forEach(conn => {
       let obj = { usersObject: this.state.users };
       conn.send(obj);
@@ -305,6 +293,7 @@ class Host extends Component {
 
 
     this.readyLeaderBoard();
+
     console.log("sendUserObject");
   }
 
@@ -317,7 +306,9 @@ class Host extends Component {
   }
 
   readyLeaderBoard = () => {
-    if (this.state.readyLeaderBoard === false) {
+    if (this.state.questions.length === this.state.currentQ + 1) {
+      this.setState({ readyResults: true })
+    } else {
       this.setState({ readyLeaderBoard: true });
     }
   }
@@ -334,15 +325,15 @@ class Host extends Component {
     this.state.players.forEach(conn => {
       conn.send("Game Over");
     });
+
     this.pushLocation("/host/results");
     this.unreadyLeaderBoard();
   }
 
   unreadyLeaderBoard = () => {
-    this.setState({ readyLeaderBoard: false });
+    this.setState({ readyLeaderBoard: false, readyResults: false });
     console.log("unreadyLeaderBoard");
   }
-
 
   /**
    * @function copyToClipboard
