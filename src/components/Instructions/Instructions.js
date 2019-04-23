@@ -9,9 +9,9 @@ export default function Instructions({ getStarted, users }) {
   return (
 
     <div className="instructions" id="instructions">
-      <h1 className="instructions-header">A quick "How-To" while we get your game ready</h1>
+      <h1 className="instructions-header text-center">A quick "How-To" while we get your game ready</h1>
       <div className="steps-wrapper">
-        <h2 className="steps-title">3 simple steps to play</h2>
+        <h2 className="steps-title text-center">3 simple steps to play</h2>
         <ol className="steps-list">
           <li className="step1">
             <p className="step1-instructions">Read the question and choose the RIGHT answer - [Hint: fastest gets MORE POINTS!]</p>
@@ -23,22 +23,24 @@ export default function Instructions({ getStarted, users }) {
             <p className="step3-instructions">Check your place on the Leaderboard</p>
           </li>
         </ol>
-        <div className="join-board">
-          <div className="players-that-joined">
-            <ul className="player-list pm0">
-              {(userNames.length > 0) ?
-                userNames.map( (name, index) => (
-                  <li key={index}>{name}</li>
-                ))
-                :
-                <li>No one but you here so far...</li>
-              }
-            </ul>
-          </div>
+      </div>
+      <div className="join-board">
+        <div className="players-that-joined">
+          <h2 className="steps-title text-center">Players</h2>
+          <ol className="player-list pm0 lb__ol">
+            {(userNames.length > 0) ?
+              userNames.map( (name, index) => (
+                <li className="lb__li" key={index}>{name}</li>
+              ))
+              :
+              <li>No one but you here so far...</li>
+            }
+          </ol>
         </div>
       </div>
-      {getStarted}
-
+      <div className="instruction-btn">
+        {getStarted}
+      </div>
     </div>
   )
 }
