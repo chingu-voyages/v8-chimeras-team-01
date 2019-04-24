@@ -45,6 +45,7 @@ class Player extends Component {
     isConnected: false,
     input: '',
     conn: '',
+    whichGame: ''
   }
 
   initialize = () => {
@@ -210,6 +211,8 @@ class Player extends Component {
 
     if (data.usersObject) {
       this.updateUsersObject(data);
+    } else if (data.whichGame) {
+      this.setState({ whichGame : data.whichGame });
     }
   }
 
