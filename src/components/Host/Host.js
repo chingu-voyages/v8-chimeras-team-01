@@ -31,9 +31,10 @@ class Host extends Component {
   * @property { String } chosenAnswer - String holding chosen answer.
   *
   */
+
   state = {
     peer: new Peer(null, {
-        debug: 2
+      debug: 2
     }),
     conn: null,
     players: [],
@@ -44,56 +45,74 @@ class Host extends Component {
     questions: [],
     currentQ: 0,
     chosenAnswer: '',
-    readyLeaderBoard: false
+    readyLeaderBoard: false,
+    readyResults: false
   }
 
+
+
+
   // Connection functions
+  componentDidMount() {
+    this.initialize();
+  }
+
+  componentDidUpdate() {
+
+    if (this.state.readyToSend === true) {
+      this.sendUserObject();
+      this.setState({ readyToSend: false });
+    }
+
+  }
+
   initialize = () => {
 
-      this.state.peer.on('open', (id) => {
-          console.log("ID: " + this.state.peer.id);
-          this.setState({ id })
+    this.state.peer.on('open', (id) => {
+      console.log("ID: " + this.state.peer.id);
+      this.setState({ id })
 
-      });
+    });
 
-      this.state.peer.on('connection', (c) => {
-          console.log(c)
-          this.setState({ conn: c });
-          let players = [...this.state.players];
-          players.push(this.state.conn);
-          this.setState({ players });
-          console.log("Connected to: " + this.state.conn.peer);
-          this.ready()
-          console.log(this.state.players);
-      });
+    this.state.peer.on('connection', (c) => {
+      console.log(c)
+      this.setState({ conn: c });
+      let players = [...this.state.players];
+      players.push(this.state.conn);
+      this.setState({ players });
+      console.log("Connected to: " + this.state.conn.peer);
+      this.ready()
+      console.log(this.state.players);
+    });
 
-      this.state.peer.on('disconnected', () => {
-          //handle connection message
-          console.log("Connection lost. Please reconnect");
-          this.state.peer.reconnect();
-      });
+    this.state.peer.on('disconnected', () => {
+      //handle connection message
+      console.log("Connection lost. Please reconnect");
+      this.state.peer.reconnect();
+    });
 
-      this.state.peer.on('close', () => {
-          this.setState({ conn: null });
-          console.log('Connection destroyed');
-      });
+    this.state.peer.on('close', () => {
+      this.setState({ conn: null });
+      console.log('Connection destroyed');
+    });
 
-      this.state.peer.on('error', (err) => {
-          console.log(err);
-      })
+    this.state.peer.on('error', (err) => {
+      console.log(err);
+    })
   }
 
   ready = () => {
-      this.state.conn.on('data', (data) => {
-          this.handleReceivedData(data);
-          console.log("Data received: ", data);
-      })
+    this.state.conn.on('data', (data) => {
+      this.handleReceivedData(data);
+      console.log("Data received: ", data);
+    })
 
-      this.state.conn.on('close', () => {
-          console.log("connection reset, awaiting connection...");
-          this.setState({ conn: null });
-      })
+    this.state.conn.on('close', () => {
+      console.log("connection reset, awaiting connection...");
+      this.setState({ conn: null });
+    })
   }
+
 
   handleReceivedData = (data) => {
     switch (data) {
@@ -107,16 +126,31 @@ class Host extends Component {
   catchOthers = (data) => {
     if (data.individualResults) {
       this.updateResults(data);
-    }else if(data.initialMe) {
+    } else if (data.initialMe) {
       this.initiateUsers(data);
     }
   }
-
-  componentDidMount() {
-
-      this.initialize();
-  }
   //End connection functions
+
+
+  // Initialize  Host And Players
+  initiateHostUsers = () => {
+    let username = this.state.me.userName;
+    let scoreObj = { [username]: this.state.me.myScore };
+    this.setState({ users: scoreObj });
+  }
+
+  initiateUsers = (data) => {
+    this.updatePlayersScores(data.initialMe.userName, data.initialMe.myScore);
+    this.state.players.forEach(conn => {
+      let obj = { usersObject: this.state.users };
+      conn.send(obj);
+      console.log("sent users object", obj);
+    });
+  }
+  // End Initialize Host And Players funtions
+
+
 
   /* PUSH URL */
   /**
@@ -144,9 +178,9 @@ class Host extends Component {
    * @description [Takes in questions and answers from game selected in Games component and places them in the questions array in state.]
    */
   setGame = (game) => {
+    // To Do Clear all players and host scores
     this.setState({ questions: game.questions });
   }
-
 
   /**
    * @method sendAnswer - Function used to send computed answer to the Host.
@@ -154,29 +188,26 @@ class Host extends Component {
    * @memberof Questions
    */
   sendAnswer = (correct, answer) => {
-     // if there are no players connected, single player mode
-     if(this.state.players.length === 0){
-       //show leaderboard push button
-       this.readyLeaderBoard();
-       //update own score in users object
-       this.initiateHostUsers();
-     }
-     console.log("sendAnswer");
-  }
+    // if there are no players connected, single player mode
+    //show leaderboard push button
+    // if last questions run
+    if (this.state.players.length === 0) {
 
-  initiateHostUsers = () => {
-    let username = this.state.me.userName;
-    let scoreObj = {[username]: this.state.me.myScore };
-    this.setState({ users : scoreObj });
-  }
+      if (this.state.questions.length === this.state.currentQ + 1) {
+        this.setState({ readyResults: true })
+      } else {
+        this.setState({ readyLeaderBoard: true });
+      }
 
-  initiateUsers = (data) => {
-    this.updatePlayersScores(data.initialMe.userName, data.initialMe.myScore);
-    this.state.players.forEach(conn => {
-      let obj = {usersObject: this.state.users};
-      conn.send(obj);
-      console.log("sent users object", obj);
-    });
+      console.log("readyLeaderBoard");
+
+      //update own score in users object
+      this.initiateHostUsers();
+
+    }
+
+    console.log("sendAnswer");
+
   }
 
   updateResults = (data) => {
@@ -184,54 +215,41 @@ class Host extends Component {
     this.updatePlayersScores(data.individualResults.userName, data.individualResults.myScore);
 
     //check if all results are received on initial join
-      if (Object.keys(this.state.users).length === this.state.players.length) {
-        //trigger host update users with own score
-        //by setting playersUpdated to true
-        this.setState({ playersUpdated : true });
-        this.updateHost();
-        console.log("players updated");
-      }
+    if (Object.keys(this.state.users).length === this.state.players.length) {
+      //trigger host update users with own score
+      //by setting playersUpdated to true
+      // this.setState({ playersUpdated: true });
+      this.updateHost();
+      console.log("players updated");
+    }
+  }
+
+  updateHost = () => {
+
+    this.setState({
+      users: {
+        ...this.state.users,
+        [this.state.me.userName]: this.state.me.myScore,
+      },
+    });
+    this.setState({ playersUpdated: false });
+
+    this.setState({ readyToSend: true });
   }
 
   updatePlayersScores = (user, score) => {
-    let scoreUpdate = {[user]: score};
     this.setState({
       users: {
         ...this.state.users,
         [user]: score,
       },
-    });
-    this.setState({
-      users: Object.assign({}, this.state.users, {
-        [user]: score,
-      }),
     });
     console.log(this.state.users);
   }
 
-  resetPlayersUpdated = () => {
-    this.setState({ playersUpdated : false });
-  }
-
-
-  updateHost = () => {
-    this.setState({
-      users: {
-        ...this.state.users,
-        [this.state.me.userName]: this.state.me.myScore,
-      },
-    });
-    this.setState({
-      users: Object.assign({}, this.state.users, {
-        [this.state.me.userName]: this.state.me.myScore,
-      }),
-    });
-    this.resetPlayersUpdated();
-    this.setState({ readyToSend : true });
-  }
 
   clearUsers = () => {
-    this.setState({ users : {} })
+    this.setState({ users: {} })
   }
 
   handleLeaderBoardTransition = () => {
@@ -264,54 +282,58 @@ class Host extends Component {
     this.setState({ me: obj })
   }
 
-
-  componentDidUpdate() {
-    if(this.state.readyToSend === true) {
-      this.sendUserObject();
-      this.setState({ readyToSend : false });
-    }
-
-  }
-
   sendUserObject = () => {
+
     this.state.players.forEach(conn => {
-      let obj = {usersObject: this.state.users};
+      let obj = { usersObject: this.state.users };
       conn.send(obj);
-      this.setState({ readyToSend : false });
+      this.setState({ readyToSend: false });
       console.log("sent users object", obj);
     });
+
+
     this.readyLeaderBoard();
+
     console.log("sendUserObject");
   }
 
+  goNextQuestion = () => {
+    this.state.players.forEach(conn => {
+      conn.send("go Next Question");
+    });
+    this.pushLocation("/host/questions");
+    this.clearUsers();
+  }
+
   readyLeaderBoard = () => {
-    if (this.state.readyLeaderBoard === false){
-      this.setState({ readyLeaderBoard : true });
+    if (this.state.questions.length === this.state.currentQ + 1) {
+      this.setState({ readyResults: true })
+    } else {
+      this.setState({ readyLeaderBoard: true });
     }
-    console.log("readyLeaderBoard");
+  }
+
+  goLeaderboard = () => {
+    this.state.players.forEach(conn => {
+      conn.send("go Leaderboard");
+    });
+    this.pushLocation("/host/leaderboard");
+    this.unreadyLeaderBoard();
+  }
+
+  goResults = () => {
+    this.state.players.forEach(conn => {
+      conn.send("Game Over");
+    });
+
+    this.pushLocation("/host/results");
+    this.unreadyLeaderBoard();
   }
 
   unreadyLeaderBoard = () => {
-    this.setState({ readyLeaderBoard : false });
+    this.setState({ readyLeaderBoard: false, readyResults: false });
     console.log("unreadyLeaderBoard");
   }
-
-  goNextQuestion = () => {
-      this.state.players.forEach(conn => {
-        conn.send("go Next Question");
-      });
-      this.pushLocation("/host/questions");
-      this.clearUsers();
-    }
-
-    goLeaderboard = () => {
-      this.state.players.forEach(conn => {
-        conn.send("go Leaderboard");
-      });
-      this.pushLocation("/host/leaderboard");
-      this.unreadyLeaderBoard();
-    }
-
 
   /**
    * @function copyToClipboard
@@ -338,23 +360,23 @@ class Host extends Component {
               </span></h3> :
               <div id="host-userName-form" className="fbc">
                 <form className="fbc"
-                      onSubmit={this.handleUsername}>
+                  onSubmit={this.handleUsername}>
                   <input type="text"
-                         className="huf-input"
-                         name="userName"
-                         placeholder='What should we call you?'/>
+                    className="huf-input"
+                    name="userName"
+                    placeholder='What should we call you?' />
                   <button type='submit'
-                          className="huf-button pointy">Submit</button>
+                    className="huf-button pointy">Submit</button>
                 </form>
               </div>
           }
 
           <h3>Game ID:
             <span className="orange pointy"
-                  id="game-id"
-                  onClick={() => {this.copyToClipboard("game-id")}}> {this.state.id}
-          </span></h3>
-        <h3 className="hh-subtext pm0">click to copy, share so friends can join</h3>
+              id="game-id"
+              onClick={() => { this.copyToClipboard("game-id") }}> {this.state.id}
+            </span></h3>
+          <h3 className="hh-subtext pm0">click to copy, share so friends can join</h3>
         </section>
 
         <br />
@@ -371,8 +393,8 @@ class Host extends Component {
 
           <Route path="/host/instructions"
             render={() => <Instructions
-                getStarted={<GetStarted handleGetStarted = {this.handleGetStarted}/>}
-                users={this.state.users} />}
+              getStarted={<GetStarted handleGetStarted={this.handleGetStarted} />}
+              users={this.state.users} />}
           />
 
           <Route path="/host/questions"
@@ -399,8 +421,8 @@ class Host extends Component {
                 hostReady={true}
                 handleIncrementQ={this.incrementQ}
                 nextQuestion={<NextQuestion
-                    goNextQuestion = {this.goNextQuestion}
-                   />}
+                  goNextQuestion={this.goNextQuestion}
+                />}
 
               />
             } />
@@ -412,7 +434,8 @@ class Host extends Component {
             } />
 
         </Switch>
-        {(this.state.readyLeaderBoard === true) && <button onClick={this.goLeaderboard}>go leaderboard</button>}
+        {(!!this.state.readyLeaderBoard) && <button onClick={this.goLeaderboard}>go leaderboard</button>}
+        {(!!this.state.readyResults) && <button onClick={this.goResults}>go results</button>}
 
       </div >
 
