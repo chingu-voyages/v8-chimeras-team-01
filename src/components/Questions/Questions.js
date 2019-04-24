@@ -3,7 +3,7 @@ import Answer from './Answer';
 import './index.css';
 import Loader from '../Loader';
 
-export default function Questions({ updateMyScore, myScore, sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation }) {
+export default function Questions({ updateMyScore, myScore, sendAnswer, question, onQ, totalQ, handleIncrementQ, pushLocation, playersUpdated, updateHost, readyLeaderBoard, goLeaderboard }) {
 
 
   /**
@@ -22,6 +22,7 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
   const [localScore, setLocalScore] = useState(myScore);
   const [correct, setCorrect] = useState('wrong');
   const [answer, setAnswer] = useState('');
+
 
   const handleChoice = (event, correct, answer) => {
     preventClicks(event);
@@ -52,6 +53,14 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
    */
   const isLastQ = (onQ === totalQ) ? true : false;
 
+  /**
+   * @function highlightCorrect [Highlights Answer marked as correct]
+   */
+  const highlightCorrect = () => {
+    let correct = document.querySelector('.correct');
+    correct.classList.add('highlight');
+  }
+
 
   /**
    * @function timer [Decrements the time in state and pushes to Leaderboard URL except last question, then pushes to Results URL]
@@ -60,28 +69,33 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
     if (time === 0) {
       let newTime = (time - 1);
       setTime(newTime);
+
+      // Highlighting the correct answer
+      highlightCorrect();
+
       // send answers to host regardless
       sendAnswer(correct, answer, localScore)
+
       if (!isLastQ) {
         // pushLocation("/host/leaderboard");
-        setTimeout(() => {
-
-          //pushLocation("/host/leaderboard");
-        }, 5000)
       } else {
         // pushLocation("/host/results");
-        setTimeout(() => {
-
-          pushLocation("/host/results");
-        }, 5000)
       }
 
     } else {
       let newTime = (time - 1);
       setTime(newTime);
     }
+
   }
 
+  useEffect(() => {checkHost()})
+
+  const checkHost = () => {
+    if (playersUpdated === true) {
+      updateHost();
+    }
+  }
   /* Once user clicks answer, prevent more answers from being chosen */
   /**
    * @function preventClicks [finds all Answers and prevents further clicks]
@@ -96,8 +110,6 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
   return (
 
     <div id="questions">
-      {console.log(onQ)}
-
       <h1>Question {onQ} of {totalQ} </h1>
 
       <div className='image-wrapper'>

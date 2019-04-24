@@ -24,9 +24,6 @@ export default function Games({ showGames, handleSetGame, pushLocation, setGameT
     },
   ]);
 
-  
-
-  
   useEffect( () => {
     async function fetchQuestions() {
     const response = await fetch('/api/questions');

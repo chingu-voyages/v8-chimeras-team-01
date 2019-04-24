@@ -65,7 +65,7 @@ a:active {
 #top-level-container {
   display: grid;
   grid-template-columns: [c1] 100% [c2];
-  grid-template-rows: [r1] 100px [r2] 1fr [r3] 200px [r4];
+  grid-template-rows: [r1] 100px [r2] 1fr [r3] 50px [r4];
   width: 100%;
   height: auto;
   margin: 0;
@@ -76,9 +76,14 @@ a:active {
 footer {
   grid-column: c1 / c2;
   grid-row: r3 / r4;
+  justify-content: flex-start;
   width: 100%;
   margin-top: 1em;
   background-color: var(--color-gray);
   color: var(--color-orange);
   border-top: 3px solid #000;
+}
+
+.footer-list {
+  list-style: none;
 }

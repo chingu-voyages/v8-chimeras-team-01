@@ -1,7 +1,10 @@
 import React from 'react';
 import './index.css';
 
-export default function Instructions(props) {
+export default function Instructions({ getStarted, users }) {
+
+  const userNames = Object.keys(users);
+
 
   return (
 
@@ -21,10 +24,20 @@ export default function Instructions(props) {
           </li>
         </ol>
         <div className="join-board">
-          <p className="players-that-joined">This is where player names will show as they join ... maybe</p>
+          <div className="players-that-joined">
+            <ul className="player-list pm0">
+              {(userNames.length > 0) ?
+                userNames.map( (name, index) => (
+                  <li key={index}>{name}</li>
+                ))
+                :
+                <li>No one but you here so far...</li>
+              }
+            </ul>
+          </div>
         </div>
       </div>
-      {props.getStarted}
+      {getStarted}
 
     </div>
   )

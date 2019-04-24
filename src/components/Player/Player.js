@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import withPeerJs from '../HOCs/withPeerJs';
+import Peer from 'peerjs';
 
 import history from '../../History.js';
 import Questions from '../Questions';
@@ -27,51 +27,71 @@ class Player extends Component {
   * @property { Number } currentQ - Index of current question.
   * @property { Number } time - How many seconds to set timer.
   * @property { String } chosenAnswer - String holding chosen answer.
-  * @property { String } message - content of message to be sent.
   *
   */
   state = {
+    peer: new Peer(null, {
+      debug: 2
+    }),
+    id: '',
     me: {
       userName: "",
       myScore: 0
     },
-    users: {
-      Inky: 50,
-      Blinky: 5,
-      Pinky: 10,
-      Clyde: 120,
-    },
+    users: {},
     questions: [],
     currentQ: 0,
     time: 10,
-    chosenAnswer: '',
-    message: '',
     isConnected: false,
     input: '',
     conn: '',
-    currentResults: { individualResults: null }
+  }
+
+  initialize = () => {
+
+    this.state.peer.on('open', (id) => {
+      console.log("ID: " + this.state.peer.id);
+      this.setState({ id })
+
+    });
+
+    this.state.peer.on('disconnected', () => {
+      //handle connection message
+      console.log("Connection lost. Please reconnect");
+      this.state.peer.reconnect();
+    });
+
+    this.state.peer.on('close', () => {
+      this.setState({ conn: null });
+      console.log('Connection destroyed');
+    });
+
+    this.state.peer.on('error', (err) => {
+      console.log(err);
+    })
   }
 
   componentDidMount() {
+    this.initialize();
     this.loadQuestions();
   }
-  
-  loadQuestions() { 
+
+  loadQuestions() {
     return fetch('/api/questions')
       .then(res => {
         if (!res.ok) {
-            return Promise.reject(res.statusText);
+          return Promise.reject(res.statusText);
         }
         return res.json();
+      })
+      .then(data =>
+        this.setState({
+          questions: data[0].questions
         })
-        .then(data => 
-          this.setState({
-            questions: data[0].questions,
-          })
-        )
-        .catch(err =>
-          console.log(err)
-        );
+      )
+      .catch(err =>
+        console.log(err)
+      );
   }
   /* PUSH URL */
   /**
@@ -108,65 +128,25 @@ class Player extends Component {
    *
    * @memberof Questions
    */
-  sendAnswer = (correct, answer) => {
-
-    this.setState({ chosenAnswer: answer });
-    // TODO: Handle setting own state before moving on
-
-    // Display data being sent to the host
-    console.log({
-      correct,
-      answer,
-      username: this.state.username
-    })
-
+  sendAnswer = (correct, answer, localScore) => {
     //Send data to Host
-    this.sendChosenAnswer(correct, answer);
-
-    // At this point we should be waiting for a response from the host.
-    // TODO: Add function to gather info from players and send players object beck to players with updated results
-    console.log('Waiting for signal from host');
-
-    // Mimicking response from Host
-    setTimeout(() => {
-
-      // Highlighting the correct answer
-      let correct = document.querySelector('.correct');
-      correct.classList.add('highlight');
-
-    }, 3000)
-
+    this.sendChosenAnswer(correct, answer, localScore);
   }
 
   /**
    * @method sendChosenAnswer - Function used to send slected answer to the Host.
    */
 
-  sendChosenAnswer = (correct, answer) => {
+  sendChosenAnswer = (correct, answer, localScore) => {
     if (this.state.conn.open) {
-      let msg = { individualResults: { correct: correct, answer: answer, username: this.state.username } };
+      let msg = { individualResults: this.state.me };
       this.state.conn.send(msg);
       console.log("Sent: " + msg);
     }
   }
 
-  handleInputChange = ({ target }) => {
-
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
-  handleMessage = () => {
-
-    this.state.conn.send(this.state.message)
-
-  }
   handleConnection = (id) => {
-    let conn = this.props.data.peer.connect(id, {
+    let conn = this.state.peer.connect(id, {
       reliable: true
     });
 
@@ -181,6 +161,8 @@ class Player extends Component {
 
     this.state.conn.on('open', () => {
       console.log("Connected to: " + this.state.conn.peer);
+      let firstMe = { initialMe: this.state.me };
+      this.state.conn.send(firstMe);
     });
 
     this.state.conn.on('data', (data) => {
@@ -197,19 +179,16 @@ class Player extends Component {
   handleReceivedData = (data) => {
     switch (data) {
       case "start":
-        this.start();
-        console.log("this should be the startGame function");
+        this.pushLocation("/player/questions");
         break;
       case "go Leaderboard":
-        this.goLeaderboard();
-        console.log("do something to transition to Leaderboard");
+        this.pushLocation("/player/leaderboard");
         break;
       case "go Next Question":
-        this.goNextQuestion();
-        console.log("transition next question");
+        this.pushLocation("/player/questions");
         break;
       case "Game Over":
-        console.log("send to results screen");
+        this.pushLocation("/player/results");
         break;
       case "Rematch":
         console.log("handle rematch here");
@@ -229,54 +208,50 @@ class Player extends Component {
 
   catchOthers = (data) => {
 
-    if (data.playerResults) {
-      this.updateResults(data);
+    if (data.usersObject) {
+      this.updateUsersObject(data);
     }
-    console.log(this.state.currentResults);
   }
 
-  updateResults = (data) => {
-    this.setState({ currentResults: data.playerResults });
+  updateUsersObject = (data) => {
+    this.setState({ users: data.usersObject })
   }
 
-  updateUsername = (userName) => {
-    let obj = { me: { userName, myScore: 0 } }
-    this.setState({ me: obj })
+  updateUsername = (myName) => {
+    let obj = { userName: myName, myScore: 0 };
+    this.setState({ me: obj });
   }
 
   updateMyScore = (score) => {
-    var obj = { myScore: score, userName: this.state.me.userName }
-    this.setState({ me: obj })
-  }
-
-  start = () => {
-    this.pushLocation("/player/questions");
-    console.log("push to questions");
-  }
-
-  goLeaderboard = () => {
-    this.pushLocation("/player/leaderboard");
-    console.log("push to leaderboard");
-  }
-
-  goNextQuestion = () => {
-    this.pushLocation("/player/questions");
-    console.log("push to next question");
+    var obj = { myScore: score, userName: this.state.me.userName };
+    this.setState({ me: obj });
   }
 
   render() {
 
     return (
       <div>
-        <button
-          onClick={()=>this.sendChosenAnswer()}
-        >send me</button>
+        <section className="player-header">
+          {
+            this.state.me.userName ?
+              <h3> User Name: <span className="orange">
+                {this.state.me.userName}
+              </span></h3> :
+              <h3><span className="orange">Enter a User Name</span></h3>
+
+
+          }
+        </section>
+
+
         < br />
         <Switch>
 
           <Route path="/player/join" render={() => <Join pushLocation={this.pushLocation} updateUsername={this.updateUsername} handleConnection={this.handleConnection} />} />
 
-          <Route path="/player/instructions" component={Instructions} />
+          <Route path="/player/instructions"
+            render={() => <Instructions
+              users={this.state.users} />} />
 
           <Route path="/player/questions"
             render={(props) =>
@@ -288,14 +263,15 @@ class Player extends Component {
                 pushLocation={this.pushLocation}
                 sendAnswer={this.sendAnswer}
                 updateMyScore={this.updateMyScore}
-               />
+                myScore={this.state.me.myScore}
+              />
             } />
 
           <Route path="/player/leaderboard"
             render={(props) =>
               <LeaderBoard {...props}
                 users={this.state.users}
-                handleIncrementQ={this.incrementQ}/>
+                handleIncrementQ={this.incrementQ} />
             } />
 
           <Route path="/player/results"
@@ -311,4 +287,4 @@ class Player extends Component {
   }
 }
 
-export default withPeerJs(Player);
+export default Player;
