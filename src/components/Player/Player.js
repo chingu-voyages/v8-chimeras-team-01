@@ -213,6 +213,8 @@ class Player extends Component {
       this.updateUsersObject(data);
     } else if (data.whichGame) {
       this.setState({ whichGame : data.whichGame });
+      // TODO: call loadQuestions here with specfic game ID?
+      //Could pass data.whichGame directly to loadQuestions without setting state
     }
   }
 
