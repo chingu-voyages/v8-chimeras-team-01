@@ -46,7 +46,8 @@ class Host extends Component {
     currentQ: 0,
     chosenAnswer: '',
     readyLeaderBoard: false,
-    readyResults: false
+    readyResults: false,
+    whichGame: ''
   }
 
 
@@ -180,6 +181,7 @@ class Host extends Component {
   setGame = (game) => {
     // To Do Clear all players and host scores
     this.setState({ questions: game.questions });
+    this.setState({ whichGame: game.id});
   }
 
   /**
