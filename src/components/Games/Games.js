@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 
-export default function Games({ showGames, handleSetGame, pushLocation }) {
+export default function Games({ showGames, handleSetGame, pushLocation, setGameTwo }) {
 
   /**
    * @method [useState(gameList)]
@@ -9,48 +9,52 @@ export default function Games({ showGames, handleSetGame, pushLocation }) {
    */
   const [gameList, setgameList] = useState([
     {
-      id: "",
-      name: "",
-      image: <i className="fas fa-stroopwafel fa-6x"></i>,
-      desc: "",
-      questions: []
-    }
+      id: "1",
+      description: "",
+      image: "",
+      category: "",
+      questions: [],
+    },
+    {
+      id: "2",
+      description: "",
+      image: "",
+      category: "",
+      questions: [],
+    },
   ]);
 
-  useEffect(() => {
+  useEffect( () => {
     async function fetchQuestions() {
-      const response = await fetch('/api/questions');
-      const data = await response.json();
-      let questions = data[0];
+    const response = await fetch('/api/questions');
+    const data = await response.json();
+    console.log( data[1]);
 
-      return setgameList({
-        id: questions.id,
-        name: questions.category,
-        image: <i className="fas fa-stroopwafel fa-6x"></i>,
-        desc: "What you know 'bout Waffles??",
-        questions: questions.questions
-      })
-    }
-    fetchQuestions();
+    return setgameList(data);
+  }
+    fetchQuestions(); 
   }, []);
+  
   const handleSelectGame = (game) => {
     handleSetGame(game);
-    pushLocation("/host/instructions")
+    pushLocation("/host/instructions");
   }
 
   return (
     <section className={!!showGames ? 'games show-games' : "games"} >
       <h1>Choose your challenge</h1>
       <div className="games-container">
-        <article className="game-tile pointy"
-          key={gameList.id}
-          onClick={() => { handleSelectGame(gameList) }} >
-          <div className="gt-image fbc pm0">{gameList.image}</div>
-          <div className="gt-description pm0">
-            <h4>{gameList.name}</h4>
-            <p>{gameList.desc}</p>
-          </div>
-        </article>
+      {gameList.map(game => (
+          <article className="game-tile pointy"
+                   key={game.id}
+                   onClick={() => {handleSelectGame(game)}} >
+            <div className="gt-image fbc pm0"><img className="game-image"src={game.image} alt=""></img></div>
+            <div className="gt-description pm0">
+              <h4>{game.category}</h4>
+              <p>{game.description}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   )
