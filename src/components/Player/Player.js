@@ -270,6 +270,7 @@ class Player extends Component {
                 sendAnswer={this.sendAnswer}
                 updateMyScore={this.updateMyScore}
                 myScore={this.state.me.myScore}
+                updateHost={() => {}}
               />
             } />
 
