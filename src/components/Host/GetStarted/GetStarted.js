@@ -8,7 +8,7 @@ export default function GetStarted({ handleGetStarted }) {
             <button
               className="start-game-btn"
               onClick={()=>handleGetStarted()}>
-                <p class="start-game_txt">Let's Get Started !!</p>
+                <p className="start-game_txt">Let's Get Started !!</p>
             </button>
         </Link>
     )
