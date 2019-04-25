@@ -110,6 +110,8 @@ class Host extends Component {
 
     this.state.conn.on('close', () => {
       console.log("connection reset, awaiting connection...");
+      let playerArray = this.state.players.filter( obj => obj.open);
+      this.setState({ players : playerArray });
       this.setState({ conn: null });
     })
   }

@@ -76,11 +76,11 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
       // send answers to host regardless
       sendAnswer(correct, answer, localScore)
 
-      if (!isLastQ) {
-        // pushLocation("/host/leaderboard");
-      } else {
-        // pushLocation("/host/results");
-      }
+    } else if (time === -15) {
+      updateHost();
+
+      let newTime = (time - 1);
+      setTime(newTime);
 
     } else {
       let newTime = (time - 1);
@@ -89,13 +89,6 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
 
   }
 
-  useEffect(() => {checkHost()})
-
-  const checkHost = () => {
-    if (playersUpdated === true) {
-      updateHost();
-    }
-  }
   /* Once user clicks answer, prevent more answers from being chosen */
   /**
    * @function preventClicks [finds all Answers and prevents further clicks]

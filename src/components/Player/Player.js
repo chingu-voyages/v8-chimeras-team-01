@@ -57,7 +57,6 @@ class Player extends Component {
     this.state.peer.on('open', (id) => {
       console.log("ID: " + this.state.peer.id);
       this.setState({ id })
-
     });
 
     this.state.peer.on('disconnected', () => {
@@ -75,6 +74,8 @@ class Player extends Component {
       console.log(err);
     })
   }
+
+
 
   loadQuestions(whichGame) {
     return fetch(`/api/questions/${whichGame}`)
@@ -172,6 +173,7 @@ class Player extends Component {
     });
 
     this.state.conn.on('close', () => {
+      this.state.peer.destroy();
       console.log("Connection closed");
     });
 
@@ -268,6 +270,7 @@ class Player extends Component {
                 sendAnswer={this.sendAnswer}
                 updateMyScore={this.updateMyScore}
                 myScore={this.state.me.myScore}
+                updateHost={() => {}}
               />
             } />
 
