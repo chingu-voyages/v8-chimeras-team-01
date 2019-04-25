@@ -19,7 +19,6 @@ export default function BrowseGames({ showGames, handleToggleGames }) {
     async function fetchQuestions() {
     const response = await fetch('/api/questions');
     const data = await response.json();
-    console.log(data[0].category);
     return setgameList({
       id: data[0].id,
       name: data[0].category,
@@ -27,7 +26,7 @@ export default function BrowseGames({ showGames, handleToggleGames }) {
       desc: "What you know 'bout Waffles??"
     })
   }
-    fetchQuestions(); 
+    fetchQuestions();
   }, []);
 
   return (

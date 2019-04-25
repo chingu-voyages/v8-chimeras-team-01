@@ -55,19 +55,15 @@ class Player extends Component {
   initialize = () => {
 
     this.state.peer.on('open', (id) => {
-      console.log("ID: " + this.state.peer.id);
       this.setState({ id })
     });
 
     this.state.peer.on('disconnected', () => {
-      //handle connection message
-      console.log("Connection lost. Please reconnect");
       this.state.peer.reconnect();
     });
 
     this.state.peer.on('close', () => {
       this.setState({ conn: null });
-      console.log('Connection destroyed');
     });
 
     this.state.peer.on('error', (err) => {
@@ -143,7 +139,6 @@ class Player extends Component {
     if (this.state.conn.open) {
       let msg = { individualResults: this.state.me };
       this.state.conn.send(msg);
-      console.log("Sent: " + msg);
     }
   }
 
@@ -162,19 +157,16 @@ class Player extends Component {
   finishConnections = () => {
 
     this.state.conn.on('open', () => {
-      console.log("Connected to: " + this.state.conn.peer);
       let firstMe = { initialMe: this.state.me };
       this.state.conn.send(firstMe);
     });
 
     this.state.conn.on('data', (data) => {
-      console.log(data);
       this.handleReceivedData(data);
     });
 
     this.state.conn.on('close', () => {
       this.state.peer.destroy();
-      console.log("Connection closed");
     });
 
   }
@@ -193,12 +185,9 @@ class Player extends Component {
       case "Game Over":
         this.pushLocation("/player/results");
         break;
-      case "Rematch":
-        console.log("handle rematch here");
-        break;
+  
       default:
         this.catchOthers(data);
-        console.log(data);
         break;
     };
   }

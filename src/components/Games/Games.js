@@ -28,8 +28,6 @@ export default function Games({ showGames, handleSetGame, pushLocation, setGameT
     async function fetchQuestions() {
     const response = await fetch('/api/questions');
     const data = await response.json();
-    console.log( data[1]);
-
     return setgameList(data);
   }
     fetchQuestions();

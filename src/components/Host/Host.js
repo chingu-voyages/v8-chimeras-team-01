@@ -70,31 +70,24 @@ class Host extends Component {
   initialize = () => {
 
     this.state.peer.on('open', (id) => {
-      console.log("ID: " + this.state.peer.id);
       this.setState({ id })
 
     });
 
     this.state.peer.on('connection', (c) => {
-      console.log(c)
       this.setState({ conn: c });
       let players = [...this.state.players];
       players.push(this.state.conn);
       this.setState({ players });
-      console.log("Connected to: " + this.state.conn.peer);
       this.ready()
-      console.log(this.state.players);
     });
 
     this.state.peer.on('disconnected', () => {
-      //handle connection message
-      console.log("Connection lost. Please reconnect");
       this.state.peer.reconnect();
     });
 
     this.state.peer.on('close', () => {
       this.setState({ conn: null });
-      console.log('Connection destroyed');
     });
 
     this.state.peer.on('error', (err) => {
@@ -105,11 +98,9 @@ class Host extends Component {
   ready = () => {
     this.state.conn.on('data', (data) => {
       this.handleReceivedData(data);
-      console.log("Data received: ", data);
     })
 
     this.state.conn.on('close', () => {
-      console.log("connection reset, awaiting connection...");
       let playerArray = this.state.players.filter( obj => obj.open);
       this.setState({ players : playerArray });
       this.setState({ conn: null });
@@ -148,12 +139,10 @@ class Host extends Component {
     this.state.players.forEach(conn => {
       let obj = { usersObject: this.state.users };
       conn.send(obj);
-      console.log("sent users object", obj);
     });
     this.state.players.forEach(conn => {
       let whichGame = { whichGame: this.state.whichGame };
       conn.send(whichGame);
-      console.log("sent whichGame object", whichGame);
     });
   }
   // End Initialize Host And Players functions
@@ -207,16 +196,9 @@ class Host extends Component {
       } else {
         this.setState({ readyLeaderBoard: true });
       }
-
-      console.log("readyLeaderBoard");
-
       //update own score in users object
       this.initiateHostUsers();
-
     }
-
-    console.log("sendAnswer");
-
   }
 
   updateResults = (data) => {
@@ -227,9 +209,7 @@ class Host extends Component {
     if (Object.keys(this.state.users).length === this.state.players.length) {
       //trigger host update users with own score
       //by setting playersUpdated to true
-      // this.setState({ playersUpdated: true });
       this.updateHost();
-      console.log("players updated");
     }
   }
 
@@ -253,7 +233,6 @@ class Host extends Component {
         [user]: score,
       },
     });
-    console.log(this.state.users);
   }
 
 
@@ -262,15 +241,12 @@ class Host extends Component {
   }
 
   handleLeaderBoardTransition = () => {
-
     this.state.players.forEach(conn => {
       conn.send("go Leaderboard");
     });
-
   }
 
   handleGetStarted = () => {
-
     this.state.players.forEach(conn => {
       conn.send("start");
     });
@@ -283,7 +259,6 @@ class Host extends Component {
     let myName = e.target.userName.value;
     let obj = { myScore: 0, userName: myName }
     this.setState({ me: obj }, () => this.initiateHostUsers());
-
   }
 
   updateMyScore = (score) => {
@@ -292,18 +267,12 @@ class Host extends Component {
   }
 
   sendUserObject = () => {
-
     this.state.players.forEach(conn => {
       let obj = { usersObject: this.state.users };
       conn.send(obj);
       this.setState({ readyToSend: false });
-      console.log("sent users object", obj);
     });
-
-
     this.readyLeaderBoard();
-
-    console.log("sendUserObject");
   }
 
   goNextQuestion = () => {
@@ -334,14 +303,12 @@ class Host extends Component {
     this.state.players.forEach(conn => {
       conn.send("Game Over");
     });
-
     this.pushLocation("/host/results");
     this.unreadyLeaderBoard();
   }
 
   unreadyLeaderBoard = () => {
     this.setState({ readyLeaderBoard: false, readyResults: false });
-    console.log("unreadyLeaderBoard");
   }
 
   /**
@@ -443,8 +410,8 @@ class Host extends Component {
             } />
 
         </Switch>
-        {(!!this.state.readyLeaderBoard) && <button class="host-next__btn" onClick={this.goLeaderboard}>go leaderboard</button>}
-        {(!!this.state.readyResults) && <button class="host-next__btn" onClick={this.goResults}>go results</button>}
+        {(!!this.state.readyLeaderBoard) && <button className="host-next__btn" onClick={this.goLeaderboard}>go leaderboard</button>}
+        {(!!this.state.readyResults) && <button className="host-next__btn" onClick={this.goResults}>go results</button>}
 
       </div >
 
