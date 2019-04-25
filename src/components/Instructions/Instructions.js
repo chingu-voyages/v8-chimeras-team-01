@@ -27,10 +27,13 @@ export default function Instructions({ getStarted, users }) {
       <div className="join-board">
         <div className="players-that-joined">
           <h2 className="steps-title text-center">Players</h2>
-          <ol className="player-list pm0 lb__ol">
+          <ol className="player-list pm0 step__ol">
             {(userNames.length > 0) ?
               userNames.map( (name, index) => (
-                <li className="lb__li" key={index}>{name}</li>
+                <li className="step__li" key={index}>
+                  <mark>{name}</mark>
+                  <small>0</small>
+                </li>
               ))
               :
               <li>No one but you here so far...</li>
