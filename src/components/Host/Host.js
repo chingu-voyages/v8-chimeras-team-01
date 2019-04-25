@@ -443,8 +443,8 @@ class Host extends Component {
             } />
 
         </Switch>
-        {(!!this.state.readyLeaderBoard) && <button onClick={this.goLeaderboard}>go leaderboard</button>}
-        {(!!this.state.readyResults) && <button onClick={this.goResults}>go results</button>}
+        {(!!this.state.readyLeaderBoard) && <button class="host-next__btn" onClick={this.goLeaderboard}>go leaderboard</button>}
+        {(!!this.state.readyResults) && <button class="host-next__btn" onClick={this.goResults}>go results</button>}
 
       </div >
 
