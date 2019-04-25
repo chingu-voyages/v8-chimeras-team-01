@@ -18,4 +18,16 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/:id', (req, res) => {
+    Challenges
+    .findById(req.params.id)
+    .then(post => {
+        res.json( post.serialize());
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: 'something went terribly wrong' });
+    });
+});
+
 module.exports = router;

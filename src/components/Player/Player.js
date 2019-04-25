@@ -31,7 +31,7 @@ class Player extends Component {
   */
   state = {
     peer: new Peer(null, {
-        debug: 2
+      debug: 2
     }),
     id: '',
     me: {
@@ -45,54 +45,55 @@ class Player extends Component {
     isConnected: false,
     input: '',
     conn: '',
-  }
-
-  initialize = () => {
-
-      this.state.peer.on('open', (id) => {
-          console.log("ID: " + this.state.peer.id);
-          this.setState({ id })
-
-      });
-
-      this.state.peer.on('disconnected', () => {
-          //handle connection message
-          console.log("Connection lost. Please reconnect");
-          this.state.peer.reconnect();
-      });
-
-      this.state.peer.on('close', () => {
-          this.setState({ conn: null });
-          console.log('Connection destroyed');
-      });
-
-      this.state.peer.on('error', (err) => {
-          console.log(err);
-      })
+    whichGame: ''
   }
 
   componentDidMount() {
     this.initialize();
-    this.loadQuestions();
   }
 
-  loadQuestions() {
-    return fetch('/api/questions')
+  initialize = () => {
+
+    this.state.peer.on('open', (id) => {
+      console.log("ID: " + this.state.peer.id);
+      this.setState({ id })
+
+    });
+
+    this.state.peer.on('disconnected', () => {
+      //handle connection message
+      console.log("Connection lost. Please reconnect");
+      this.state.peer.reconnect();
+    });
+
+    this.state.peer.on('close', () => {
+      this.setState({ conn: null });
+      console.log('Connection destroyed');
+    });
+
+    this.state.peer.on('error', (err) => {
+      console.log(err);
+    })
+  }
+
+  loadQuestions(whichGame) {
+    return fetch(`/api/questions/${whichGame}`)
       .then(res => {
         if (!res.ok) {
-            return Promise.reject(res.statusText);
+          return Promise.reject(res.statusText);
         }
         return res.json();
+      })
+      .then(data =>
+        this.setState({
+          questions: data.questions
         })
-        .then(data =>
-          this.setState({
-            questions: data[0].questions,
-          })
-        )
-        .catch(err =>
-          console.log(err)
-        );
+      )
+      .catch(err =>
+        console.log(err)
+      );
   }
+
   /* PUSH URL */
   /**
    * @function pushLocation
@@ -179,16 +180,16 @@ class Player extends Component {
   handleReceivedData = (data) => {
     switch (data) {
       case "start":
-        this.start();
+        this.pushLocation("/player/questions");
         break;
       case "go Leaderboard":
-        this.goLeaderboard();
+        this.pushLocation("/player/leaderboard");
         break;
       case "go Next Question":
-        this.goNextQuestion();
+        this.pushLocation("/player/questions");
         break;
       case "Game Over":
-        console.log("send to results screen");
+        this.pushLocation("/player/results");
         break;
       case "Rematch":
         console.log("handle rematch here");
@@ -210,15 +211,17 @@ class Player extends Component {
 
     if (data.usersObject) {
       this.updateUsersObject(data);
+    } else if (data.whichGame) {
+      let whichGame = data.whichGame
+      this.loadQuestions(whichGame);
     }
   }
 
   updateUsersObject = (data) => {
-    this.setState({ users : data.usersObject})
+    this.setState({ users: data.usersObject })
   }
 
   updateUsername = (myName) => {
-
     let obj = { userName: myName, myScore: 0 };
     this.setState({ me: obj });
   }
@@ -228,33 +231,21 @@ class Player extends Component {
     this.setState({ me: obj });
   }
 
-  start = () => {
-    this.pushLocation("/player/questions");
-  }
-
-  goLeaderboard = () => {
-    this.pushLocation("/player/leaderboard");
-  }
-
-  goNextQuestion = () => {
-    this.pushLocation("/player/questions");
-  }
-
   render() {
 
     return (
       <div>
         <section className="player-header">
-      {
-        this.state.me.userName ?
-          <h3> User Name: <span className="orange">
-            {this.state.me.userName}
-          </span></h3> :
-            <h3><span className="orange">Enter a User Name</span></h3>
+          {
+            this.state.me.userName ?
+              <h3> User Name: <span className="orange">
+                {this.state.me.userName}
+              </span></h3> :
+              <h3><span className="orange">Enter a User Name</span></h3>
 
 
-      }
-      </section>
+          }
+        </section>
 
 
         < br />
@@ -264,7 +255,7 @@ class Player extends Component {
 
           <Route path="/player/instructions"
             render={() => <Instructions
-                users={this.state.users} />} />
+              users={this.state.users} />} />
 
           <Route path="/player/questions"
             render={(props) =>
@@ -277,14 +268,14 @@ class Player extends Component {
                 sendAnswer={this.sendAnswer}
                 updateMyScore={this.updateMyScore}
                 myScore={this.state.me.myScore}
-               />
+              />
             } />
 
           <Route path="/player/leaderboard"
             render={(props) =>
               <LeaderBoard {...props}
                 users={this.state.users}
-                handleIncrementQ={this.incrementQ}/>
+                handleIncrementQ={this.incrementQ} />
             } />
 
           <Route path="/player/results"

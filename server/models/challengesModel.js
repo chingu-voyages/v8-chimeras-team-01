@@ -9,12 +9,16 @@ const questionsSchema = mongoose.Schema({
 
 const challengeSchema = mongoose.Schema ({
     category: String,
+    description: String,
+    image: String,
     questions: [questionsSchema],
 })
 
 challengeSchema.methods.serialize = function () {
     return {
         id: this._id,
+        description: this.description,
+        image: this.image,
         category: this.category,
         questions: this.questions,
     };

@@ -11,26 +11,32 @@ export default function Results({ users }) {
    * @description [Takes in users and returns the top 3 players by descending order]
    * @returns {Object[]} Top three players with userName and score as key.
    */
-  const topThree = function(list) {
+  const topThree = function (list) {
     const sortable = [],
       topThree = [];
 
     // Put keys and value into an array of arrays
     for (let key in list) {
+      console.log(key);
+      console.log(list);
       sortable.push([key, list[key]]);
     }
 
     // Sort array by value, highest to low
-    sortable.sort(function(a, b) {
+    sortable.sort(function (a, b) {
       return a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : 0;
     });
 
     // return just the first 3 items in the array of objects
     let i;
     for (i = 0; i < 3; i += 1) {
+
+      const userName = sortable[i] ? sortable[i][0] : 'N/A';
+      const score = sortable[i] ? sortable[i][1] : 0;
+
       topThree.push({
-        userName: sortable[i][0],
-        score: sortable[i][1]
+        userName,
+        score
       });
     }
 
@@ -64,8 +70,8 @@ export default function Results({ users }) {
         </div>
       </div>
       <button className="res__btn">
-        <Link to="/start-game" className="res__btn-anchor">
-          <p className="res__anchor_txt">Time for a REMATCH??</p>
+        <Link to="/" className="res__btn-anchor">
+          <p className="res__anchor_txt">Time for another game?</p>
         </Link>
       </button>
     </div>
