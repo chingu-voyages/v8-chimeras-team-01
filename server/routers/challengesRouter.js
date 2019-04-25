@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     Challenges
     .findById(req.params.id)
-    .then(posts => {
-        res.json(posts.map(post => post.serialize()));
+    .then(post => {
+        res.json( post.serialize());
     })
     .catch(err => {
         console.error(err);

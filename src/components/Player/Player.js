@@ -45,6 +45,11 @@ class Player extends Component {
     isConnected: false,
     input: '',
     conn: '',
+    whichGame: ''
+  }
+
+  componentDidMount() {
+    this.initialize();
   }
 
   initialize = () => {
@@ -71,13 +76,8 @@ class Player extends Component {
     })
   }
 
-  componentDidMount() {
-    this.initialize();
-    this.loadQuestions();
-  }
-
-  loadQuestions() {
-    return fetch('/api/questions')
+  loadQuestions(whichGame) {
+    return fetch(`/api/questions/${whichGame}`)
       .then(res => {
         if (!res.ok) {
           return Promise.reject(res.statusText);
@@ -86,13 +86,14 @@ class Player extends Component {
       })
       .then(data =>
         this.setState({
-          questions: data[0].questions
+          questions: data.questions
         })
       )
       .catch(err =>
         console.log(err)
       );
   }
+
   /* PUSH URL */
   /**
    * @function pushLocation
@@ -210,6 +211,9 @@ class Player extends Component {
 
     if (data.usersObject) {
       this.updateUsersObject(data);
+    } else if (data.whichGame) {
+      let whichGame = data.whichGame
+      this.loadQuestions(whichGame);
     }
   }
 

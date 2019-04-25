@@ -46,7 +46,8 @@ class Host extends Component {
     currentQ: 0,
     chosenAnswer: '',
     readyLeaderBoard: false,
-    readyResults: false
+    readyResults: false,
+    whichGame: ''
   }
 
 
@@ -147,8 +148,13 @@ class Host extends Component {
       conn.send(obj);
       console.log("sent users object", obj);
     });
+    this.state.players.forEach(conn => {
+      let whichGame = { whichGame: this.state.whichGame };
+      conn.send(whichGame);
+      console.log("sent whichGame object", whichGame);
+    });
   }
-  // End Initialize Host And Players funtions
+  // End Initialize Host And Players functions
 
 
 
@@ -180,6 +186,7 @@ class Host extends Component {
   setGame = (game) => {
     // To Do Clear all players and host scores
     this.setState({ questions: game.questions });
+    this.setState({ whichGame: game.id});
   }
 
   /**

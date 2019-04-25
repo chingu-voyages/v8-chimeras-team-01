@@ -32,9 +32,9 @@ export default function Games({ showGames, handleSetGame, pushLocation, setGameT
 
     return setgameList(data);
   }
-    fetchQuestions(); 
+    fetchQuestions();
   }, []);
-  
+
   const handleSelectGame = (game) => {
     handleSetGame(game);
     pushLocation("/host/instructions");
