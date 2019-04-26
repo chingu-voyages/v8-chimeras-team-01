@@ -19,9 +19,11 @@
 }
 
 .show-games {
+  grid-column: c1 / c2;
+  grid-row: r2 / r3;
   top: 100px;
   opacity: 1;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   max-height: 1000px;
   z-index: 3;
 }
