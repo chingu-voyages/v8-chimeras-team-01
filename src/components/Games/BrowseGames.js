@@ -6,28 +6,17 @@ export default function BrowseGames({ showGames, handleToggleGames }) {
    * @method [useState(gameList)]
    * @description [Array of games available to map over and display in tiles]
    */
-  const [gameList, setgameList] = useState([
-    {
-      id: "",
-      name: "",
-      image: <i className="fas fa-stroopwafel fa-6x"></i>,
-      desc: "What you know 'bout Waffles??",
-    }
-  ]);
+  const [gameList, setgameList] = useState([]);
 
-  useEffect(() => {
+  useEffect( () => {
     async function fetchQuestions() {
     const response = await fetch('/api/questions');
     const data = await response.json();
-    console.log(data[0].category);
-    return setgameList({
-      id: data[0].id,
-      name: data[0].category,
-      image: <i className="fas fa-stroopwafel fa-6x"></i>,
-      desc: "What you know 'bout Waffles??"
-    })
+    console.log( data[1]);
+
+    return setgameList(data);
   }
-    fetchQuestions(); 
+    fetchQuestions();
   }, []);
 
   return (
@@ -36,13 +25,16 @@ export default function BrowseGames({ showGames, handleToggleGames }) {
               onClick={() => {handleToggleGames(false)}}> X close </button>
             <h1>Browse Available Challenges.</h1>
       <div className="games-container">
-          <article className="game-tile" key={gameList.id} >
-            <div className="gt-image fbc pm0">{gameList.image}</div>
+      {gameList.map(game => (
+          <article className="game-tile"
+                   key={game.id} >
+            <div className="gt-image fbc pm0"><img className="game-image"src={game.image} alt=""></img></div>
             <div className="gt-description pm0">
-              <h4>{gameList.name}</h4>
-              <p>{gameList.desc}</p>
+              <h4>{game.category}</h4>
+              <p>{game.description}</p>
             </div>
           </article>
+        ))}
       </div>
     </section>
   )

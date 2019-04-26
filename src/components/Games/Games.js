@@ -7,22 +7,7 @@ export default function Games({ showGames, handleSetGame, pushLocation, setGameT
    * @method [useState(gameList)]
    * @description [Array of games available to map over and display in tiles]
    */
-  const [gameList, setgameList] = useState([
-    {
-      id: "1",
-      description: "",
-      image: "",
-      category: "",
-      questions: [],
-    },
-    {
-      id: "2",
-      description: "",
-      image: "",
-      category: "",
-      questions: [],
-    },
-  ]);
+  const [gameList, setgameList] = useState([]);
 
   useEffect( () => {
     async function fetchQuestions() {
