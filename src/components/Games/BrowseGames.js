@@ -26,7 +26,7 @@ export default function BrowseGames({ showGames, handleToggleGames }) {
             <h1>Browse Available Challenges.</h1>
       <div className="games-container">
       {gameList.map(game => (
-          <article className="game-tile"
+          <article className="browse-tile"
                    key={game.id} >
             <div className="gt-image fbc pm0"><img className="game-image"src={game.image} alt=""></img></div>
             <div className="gt-description pm0">
