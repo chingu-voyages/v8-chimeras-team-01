@@ -37,6 +37,10 @@
   color: var(--color-yellow);
 }
 
+.steps-list {
+  font-size: 1.2em;
+}
+
 .step__ol {
     counter-reset: leaderboard;
     padding-left: 0;

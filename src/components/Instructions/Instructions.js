@@ -18,7 +18,7 @@ export default function Instructions({ getStarted, users }) {
             <p className="ste1-instructions">[Hint: faster = MORE POINTS!]</p>
           </li>
           <li className="step">
-            <p className="step-instructions">When time's up <em>you</em> check your answer, <em>we</em> get everybody's score tallied up</p>
+            <p className="step-instructions">Timer hits 0: <br/> <em>you</em> check your answer, <br/> <em>we</em> tally the scores</p>
           </li>
           <li className="step">
             <p className="step-instructions">Check your place on the Leaderboard</p>
