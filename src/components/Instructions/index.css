@@ -18,11 +18,13 @@
   box-shadow: 0 -1px 12px var(--color-gray);
   color: #fff;
   background-color: var(--color-gray);
-  background-image: linear-gradient(
-    to top left,
-    var(--color-gray),
-    var(--color-lGray) 90%
-    );
+  background-image:
+  url(https://www.transparenttextures.com/patterns/always-grey.png),
+  linear-gradient(
+  to top left,
+  var(--color-gray),
+  var(--color-lGray) 90%
+  );
 }
 
 .instructions-header {

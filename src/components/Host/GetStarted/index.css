@@ -2,22 +2,28 @@
     width: 100%;
     border-radius: 10px;
     box-shadow: 0 -1px 12px var(--color-gray);
-    background-color: var(--color-yellow);
-    background-image: url(https://www.transparenttextures.com/patterns/always-grey.png);
-    margin-top: 20px;
-    font-size: 30px;
+    color: #fff;
+    background-color: var(--color-gray);
+    background-image:
+    url(https://www.transparenttextures.com/patterns/always-grey.png),
+    linear-gradient(
+    to top left,
+    var(--color-gray),
+    var(--color-lGray) 90%
+    );
+    margin: 2em auto;
     border: none;
     display: inline-block;
 }
 
 .instruction-btn .start-game_txt {
-    font-size: 39px;
-    font-weight: bold;
+  color: var(--color-yellow);
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .instruction-btn .start-game-btn {
-    text-decoration: none;
-    background-color: transparent;
-    border: none;
-
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
 }
