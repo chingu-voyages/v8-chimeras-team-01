@@ -3,28 +3,24 @@
 }
 
 #instructions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    width: 600px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .instructions-header,
 .steps-wrapper,
 .join-board {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 -1px 12px var(--color-gray);
-    background-color: var(--color-yellow);
-    background-image: url(https://www.transparenttextures.com/patterns/always-grey.png);
+  width: 90%;
+  margin: 1em auto;
+  border-radius: 10px;
+  box-shadow: 0 -1px 12px var(--color-gray);
+  background-color: var(--color-yellow);
+  background-image: url(https://www.transparenttextures.com/patterns/always-grey.png);
 }
 
 .instructions-header {
-    font-size: 32px;
-    font-weight: 900;
-    padding-top: 30px;
-    padding-bottom: 30px;
+  font-size: 1.2em;
 }
 
 .steps-title {
@@ -36,7 +32,7 @@
     padding-left: 0;
     list-style: none;
     width: 65%;
-    margin: 40px auto;
+    margin: 40px;
 }
 
 .step__li {
@@ -175,10 +171,4 @@
 
 .join-board {
     margin-top: 20px;
-}
-
-@media (max-width: 600px) {
-    #instructions {
-        width: 100%;
-    }
 }

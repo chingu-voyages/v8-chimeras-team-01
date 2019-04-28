@@ -8,7 +8,7 @@ export default function Instructions({ getStarted, users }) {
 
   return (
 
-    <div className="instructions" id="instructions">
+    <div className="instructions fbc pm0" id="instructions">
       <h1 className="instructions-header text-center">A quick "How-To" while we get your game ready</h1>
       <div className="steps-wrapper">
         <h2 className="steps-title text-center">3 simple steps to play</h2>
