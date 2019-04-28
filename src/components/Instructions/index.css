@@ -11,20 +11,28 @@
 .instructions-header,
 .steps-wrapper,
 .join-board {
-  width: 90%;
+  width: 80%;
+  padding: 0.8em;
   margin: 1em auto;
   border-radius: 10px;
   box-shadow: 0 -1px 12px var(--color-gray);
-  background-color: var(--color-yellow);
-  background-image: url(https://www.transparenttextures.com/patterns/always-grey.png);
+  color: #fff;
+  background-color: var(--color-gray);
+  background-image: linear-gradient(
+    to top left,
+    var(--color-gray),
+    var(--color-lGray) 90%
+    );
 }
 
 .instructions-header {
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .steps-title {
-    font-size: 30px;
+  padding: 0.2em;
+  font-size: 30px;
+  color: var(--color-yellow);
 }
 
 .step__ol {

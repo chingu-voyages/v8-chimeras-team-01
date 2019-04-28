@@ -9,18 +9,19 @@ export default function Instructions({ getStarted, users }) {
   return (
 
     <div className="instructions fbc pm0" id="instructions">
-      <h1 className="instructions-header text-center">A quick "How-To" while we get your game ready</h1>
+      <h1 className="instructions-header text-center">A quick "how-to" while we prep your game</h1>
       <div className="steps-wrapper">
         <h2 className="steps-title text-center">3 simple steps to play</h2>
         <ol className="steps-list">
-          <li className="step1">
-            <p className="step1-instructions">Read the question and choose the RIGHT answer - [Hint: fastest gets MORE POINTS!]</p>
+          <li className="step">
+            <p className="step-instructions">Read the question and choose the RIGHT answer</p>
+            <p className="ste1-instructions">[Hint: faster = MORE POINTS!]</p>
           </li>
-          <li className="step2">
-            <p className="step2-instructions">When the timer expires, confirm you had the right answer<br />(have a list of excuses ready incase you didn't)</p>
+          <li className="step">
+            <p className="step-instructions">When time's up <em>you</em> check your answer, <em>we</em> get everybody's score tallied up</p>
           </li>
-          <li className="step3">
-            <p className="step3-instructions">Check your place on the Leaderboard</p>
+          <li className="step">
+            <p className="step-instructions">Check your place on the Leaderboard</p>
           </li>
         </ol>
       </div>
