@@ -13,12 +13,13 @@
   padding: 1em 0.2em;
   margin: 0;
   width: 100%;
-  box-shadow: 1px 1px 12px var(--color-gray);
-  border: 2px solid var(--color-gray);
+  border-bottom: 3px solid var(--color-gray);
   margin: 0 auto;
 }
 
 .questions__title {
+  align-self: flex-end;
+  margin-right: 1em;
   font-size: 1.2em;
 }
 
