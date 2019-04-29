@@ -8,17 +8,13 @@
     margin: 1rem;
 }
 
-.question__display,
-.question__timer {
-  font-size: 32px;
-  font-weight: 900;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  width: 600px;
-  border-radius: 10px;
-  box-shadow: 0 -1px 12px var(--color-gray);
-  background-color: var(--color-yellow);
-  background-image: url(https://www.transparenttextures.com/patterns/always-grey.png);
+.question__display {
+  font-size: 1.2em;
+  padding: 1em 0.2em;
+  margin: 0;
+  width: 100%;
+  box-shadow: 1px 1px 12px var(--color-gray);
+  border: 2px solid var(--color-gray);
   margin: 0 auto;
 }
 
@@ -40,8 +36,7 @@
 }
 
 .image-wrapper {
-    text-align: center;
-    margin: 1rem;
+    margin: 1em;
 }
 
 .hide {
