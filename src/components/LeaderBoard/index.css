@@ -223,6 +223,7 @@
   var(--color-gray),
   var(--color-lGray) 90%
   );
+  border: none;
 }
 
 
