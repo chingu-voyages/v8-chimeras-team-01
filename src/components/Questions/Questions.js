@@ -108,7 +108,7 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
       <div className='image-wrapper'>
         {time <= 0 ? <Loader /> :
           <>
-            <img className='outline image-question' alt='of question' src='https://picsum.photos/200'></img>
+            <img className='outline image-question' alt='of question' src={question.i}></img>
             <div className="question__timer">Timer {time}</div>
           </>
 

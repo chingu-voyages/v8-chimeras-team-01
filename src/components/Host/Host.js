@@ -409,6 +409,7 @@ class Host extends Component {
           <Route path="/host/questions"
             render={(props) =>
               <Questions {...props}
+                
                 question={this.state.questions[this.state.currentQ]}
                 onQ={this.state.currentQ + 1}
                 totalQ={this.state.questions.length}

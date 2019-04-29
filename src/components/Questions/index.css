@@ -59,6 +59,10 @@
 .no-clicks {
   pointer-events: none;
 }
+.image-question {
+    height: 270px;
+    width: 550px;
+}
 
 @media (max-width: 600px) {
     .questions__title,
