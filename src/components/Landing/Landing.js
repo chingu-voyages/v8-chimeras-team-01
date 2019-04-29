@@ -55,11 +55,11 @@ export default function Landing() {
 
       <section id="view-button-container" className="pm0">
         <div className={(view === "info") ? "button-box fbc sel" : "button-box fbc"}>
-          <i className="fas fa-info-circle fa-3x"
+          <i className="fas fa-info-circle fa-2x"
             onClick={() => { buttonSwitch("info") }}></i>
         </div>
         <div className={(view === "game") ? "button-box fbc sel" : "button-box fbc"}>
-          <i className="fas fa-gamepad fa-3x"
+          <i className="fas fa-gamepad fa-2x"
             onClick={() => { buttonSwitch("game") }}></i>
         </div>
       </section>

@@ -37,7 +37,8 @@
 }
 
 .button-box>i {
-  padding: 0.4em;
+  padding: 0.3em;
+  margin: 0.4em;
   color: #fff;
   background-color: var(--color-gray);
   border: 2px solid #fff;
