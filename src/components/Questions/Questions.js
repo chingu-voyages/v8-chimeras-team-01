@@ -102,8 +102,8 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
 
   return (
 
-    <div id="questions">
-      <h1 className="questions__title text-center">Question {onQ} of {totalQ} </h1>
+    <div id="questions" className="fbc">
+      <h1 className="questions__title">Question {onQ} of {totalQ} </h1>
 
       <div className='image-wrapper'>
         {time <= 0 ? <Loader /> :
