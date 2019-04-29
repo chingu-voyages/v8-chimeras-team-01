@@ -10,9 +10,9 @@
 
 .question__display {
   font-size: 1.2em;
-  padding: 1em 0.2em;
+  padding: 1em 0.5em;
   margin: 0;
-  width: 100%;
+  width: 85%;
   border-bottom: 3px solid var(--color-gray);
   margin: 0 auto;
 }
