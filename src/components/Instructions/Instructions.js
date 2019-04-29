@@ -33,7 +33,6 @@ export default function Instructions({ getStarted, users }) {
               userNames.map( (name, index) => (
                 <li className="step__li" key={index}>
                   <mark>{name}</mark>
-                  <small>0</small>
                 </li>
               ))
               :
