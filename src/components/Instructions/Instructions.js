@@ -15,7 +15,7 @@ export default function Instructions({ getStarted, users }) {
         <ol className="steps-list">
           <li className="step">
             <p className="step-instructions">Read the question and choose the RIGHT answer</p>
-            <p className="ste1-instructions">[Hint: faster = MORE POINTS!]</p>
+            <p className="step-instructions"><em>Faster answer = MORE POINTS!</em></p>
           </li>
           <li className="step">
             <p className="step-instructions">Timer hits 0: <br/> <em>you</em> check your answer, <br/> <em>we</em> tally the scores</p>
@@ -26,9 +26,9 @@ export default function Instructions({ getStarted, users }) {
         </ol>
       </div>
       <div className="join-board">
-        <div className="players-that-joined">
+        <div className="fbc">
           <h2 className="steps-title text-center">Players</h2>
-          <ol className="player-list pm0 step__ol">
+          <ol className="pm0 step__ol">
             {(userNames.length > 0) ?
               userNames.map( (name, index) => (
                 <li className="step__li" key={index}>

@@ -39,6 +39,11 @@
 
 .steps-list {
   font-size: 1.2em;
+  list-style-type: upper-roman;
+}
+
+.step-instructions {
+  font-family: var(--font-header);
 }
 
 .step__ol {
@@ -46,7 +51,7 @@
     padding-left: 0;
     list-style: none;
     width: 65%;
-    margin: 40px;
+    margin-bottom: 2em;
 }
 
 .step__li {
