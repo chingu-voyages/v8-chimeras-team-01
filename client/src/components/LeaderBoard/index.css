@@ -66,6 +66,7 @@
 
 .lb__container {
   width: 100%;
+  min-height: 300px;
   padding-bottom: 1em;
   margin: 1em 0;
   background-color: var(--color-gray);
@@ -227,9 +228,18 @@
   border: none;
 }
 
+/***** Media Queries *****/
 
-@media (max-width: 600px){
+@media only screen and (min-width: 600px){
+
   #leaderBoard {
     width: 100%;
   }
+
+  .lb__container {
+    min-height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 -1px 12px var(--color-gray);
+  }
+
 }
