@@ -1,4 +1,9 @@
 
+#player-container {
+  grid-column: c1 / c2;
+  grid-row: r2 / r3;
+}
+
 .player-header {
   display: flex;
   flex-flow: column nowrap;

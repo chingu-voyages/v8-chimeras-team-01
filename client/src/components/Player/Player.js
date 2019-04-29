@@ -236,7 +236,7 @@ class Player extends Component {
   render() {
 
     return (
-      <div>
+      <div id="player-container">
         <section className="player-header">
           {
             this.state.me.userName ?

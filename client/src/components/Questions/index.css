@@ -1,7 +1,9 @@
 
 #questions {
   width: 100%;
+  max-width: 900px;
   min-height: calc(100vh - 250px);
+  margin: 0 auto;
 }
 
 .answers-wrapper {
@@ -24,6 +26,7 @@
 .questions__title {
   align-self: flex-end;
   margin-right: 1em;
+  margin-top: 0;
   font-size: 1.2em;
 }
 
@@ -32,12 +35,12 @@
 }
 
 .box {
-    background-color: #444;
-    color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    font-size: 150%;
-    border: 4px solid #444;
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  border: 4px solid #444;
 }
 
 .image-wrapper {
@@ -63,4 +66,14 @@
 
 .no-clicks {
   pointer-events: none;
+}
+
+/***** Media Queries *****/
+
+@media only screen and (min-width: 600px) {
+
+  .question__display {
+    width: 100%;
+  }
+
 }
