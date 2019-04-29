@@ -56,6 +56,7 @@ export default function LeaderBoard(props) {
         <p className="lb__inspire_txt">
           Not being in first place just means you have a clear target
         </p>
+        <span className="right-color"></span>
       </div>
       <div className="lb__container">
         <h1 className="lb__title">Leader Board</h1>
