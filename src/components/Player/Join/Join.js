@@ -13,7 +13,7 @@ export default function Join(props) {
 
 
     return (
-        <div id="join" classname="fbc">
+        <div id="join">
           <div className="join__container">
               <h1 className="join__title">Join A Game</h1>
               <div className="join__wrapper fbc">
