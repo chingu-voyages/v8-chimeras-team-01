@@ -1,11 +1,15 @@
 
+#questions {
+  width: 100%;
+  min-height: calc(100vh - 250px);
+}
 
 .answers-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
     color: #444;
-    margin: 1rem;
+    margin: 1em;
 }
 
 .question__display {
