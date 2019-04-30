@@ -50,7 +50,14 @@ export default function LeaderBoard(props) {
   const sortedUsers = sortUsers(users)
 
   return (
-    <div id="leaderBoard">
+    <div id="leaderBoard" className="fbc">
+      <div className="lb__banner">
+        <span className="left-color"></span>
+        <p className="lb__inspire_txt">
+          Not being in first place just means you have a clear target
+        </p>
+        <span className="right-color"></span>
+      </div>
       <div className="lb__container">
         <h1 className="lb__title">Leader Board</h1>
         <ol className="lb__ol">
@@ -61,11 +68,6 @@ export default function LeaderBoard(props) {
             </li>
           ))}
         </ol>
-      </div>
-      <div className="lb__banner">
-        <p className="lb__inspire_txt">
-          Not being in first place just means you have a clear target
-        </p>
       </div>
 
       {!!props.hostReady && props.nextQuestion}
