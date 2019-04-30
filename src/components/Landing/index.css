@@ -279,32 +279,16 @@
 .htb1 {
   grid-column: htc1 / htc3;
   grid-row: htr2 / htr4;
-  background-image: url("/images/gameMaster.PNG");
-  background-repeat: no-repeat;
-  background-size: contain;
-  justify-content: flex-start;
-
 }
 
 .htb2 {
   grid-column: htc2 / htc4;
   grid-row: htr3 / htr6;
-  background-image: url("/images/chooseGame.PNG");
-  background-repeat: no-repeat;
-  background-size: contain;
-  justify-content: flex-start;
-
 }
 
 .htb3 {
   grid-column: htc1 / htc3;
   grid-row: htr5 / htr7;
-  background-image: url("/images/friendJoin.PNG");
-  background-repeat: no-repeat;
-  background-size: contain;
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding-bottom: 13%;
 }
 
 .lrg-scrn-icon {
@@ -421,6 +405,37 @@
   .how-to-host {
     max-width: 700px;
     height: 700px;
+  }
+
+  .htb1 {
+    grid-column: htc1 / htc3;
+    grid-row: htr2 / htr4;
+    background-image: url("/images/gameMaster.PNG");
+    background-repeat: no-repeat;
+    background-size: contain;
+    justify-content: flex-start;
+
+  }
+
+  .htb2 {
+    grid-column: htc2 / htc4;
+    grid-row: htr3 / htr6;
+    background-image: url("/images/chooseGame.PNG");
+    background-repeat: no-repeat;
+    background-size: contain;
+    justify-content: flex-start;
+
+  }
+
+  .htb3 {
+    grid-column: htc1 / htc3;
+    grid-row: htr5 / htr7;
+    background-image: url("/images/friendJoin.PNG");
+    background-repeat: no-repeat;
+    background-size: contain;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-bottom: 13%;
   }
 
 }
