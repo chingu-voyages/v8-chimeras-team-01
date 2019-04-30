@@ -17,8 +17,6 @@ export default function Results({ users }) {
 
     // Put keys and value into an array of arrays
     for (let key in list) {
-      console.log(key);
-      console.log(list);
       sortable.push([key, list[key]]);
     }
 

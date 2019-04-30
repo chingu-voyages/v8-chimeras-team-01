@@ -28,13 +28,17 @@ export default function Games({ showGames, handleSetGame, pushLocation, setGameT
     async function fetchQuestions() {
     const response = await fetch('/api/questions');
     const data = await response.json();
-    console.log( data[1]);
-
     return setgameList(data);
   }
     fetchQuestions();
   }, []);
 
+
+  /**
+   * @method [handleSelectGame]
+   * @param {Objects} game Object containing gameList information
+   * @description [Takes selected game information and passes it to the host state via handleSetGame method, pushes to instructions page]
+   */
   const handleSelectGame = (game) => {
     handleSetGame(game);
     pushLocation("/host/instructions");
