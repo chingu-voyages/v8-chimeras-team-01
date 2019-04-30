@@ -1,0 +1,99 @@
+
+#player-container {
+  grid-column: c1 / c2;
+  grid-row: r2 / r3;
+}
+
+.player-header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 0 0 0.6em 0;
+  margin: 0 auto;
+  background-color: var(--color-gray);
+  background-image: linear-gradient(
+    to top left,
+    var(--color-gray),
+    var(--color-lGray) 90%
+    );
+  color: #fff;
+}
+
+#join {
+    margin: 0 auto;
+    width: 100%;
+    min-height: calc(100vh - 220px);
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.join__container {
+  width: 85%;
+  max-width: 600px;
+  padding: 0;
+  margin: 1em auto;
+  border-radius: 10px;
+  box-shadow: 0 -1px 12px var(--color-gray);
+  background-image:
+  url(https://www.transparenttextures.com/patterns/always-grey.png),
+  linear-gradient(
+  to top left,
+  var(--color-gray),
+  var(--color-lGray) 90%
+  );
+}
+
+.join__title {
+  font-size: 2em;
+  color: var(--color-yellow);
+  text-align: center;
+  padding-top: 1em;
+}
+
+.join__wrapper {
+    height: 260px;
+    color: var(--color-orange);
+}
+
+.join__input {
+    width: 200px;
+    height: 38px;
+    font-size: 20px;
+    border-radius: 20px;
+    padding-left: 12px;
+}
+
+.join__input:focus {
+  outline-style: none;
+  box-shadow: 0 0 3pt 2pt red;
+}
+
+.join__btn {
+  font-size: 1.6em;
+  padding: 0;
+  margin: 1.5em auto;
+  color: var(--color-orange);
+  background-color: var(--color-gray);
+  background-image:
+  url(https://www.transparenttextures.com/patterns/always-grey.png),
+  linear-gradient(
+  to top left,
+  var(--color-gray),
+  var(--color-lGray) 90%
+  );
+  border: none;
+  width: 85%;
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 -1px 12px var(--color-gray);
+}
+
+@media (max-width: 600px) {
+    #join {
+        width: 100%;
+    }
+}
