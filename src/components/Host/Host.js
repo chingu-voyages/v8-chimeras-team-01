@@ -175,7 +175,6 @@ class Host extends Component {
    * @description [Takes in questions and answers from game selected in Games component and places them in the questions array in state.]
    */
   setGame = (game) => {
-    // To Do Clear all players and host scores
     this.setState({ questions: game.questions });
     this.setState({ whichGame: game.id});
   }
@@ -207,8 +206,7 @@ class Host extends Component {
 
     //check if all results are received on initial join
     if (Object.keys(this.state.users).length === this.state.players.length) {
-      //trigger host update users with own score
-      //by setting playersUpdated to true
+      //trigger host update users object with own score
       this.updateHost();
     }
   }
