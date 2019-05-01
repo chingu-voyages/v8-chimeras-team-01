@@ -53,15 +53,15 @@ export default function Results({ users }) {
           Time to BRAG
         </h1>
         <div className="res__wrapper">
-          <div className="res__bar">
+          <div className="res__bar fbc">
             <span className="res__bar_names">{sortedUsers[1].userName}</span>
             <div className="res__bar-inner" />
           </div>
-          <div className="res__bar">
+          <div className="res__bar fbc">
             <span className="res__bar_names">{sortedUsers[0].userName}</span>
             <div className="res__bar-inner" />
           </div>
-          <div className="res__bar">
+          <div className="res__bar fbc">
             <span className="res__bar_names">{sortedUsers[2].userName}</span>
             <div className="res__bar-inner" />
           </div>
