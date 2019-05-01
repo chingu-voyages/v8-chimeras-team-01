@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
+  margin: 2em auto;
   width: 100%;
   max-width: 600px;
   min-height: calc(100vh - 200px);
@@ -27,6 +27,7 @@
   flex-direction: row;
   height: 400px;
   justify-content: space-evenly;
+  color: #fff;
 }
 .res__bar {
   display: flex;
@@ -41,10 +42,11 @@
 }
 .res__title {
   font-size: 2em;
-  color: black;
+  color: var(--color-yellow);
   text-align: center;
   margin: 25px;
 }
+
 @keyframes first-place {
   from {
     height: 0px;

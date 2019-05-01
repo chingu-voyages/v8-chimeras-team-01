@@ -50,7 +50,7 @@ export default function Results({ users }) {
         <h1 className="res__title">
           Nice work {sortedUsers[0].userName}!
           <br />
-          Time to BRAG
+          <em>Time to BRAG</em>
         </h1>
         <div className="res__wrapper">
           <div className="res__bar fbc">
