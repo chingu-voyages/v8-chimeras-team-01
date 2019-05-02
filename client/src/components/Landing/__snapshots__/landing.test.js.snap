@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landing should render correctly 1`] = `
+<section
+  id="landing pm0"
+>
+  <i
+    className="fas fa-question pointy lrg-scrn-icon"
+    onClick={[Function]}
+  />
+  <section
+    className="pm0"
+    id="view-button-container"
+  >
+    <div
+      className="button-box fbc sel"
+    >
+      <i
+        className="fas fa-question fa-3x"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="button-box fbc"
+    >
+      <i
+        className="fas fa-gamepad fa-3x"
+        onClick={[Function]}
+      />
+    </div>
+  </section>
+  <section
+    className="view-container pm0"
+  >
+    <div
+      className="ge-container pm0 shift-up"
+    >
+      <button
+        className="info-close pm0 pointy"
+        onClick={[Function]}
+      >
+         X close 
+      </button>
+      <div
+        className="gameplay-example"
+      >
+        <div
+          className="fbc"
+        >
+          <h4
+            className="ge-header fbc"
+          >
+            How do I earn Bragging Rights?
+          </h4>
+        </div>
+        <div
+          className="ge-box b-s pm0 geb1"
+        >
+          <div
+            className="ge-description b-s fbc"
+          >
+            Setup a game with a few clicks
+          </div>
+        </div>
+        <div
+          className="ge-box b-s pm0 geb2"
+        >
+          <div
+            className="ge-description b-s fbc"
+          >
+            Answer the questions as they come
+          </div>
+        </div>
+        <div
+          className="ge-box b-s pm0 geb3"
+        >
+          <div
+            className="ge-description b-s fbc"
+          >
+            See who won Bragging Rights
+          </div>
+        </div>
+      </div>
+    </div>
+    <section
+      className="start-game-container pm0 shift-right"
+    >
+      <div
+        className="start-game-section fbc"
+      >
+        <h4
+          className="fbc"
+        >
+          Quick Launch
+        </h4>
+        <button
+          className="start-game-button fbc pointy"
+          onClick={[Function]}
+        >
+          <p
+            className="pm0"
+          >
+            <strong>
+              Are you a GameMaster??
+            </strong>
+          </p>
+          <p
+            className="pm0"
+          >
+            Host A Game
+          </p>
+        </button>
+        <button
+          className="start-game-button fbc pointy"
+        >
+          <Link
+            className="link fbc"
+            to="/join"
+          >
+            <p
+              className="pm0"
+            >
+              <strong>
+                Have a Code??
+              </strong>
+            </p>
+            <p
+              className=" pm0"
+            >
+              Join A Game
+            </p>
+          </Link>
+        </button>
+        <button
+          className="browse-button fbc pointy"
+          onClick={[Function]}
+        >
+          <p
+            className="pm0"
+          >
+            Browse Games
+          </p>
+        </button>
+      </div>
+      <div
+        className="hth-container pm0"
+      >
+        <div
+          className="how-to-host"
+        >
+          <h4
+            className="hth-header pm0 fbc"
+          >
+            Want to Host a Game?
+          </h4>
+          <div
+            className="how-to-box htb1 b-s"
+          >
+            <span
+              className="htb-num"
+            >
+              1
+            </span>
+            <p>
+              Choose "GameMaster" Option Above
+            </p>
+          </div>
+          <div
+            className="how-to-box htb2 b-s"
+          >
+            <span
+              className="htb-num"
+            >
+              2
+            </span>
+            <p>
+              Select A Game
+            </p>
+          </div>
+          <div
+            className="how-to-box htb3 b-s"
+          >
+            <span
+              className="htb-num"
+            >
+              3
+            </span>
+            <p>
+              Invite Friends!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <Games
+      handleToggleGames={[Function]}
+      showGames={false}
+    />
+  </section>
+</section>
+`;

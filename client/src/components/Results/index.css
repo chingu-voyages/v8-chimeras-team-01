@@ -1,0 +1,116 @@
+#results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2em auto;
+  width: 100%;
+  max-width: 600px;
+  min-height: calc(100vh - 200px);
+}
+.res__btn,
+.res__header,
+.res__container {
+  width: 85%;
+  border-radius: 10px;
+  box-shadow: 0 -1px 12px var(--color-gray);
+  background-color: var(--color-gray);
+  background-image:
+  url(https://www.transparenttextures.com/patterns/always-grey.png),
+  linear-gradient(
+  to top left,
+  var(--color-gray),
+  var(--color-lGray) 90%
+  );
+}
+.res__wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 400px;
+  justify-content: space-evenly;
+  color: #fff;
+}
+.res__bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.res__bar_names {
+  margin-bottom: 0.5em;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.res__title {
+  font-size: 2em;
+  color: var(--color-yellow);
+  text-align: center;
+  margin: 25px;
+}
+
+@keyframes first-place {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 350px;
+  }
+}
+@keyframes second-place {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 250px;
+  }
+}
+@keyframes third-place {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 150px;
+  }
+}
+.res__bar-inner {
+  animation-duration: 2s;
+  width: 80px;
+}
+.res__bar:first-child .res__bar-inner {
+  height: 250px;
+  animation-name: second-place;
+  background-color: #a9c4ea;
+}
+.res__bar:nth-child(2) .res__bar-inner {
+  height: 350px;
+  animation-name: first-place;
+  background-color: #b8e0a4;
+}
+.res__bar:last-child .res__bar-inner {
+  height: 150px;
+  animation-name: third-place;
+  background-color: #f09c99;
+}
+.res__btn {
+  font-size: 1.6em;
+  padding: 0;
+  margin: 1.5em auto;
+  color: var(--color-orange);
+  background-color: var(--color-gray);
+  background-image:
+  url(https://www.transparenttextures.com/patterns/always-grey.png),
+  linear-gradient(
+  to top left,
+  var(--color-gray),
+  var(--color-lGray) 90%
+  );
+  border: none;
+}
+
+@media only screen and (min-width: 600px) {
+
+  .res__bar,
+  .res__bar-inner {
+      width: 120px;
+  }
+
+}

@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render correctly 1`] = `
+<div
+  id="top-level-container"
+>
+  <_default />
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      path="/results"
+    />
+    <Route
+      component={[Function]}
+      path="/games"
+    />
+    <Route
+      component={[Function]}
+      path="/instructions"
+    />
+    <Route
+      component={[Function]}
+      path="/questions"
+    />
+    <Route
+      component={[Function]}
+      path="/leaderBoard"
+    />
+  </Switch>
+  <footer>
+    <ul>
+      <li>
+        <Link
+          to="/"
+        >
+          Landing Component
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/results"
+        >
+          Results Component
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/games"
+        >
+          Games
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/questions"
+        >
+          Questions Component
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/leaderBoard"
+        >
+          LeaderBoard Component
+        </Link>
+      </li>
+    </ul>
+  </footer>
+</div>
+`;

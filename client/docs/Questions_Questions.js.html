@@ -1,0 +1,209 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: Questions/Questions.js | Source: Questions/Questions.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 150px; height: 150px">
+        
+            <a href="https://github.com/nhnent/tui.jsdoc-template" rel="noopener noreferrer" target="_blank">
+                <img src="https://image.flaticon.com/icons/svg/477/477169.svg" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Source: Questions/Questions.js</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+        <ol class="lnb-tab">
+            <li id="api-tab">
+                <a href="#"><h4>Docs</h4></a>
+            </li>
+            <li id="examples-tab">
+                <a href="#"><h4>Tutorials</h4></a>
+            </li>
+        </ol>
+    
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="Questions.html">Questions</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Questions_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Questions.html#state">state</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Questions.html#.sendAnswer-FunctionusedtosendcomputedanswertotheHost.">sendAnswer - Function used to send computed answer to the Host.</a></li><li><a href="Questions.html#.timer-Atimertocountdown.">timer - A timer to countdown.</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#%255BbuttonSwitch%255D">[buttonSwitch]</a></li><li><a href="global.html#%255BtoggleGames%255D">[toggleGames]</a></li><li><a href="global.html#%255BtoggleInfo%255D">[toggleInfo]</a></li><li><a href="global.html#%255BtoggleView%255D">[toggleView]</a></li><li><a href="global.html#%255BuseState(gameList)%255D">[useState(gameList)]</a></li><li><a href="global.html#%255BuseState(showGames)%255D">[useState(showGames)]</a></li><li><a href="global.html#%255BuseState(view)%255D">[useState(view)]</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import Answer from './Answer';
+import './index.css';
+
+/**
+ *
+ *
+ * @class Questions
+ * @extends {Component}
+ */
+class Questions extends Component {
+
+  /**
+  *
+  *
+  * @property { Number } time - A number to countdown from.
+  * @property { String } question  - Hold the current question.
+  * @property { Array }  answers  - An array of possible answers.
+  * @property { String } correctAnswer  - The correct answer to the question.
+  * @property { String } chosenAnswer - Answer chosen by the player.
+  * @property { String } username - Username of the player.
+  * @property { Number } totalQuestions - Indicates how many questions there are in total.
+  * @property { Number } counter - Indicates which question we are currently at.
+  *
+  */
+  state = {
+    time: 10,
+    question: 'The Question ?',
+    answers: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'],
+    correctAnswer: 'Answer 2',
+    chosenAnswer: '',
+    username: 'Player1',
+    totalQuestions: 10,
+    counter: 1
+  }
+
+
+  /**
+   * @method sendAnswer - Function used to send computed answer to the Host.
+   *
+   * @memberof Questions
+   */
+  sendAnswer = (correct) => {
+
+    console.log({
+      correct,
+      username: this.state.username
+    })
+
+    clearInterval(this.timer)
+    console.log('Waiting for signal from host');
+    let imageQuestion = document.querySelector('.image-question')
+    imageQuestion.classList.add('hide');
+    let loader = document.querySelector('.loader');
+    loader.classList.remove('hide')
+
+    setTimeout(() => {
+      let correct = document.querySelector('.correct')
+      correct.classList.add('highlight')
+
+    }, 3000)
+
+  }
+
+  /**
+   * @method timer - A timer to countdown.
+   *
+   * @memberof Questions
+   */
+  timer = () => {
+    this.timer = setInterval(() => {
+      this.setState({ time: this.state.time - 1 },
+        () => {
+          if (this.state.time === 0) {
+
+            this.sendAnswer()
+
+          }
+        }
+      )
+
+    }, 1000)
+  }
+
+
+  componentDidMount() {
+    this.timer();
+  }
+
+  render() {
+    return (
+      &lt;div id="questions">
+
+        &lt;h1>Question {this.state.counter} of {this.state.totalQuestions} &lt;/h1>
+        &lt;div className='image-wrapper'>
+          &lt;img className='outline image-question' alt='of question' src='https://picsum.photos/200'>&lt;/img>
+          &lt;img className='loader hide' src='./images/loader.gif' />
+          &lt;div>Timer {this.state.time}&lt;/div>
+        &lt;/div>
+        &lt;div className='center'>
+          &lt;h1 className='inline'>{this.state.question}&lt;/h1>
+        &lt;/div>
+        &lt;div className='answers-wrapper'>
+          {
+            this.state.answers.map((answer, i) => {
+              if (answer !== this.state.correctAnswer) {
+                return &lt;Answer correct={'wrong'} sendAnswer={this.sendAnswer} answer={answer} key={i} />;
+              } else {
+                return &lt;Answer correct={'correct'} sendAnswer={this.sendAnswer} answer={answer} key={i} />;
+              }
+            })
+          }
+        &lt;/div>
+      &lt;/div>
+    )
+  }
+}
+
+
+export default Questions;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="https://image.flaticon.com/icons/svg/477/477169.svg" style="width: 150px; height: 150px">
+    <div class="footer-text">My awesome footer text</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>

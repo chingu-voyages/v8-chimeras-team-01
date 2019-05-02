@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Questions should render correctly 1`] = `
+<div
+  id="questions"
+>
+  <h1>
+    Question 
+    1
+     of 
+    10
+     
+  </h1>
+  <div
+    className="image-wrapper"
+  >
+    <img
+      alt="of question"
+      className="outline image-question"
+      src="https://picsum.photos/200"
+    />
+    <img
+      className="loader hide"
+      src="./images/loader.gif"
+    />
+    <div>
+      Timer 
+      10
+    </div>
+  </div>
+  <div
+    className="center"
+  >
+    <h1
+      className="inline"
+    >
+      The Question ?
+    </h1>
+  </div>
+  <div
+    className="answers-wrapper"
+  >
+    <Answer
+      answer="Answer 1"
+      correct="wrong"
+      key="0"
+      sendAnswer={[Function]}
+    />
+    <Answer
+      answer="Answer 2"
+      correct="correct"
+      key="1"
+      sendAnswer={[Function]}
+    />
+    <Answer
+      answer="Answer 3"
+      correct="wrong"
+      key="2"
+      sendAnswer={[Function]}
+    />
+    <Answer
+      answer="Answer 4"
+      correct="wrong"
+      key="3"
+      sendAnswer={[Function]}
+    />
+  </div>
+</div>
+`;
