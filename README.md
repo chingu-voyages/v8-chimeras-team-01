@@ -7,7 +7,7 @@
 #### Running this project locally
 
 ###### Live version:
-[URL](http://INSERT_LIVE_LINK_HERE)
+[Bragging Rights](https://braggingrights.herokuapp.com/)
 
 ###### From the repo:
 1. Clone this project locally
