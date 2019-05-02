@@ -409,7 +409,7 @@ class Host extends Component {
 
         </Switch>
         {(!!this.state.readyLeaderBoard) && <button className="host-next__btn" onClick={this.goLeaderboard}>Leaderboard</button>}
-        {(!!this.state.readyResults) && <button className="host-next__btn" onClick={this.goResults}>results</button>}
+        {(!!this.state.readyResults) && <button className="host-next__btn" onClick={this.goResults}>Results</button>}
 
       </div >
 
