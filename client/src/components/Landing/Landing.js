@@ -9,7 +9,7 @@ export default function Landing() {
    * @method [useState(view)]
    * @description [Creates and sets state for which view is being displayed. This dictates which view is shown and which button is 'chosen']
    */
-  const [view, setView] = useState("info");
+  const [view, setView] = useState("game");
 
   /**
    * @function [buttonSwitch]
