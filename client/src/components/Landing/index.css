@@ -116,16 +116,27 @@
 .geb1 {
   grid-column: gec1 / gec2;
   grid-row: ger1 / ger3;
+  width: 300px;
+  background-image: url("/images/games_screenshot.jpg");
+  background-size: cover;
 }
 
 .geb2 {
   grid-column: gec1 / gec2;
   grid-row: ger2 / ger5;
+  width: 300px;
+  background-image: url("/images/questions_screenshot.jpg");
+  background-size: cover;
+  background-position: right;
+
 }
 
 .geb3 {
   grid-column: gec1 / gec2;
   grid-row: ger4 / ger6;
+  width: 300px;
+  background-image: url("/images/results_screenshot.jpg");
+  background-size: cover;
 }
 
 .ge-box {
@@ -363,7 +374,7 @@
   /* DROP DOWN HOW-TO */
 
   .shift-up {
-    transform: translate3d( 0, -800px, 0);
+    transform: translate3d( 0, -1000px, 0);
   }
 
   .ge-container {
@@ -381,7 +392,7 @@
     justify-content: center;
     align-items: center;
     max-width: 700px;
-    height: 700px;
+    height: 900px;
     margin: 0 auto;
   }
 
@@ -393,6 +404,7 @@
 
   .ge-box {
     width: 600px;
+    height: 300px;
     margin: 1em auto;
   }
 
