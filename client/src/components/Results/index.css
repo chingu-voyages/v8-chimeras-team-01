@@ -1,25 +1,33 @@
 #results {
-  /* background-color: aqua; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  width: 600px;
+  margin: 2em auto;
+  width: 100%;
+  max-width: 600px;
+  min-height: calc(100vh - 200px);
 }
 .res__btn,
 .res__header,
 .res__container {
-  width: 100%;
+  width: 85%;
   border-radius: 10px;
   box-shadow: 0 -1px 12px var(--color-gray);
-  background-color: var(--color-yellow);
-  background-image: url(https://www.transparenttextures.com/patterns/always-grey.png);
+  background-color: var(--color-gray);
+  background-image:
+  url(https://www.transparenttextures.com/patterns/always-grey.png),
+  linear-gradient(
+  to top left,
+  var(--color-gray),
+  var(--color-lGray) 90%
+  );
 }
 .res__wrapper {
   display: flex;
   flex-direction: row;
-  height: 500px;
-  justify-content: space-around;
+  height: 400px;
+  justify-content: space-evenly;
+  color: #fff;
 }
 .res__bar {
   display: flex;
@@ -27,17 +35,18 @@
   justify-content: flex-end;
 }
 .res__bar_names {
+  margin-bottom: 0.5em;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: bold;
 }
 .res__title {
-  font-weight: bold;
-  font-size: 50px;
-  color: black;
+  font-size: 2em;
+  color: var(--color-yellow);
   text-align: center;
   margin: 25px;
 }
+
 @keyframes first-place {
   from {
     height: 0px;
@@ -64,7 +73,7 @@
 }
 .res__bar-inner {
   animation-duration: 2s;
-  width: 130px;
+  width: 80px;
 }
 .res__bar:first-child .res__bar-inner {
   height: 250px;
@@ -82,26 +91,26 @@
   background-color: #f09c99;
 }
 .res__btn {
-  margin-top: 20px;
-  font-size: 30px;
+  font-size: 1.6em;
+  padding: 0;
+  margin: 1.5em auto;
+  color: var(--color-orange);
+  background-color: var(--color-gray);
+  background-image:
+  url(https://www.transparenttextures.com/patterns/always-grey.png),
+  linear-gradient(
+  to top left,
+  var(--color-gray),
+  var(--color-lGray) 90%
+  );
   border: none;
 }
-.res__btn-anchor {
-  color: white;
-  text-decoration: none;
-}
-.res__anchor_txt {
-  font-size: 39px;
-  font-weight: bold;
-}
 
-@media (max-width: 600px) {
-  #results {
-    width: 100%;
-  }
+@media only screen and (min-width: 600px) {
 
   .res__bar,
   .res__bar-inner {
-      width: 100%;
+      width: 120px;
   }
+
 }

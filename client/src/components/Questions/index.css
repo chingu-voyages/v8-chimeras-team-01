@@ -10,6 +10,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
+    width: 300px;
     color: #444;
     margin: 1em;
 }
@@ -68,12 +69,24 @@
   pointer-events: none;
 }
 
+.image-question {
+    width: 300px;
+}
+
 /***** Media Queries *****/
 
 @media only screen and (min-width: 600px) {
 
   .question__display {
     width: 100%;
+  }
+
+  .answers-wrapper {
+      width: 500px;
+  }
+
+  .image-question {
+      width: 550px;
   }
 
 }

@@ -50,18 +50,18 @@ export default function Results({ users }) {
         <h1 className="res__title">
           Nice work {sortedUsers[0].userName}!
           <br />
-          Time to BRAG
+          <em>Time to BRAG</em>
         </h1>
         <div className="res__wrapper">
-          <div className="res__bar">
+          <div className="res__bar fbc">
             <span className="res__bar_names">{sortedUsers[1].userName}</span>
             <div className="res__bar-inner" />
           </div>
-          <div className="res__bar">
+          <div className="res__bar fbc">
             <span className="res__bar_names">{sortedUsers[0].userName}</span>
             <div className="res__bar-inner" />
           </div>
-          <div className="res__bar">
+          <div className="res__bar fbc">
             <span className="res__bar_names">{sortedUsers[2].userName}</span>
             <div className="res__bar-inner" />
           </div>
