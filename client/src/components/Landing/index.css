@@ -3,7 +3,7 @@
 /* Common Styling */
 
 .b-s {
-  box-shadow: 0 -1px 12px var(--color-gray);
+  box-shadow: 0 -2px 12px var(--color-gray);
 }
 
 #landing {
@@ -116,22 +116,34 @@
 .geb1 {
   grid-column: gec1 / gec2;
   grid-row: ger1 / ger3;
+  width: 300px;
+  background-image: url("/images/games_screenshot.jpg");
+  background-size: cover;
 }
 
 .geb2 {
   grid-column: gec1 / gec2;
   grid-row: ger2 / ger5;
+  width: 300px;
+  background-image: url("/images/questions_screenshot.jpg");
+  background-size: cover;
+  background-position: center;
+
 }
 
 .geb3 {
   grid-column: gec1 / gec2;
   grid-row: ger4 / ger6;
+  width: 300px;
+  background-image: url("/images/results_screenshot.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .ge-box {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-start;
   width: 100%;
   background-color: var(--color-yellow);
@@ -139,18 +151,18 @@
 }
 
 .ge-description {
-  width: 120px;
-  height:120px;
+  width: 100px;
+  height:100px;
   text-align: center;
-  padding: 0.5em;
-  margin: 0 0 0 1em;
+  padding: 0.3em;
+  margin: 0.5em;
   font-size: 1.1em;
+  font-family: var(--font-header);
   font-variant: small-caps;
   background-color: var(--color-gray);
   background-image:radial-gradient(
     var(--color-yellow),
-    var(--color-orange),
-    var(--color-red) 80%,
+    var(--color-orange)90%,
     var(--color-gray)
     );
   border: 2px solid #fff;
@@ -160,7 +172,7 @@
 
 .geb2>div {
   align-self: flex-end;
-  margin: 0 1em 0 0;
+  margin: 0.5em;
 }
 
 
@@ -363,7 +375,7 @@
   /* DROP DOWN HOW-TO */
 
   .shift-up {
-    transform: translate3d( 0, -800px, 0);
+    transform: translate3d( 0, -1000px, 0);
   }
 
   .ge-container {
@@ -381,7 +393,7 @@
     justify-content: center;
     align-items: center;
     max-width: 700px;
-    height: 700px;
+    height: 900px;
     margin: 0 auto;
   }
 
@@ -393,7 +405,9 @@
 
   .ge-box {
     width: 600px;
+    height: 220px;
     margin: 1em auto;
+    border-radius: 10px;
   }
 
   /*  BUTTONS TO START GAME */

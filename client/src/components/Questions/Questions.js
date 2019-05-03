@@ -45,14 +45,6 @@ export default function Questions({ updateMyScore, myScore, sendAnswer, question
    */
   const [time, setTime] = useState(10);
 
-
-  /**
-   * [isLastQ]
-   * @param  [Holds boolean, true if this is the last quesiton in the array, false otherwise]
-   * @return {Boolean}
-   */
-  const isLastQ = (onQ === totalQ) ? true : false;
-
   /**
    * @function highlightCorrect [Highlights Answer marked as correct]
    */
