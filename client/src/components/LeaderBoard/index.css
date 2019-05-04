@@ -176,6 +176,7 @@
 }
 .lb__li {
   background: #1a659a;
+  border-radius: 10px;
 }
 .lb__li::after {
   background: #1a659a;
